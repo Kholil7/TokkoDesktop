@@ -1,0 +1,11 @@
+net.sf.jasperreports.swing.JRViewerPanel$6
+net.sf.jasperreports.swing.JRViewerPanel$7
+net.sf.jasperreports.swing.JRViewerPanel$4
+net.sf.jasperreports.swing.JRViewerPanel$5
+net.sf.jasperreports.swing.JRViewerPanel$8
+net.sf.jasperreports.swing.JRViewerPanel$PageRenderer
+net.sf.jasperreports.swing.JRViewerPanel$2
+net.sf.jasperreports.swing.JRViewerPanel$ImageMapPanel
+net.sf.jasperreports.swing.JRViewerPanel$3
+net.sf.jasperreports.swing.JRViewerPanel$1
+net.sf.jasperreports.swing.JRViewerPanel

@@ -1,0 +1,2 @@
+net.sf.jasperreports.renderers.AbstractSvgDataToGraphics2DRenderer$1
+net.sf.jasperreports.renderers.AbstractSvgDataToGraphics2DRenderer

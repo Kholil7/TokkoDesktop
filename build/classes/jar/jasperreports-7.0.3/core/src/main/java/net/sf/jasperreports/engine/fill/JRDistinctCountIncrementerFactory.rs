@@ -1,0 +1,3 @@
+net.sf.jasperreports.engine.fill.JRDistinctCountIncrementerFactory
+net.sf.jasperreports.engine.fill.DistinctCountHolder
+net.sf.jasperreports.engine.fill.JRDistinctCountIncrementer

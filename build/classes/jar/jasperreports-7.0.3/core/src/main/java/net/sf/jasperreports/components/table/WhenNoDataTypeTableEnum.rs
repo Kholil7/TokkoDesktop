@@ -1,0 +1,1 @@
+net.sf.jasperreports.components.table.WhenNoDataTypeTableEnum

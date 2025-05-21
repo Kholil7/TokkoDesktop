@@ -1,0 +1,2 @@
+net.sf.jasperreports.groovy.GroovyClassFilterTransformer
+net.sf.jasperreports.groovy.GroovyClassFilterTransformer$Transformer

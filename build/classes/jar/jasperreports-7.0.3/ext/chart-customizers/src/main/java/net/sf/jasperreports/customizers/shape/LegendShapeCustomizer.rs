@@ -1,0 +1,3 @@
+net.sf.jasperreports.customizers.shape.LegendShapeCustomizer
+net.sf.jasperreports.customizers.shape.LegendShapeCustomizer$AbstractRendererLegendShapeSetter
+net.sf.jasperreports.customizers.shape.LegendShapeCustomizer$LegendItemsCounter

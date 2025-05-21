@@ -1,0 +1,2 @@
+net.sf.jasperreports.data.cache.TransformedColumnValues
+net.sf.jasperreports.data.cache.TransformedColumnValues$TransformedIterator

@@ -1,0 +1,7 @@
+net.sf.jasperreports.engine.fill.JRShortCountIncrementer
+net.sf.jasperreports.engine.fill.JRShortDistinctCountIncrementer
+net.sf.jasperreports.engine.fill.JRShortIncrementerFactory
+net.sf.jasperreports.engine.fill.JRShortStandardDeviationIncrementer
+net.sf.jasperreports.engine.fill.JRShortVarianceIncrementer
+net.sf.jasperreports.engine.fill.JRShortSumIncrementer
+net.sf.jasperreports.engine.fill.JRShortAverageIncrementer

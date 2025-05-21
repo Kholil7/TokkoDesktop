@@ -1,0 +1,7 @@
+net.sf.jasperreports.engine.fill.JRIntegerSumIncrementer
+net.sf.jasperreports.engine.fill.JRIntegerIncrementerFactory
+net.sf.jasperreports.engine.fill.JRIntegerDistinctCountIncrementer
+net.sf.jasperreports.engine.fill.JRIntegerVarianceIncrementer
+net.sf.jasperreports.engine.fill.JRIntegerCountIncrementer
+net.sf.jasperreports.engine.fill.JRIntegerAverageIncrementer
+net.sf.jasperreports.engine.fill.JRIntegerStandardDeviationIncrementer

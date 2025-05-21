@@ -1,0 +1,1 @@
+net.sf.jasperreports.poi.components.iconlabel.IconLabelElementXlsHandler

@@ -1,0 +1,3 @@
+net.sf.jasperreports.engine.JRAbstractExporter$BaseExporterContext
+net.sf.jasperreports.engine.JRAbstractExporter$PageRange
+net.sf.jasperreports.engine.JRAbstractExporter

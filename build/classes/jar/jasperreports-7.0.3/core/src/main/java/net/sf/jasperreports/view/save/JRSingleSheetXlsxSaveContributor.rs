@@ -1,0 +1,2 @@
+net.sf.jasperreports.view.save.JRSingleSheetXlsxSaveContributor$Factory
+net.sf.jasperreports.view.save.JRSingleSheetXlsxSaveContributor

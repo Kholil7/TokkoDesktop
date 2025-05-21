@@ -1,0 +1,1 @@
+net.sf.jasperreports.barcode4j.Interleaved2Of5Component

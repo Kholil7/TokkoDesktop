@@ -1,0 +1,17 @@
+net.sf.jasperreports.engine.util.JRValueStringUtils$ShortSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$DoubleSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$StringSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$BigIntegerSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$TimestampSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$CharacterSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$DefaultSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$ValueSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils
+net.sf.jasperreports.engine.util.JRValueStringUtils$TimeSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$DateSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$IntegerSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$BooleanSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$BigDecimalSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$ByteSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$FloatSerializer
+net.sf.jasperreports.engine.util.JRValueStringUtils$LongSerializer

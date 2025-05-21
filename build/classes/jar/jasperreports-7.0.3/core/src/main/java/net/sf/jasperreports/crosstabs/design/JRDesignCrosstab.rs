@@ -1,0 +1,2 @@
+net.sf.jasperreports.crosstabs.design.JRDesignCrosstab$MeasureClassChangeListener
+net.sf.jasperreports.crosstabs.design.JRDesignCrosstab

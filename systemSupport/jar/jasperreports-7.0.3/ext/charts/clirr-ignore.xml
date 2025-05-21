@@ -1,0 +1,7 @@
+<differences>
+	<difference>
+		<className>net/sf/jasperreports/charts/fill/JRFillChart</className>
+		<differenceType>7004</differenceType>
+		<method>*prepare(int, boolean)</method>
+	</difference>
+</differences>

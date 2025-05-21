@@ -1,0 +1,2 @@
+net.sf.jasperreports.compilers.DirectExpressionEvaluation
+net.sf.jasperreports.compilers.DirectExpressionEvaluation$EvaluationType

@@ -1,0 +1,3 @@
+net.sf.jasperreports.customizers.shape.AbstractShapeCustomizer$XYPlotSeriesNameProvider
+net.sf.jasperreports.customizers.shape.AbstractShapeCustomizer
+net.sf.jasperreports.customizers.shape.AbstractShapeCustomizer$ShapeSetter

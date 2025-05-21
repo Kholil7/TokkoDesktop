@@ -1,0 +1,13 @@
+net.sf.jasperreports.components.table.TableCompiler$10
+net.sf.jasperreports.components.table.TableCompiler$BaseColumnCellSelector
+net.sf.jasperreports.components.table.TableCompiler$9
+net.sf.jasperreports.components.table.TableCompiler$7
+net.sf.jasperreports.components.table.TableCompiler$8
+net.sf.jasperreports.components.table.TableCompiler$5
+net.sf.jasperreports.components.table.TableCompiler$6
+net.sf.jasperreports.components.table.TableCompiler$3
+net.sf.jasperreports.components.table.TableCompiler$4
+net.sf.jasperreports.components.table.TableCompiler$1
+net.sf.jasperreports.components.table.TableCompiler$2
+net.sf.jasperreports.components.table.TableCompiler
+net.sf.jasperreports.components.table.TableCompiler$ColumnCellSelector

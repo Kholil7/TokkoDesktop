@@ -1,0 +1,2 @@
+net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory$1
+net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory

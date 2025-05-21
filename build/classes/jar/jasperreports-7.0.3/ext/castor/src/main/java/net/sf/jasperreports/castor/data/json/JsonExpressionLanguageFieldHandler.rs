@@ -1,0 +1,1 @@
+net.sf.jasperreports.castor.data.json.JsonExpressionLanguageFieldHandler

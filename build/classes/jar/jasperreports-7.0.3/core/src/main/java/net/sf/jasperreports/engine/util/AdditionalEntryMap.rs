@@ -1,0 +1,5 @@
+net.sf.jasperreports.engine.util.AdditionalEntryMap$AdditionalValueCollection
+net.sf.jasperreports.engine.util.AdditionalEntryMap$AdditionalIterator
+net.sf.jasperreports.engine.util.AdditionalEntryMap$AdditionalKeySet
+net.sf.jasperreports.engine.util.AdditionalEntryMap$AdditionalEntrySet
+net.sf.jasperreports.engine.util.AdditionalEntryMap

@@ -1,0 +1,7 @@
+net.sf.jasperreports.engine.fill.JRBigDecimalSumIncrementer
+net.sf.jasperreports.engine.fill.JRBigDecimalDistinctCountIncrementer
+net.sf.jasperreports.engine.fill.JRBigDecimalVarianceIncrementer
+net.sf.jasperreports.engine.fill.JRBigDecimalCountIncrementer
+net.sf.jasperreports.engine.fill.JRBigDecimalAverageIncrementer
+net.sf.jasperreports.engine.fill.JRBigDecimalIncrementerFactory
+net.sf.jasperreports.engine.fill.JRBigDecimalStandardDeviationIncrementer

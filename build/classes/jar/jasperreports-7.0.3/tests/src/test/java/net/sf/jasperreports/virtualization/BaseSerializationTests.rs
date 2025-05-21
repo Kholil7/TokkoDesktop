@@ -1,0 +1,2 @@
+net.sf.jasperreports.virtualization.BaseSerializationTests$SerializationJob
+net.sf.jasperreports.virtualization.BaseSerializationTests

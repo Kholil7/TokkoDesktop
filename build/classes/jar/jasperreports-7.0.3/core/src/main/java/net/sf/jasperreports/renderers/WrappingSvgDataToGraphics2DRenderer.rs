@@ -1,0 +1,1 @@
+net.sf.jasperreports.renderers.WrappingSvgDataToGraphics2DRenderer

@@ -1,0 +1,5 @@
+net.sf.jasperreports.engine.JRExpressionCollector
+net.sf.jasperreports.engine.JRExpressionCollector$DatasetExpressionVerifier
+net.sf.jasperreports.engine.JRExpressionCollector$CrosstabExpressionVerifier
+net.sf.jasperreports.engine.JRExpressionCollector$ExpressionVerifier
+net.sf.jasperreports.engine.JRExpressionCollector$GeneratedIds

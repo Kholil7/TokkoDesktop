@@ -1,0 +1,6 @@
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService$LevelNode
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService$ServiceContext
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService$PropertiesWrapperBucketDefintion
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService$DataSource
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService
+net.sf.jasperreports.engine.analytics.dataset.MultiAxisDataService$MultiAxisBucketingService

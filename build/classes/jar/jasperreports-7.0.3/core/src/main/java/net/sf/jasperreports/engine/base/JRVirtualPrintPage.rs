@@ -1,0 +1,3 @@
+net.sf.jasperreports.engine.base.JRVirtualPrintPage$JRIdHolderTemplateElement
+net.sf.jasperreports.engine.base.JRVirtualPrintPage$JRIdHolderRenderer
+net.sf.jasperreports.engine.base.JRVirtualPrintPage

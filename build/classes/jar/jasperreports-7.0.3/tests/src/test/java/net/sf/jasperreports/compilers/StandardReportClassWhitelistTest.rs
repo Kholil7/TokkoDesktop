@@ -1,0 +1,2 @@
+net.sf.jasperreports.compilers.StandardReportClassWhitelistTest
+net.sf.jasperreports.compilers.StandardReportClassWhitelistTest$Include

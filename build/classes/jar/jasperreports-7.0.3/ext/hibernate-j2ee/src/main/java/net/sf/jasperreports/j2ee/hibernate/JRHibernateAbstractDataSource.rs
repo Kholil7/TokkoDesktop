@@ -1,0 +1,6 @@
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource$IndexFieldReader
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource$IndexPropertyFieldReader
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource$PropertyFieldReader
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource$FieldReader
+net.sf.jasperreports.j2ee.hibernate.JRHibernateAbstractDataSource$IdentityFieldReader

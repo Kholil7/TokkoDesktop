@@ -1,0 +1,1 @@
+net.sf.jasperreports.json.expression.member.evaluation.ObjectConstructionExpressionEvaluator

@@ -1,0 +1,3 @@
+net.sf.jasperreports.engine.fill.ThreadPoolSubreportRunnerFactory$ExecutorServiceDisposable
+net.sf.jasperreports.engine.fill.ThreadPoolSubreportRunnerFactory$SubreportsThreadFactory
+net.sf.jasperreports.engine.fill.ThreadPoolSubreportRunnerFactory

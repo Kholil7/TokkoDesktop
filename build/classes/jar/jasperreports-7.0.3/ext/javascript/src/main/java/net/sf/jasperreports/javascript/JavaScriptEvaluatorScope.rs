@@ -1,0 +1,5 @@
+net.sf.jasperreports.javascript.JavaScriptEvaluatorScope
+net.sf.jasperreports.javascript.JavaScriptEvaluatorScope$JSField
+net.sf.jasperreports.javascript.JavaScriptEvaluatorScope$JSParameter
+net.sf.jasperreports.javascript.JavaScriptEvaluatorScope$JSVariable
+net.sf.jasperreports.javascript.JavaScriptEvaluatorScope$JSValue

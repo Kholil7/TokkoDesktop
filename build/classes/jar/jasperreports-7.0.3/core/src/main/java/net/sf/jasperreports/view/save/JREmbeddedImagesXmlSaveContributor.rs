@@ -1,0 +1,2 @@
+net.sf.jasperreports.view.save.JREmbeddedImagesXmlSaveContributor$Factory
+net.sf.jasperreports.view.save.JREmbeddedImagesXmlSaveContributor

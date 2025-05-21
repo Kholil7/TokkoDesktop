@@ -1,0 +1,7 @@
+net.sf.jasperreports.engine.fill.JRFloatIncrementerFactory
+net.sf.jasperreports.engine.fill.JRFloatAverageIncrementer
+net.sf.jasperreports.engine.fill.JRFloatStandardDeviationIncrementer
+net.sf.jasperreports.engine.fill.JRFloatCountIncrementer
+net.sf.jasperreports.engine.fill.JRFloatVarianceIncrementer
+net.sf.jasperreports.engine.fill.JRFloatDistinctCountIncrementer
+net.sf.jasperreports.engine.fill.JRFloatSumIncrementer

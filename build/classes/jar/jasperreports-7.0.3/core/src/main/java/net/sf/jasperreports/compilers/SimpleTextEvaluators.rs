@@ -1,0 +1,2 @@
+net.sf.jasperreports.compilers.SimpleTextEvaluators
+net.sf.jasperreports.compilers.SimpleTextEvaluators$Evaluator
