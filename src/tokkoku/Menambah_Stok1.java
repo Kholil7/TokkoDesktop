@@ -55,10 +55,10 @@ public class Menambah_Stok1 extends javax.swing.JFrame {
         pnlRusak.addMouseMotionListener(new MouseMotionAdapter() {});
         tblData.addMouseListener(new MouseAdapter() {});
         tblData.addMouseMotionListener(new MouseMotionAdapter() {});
-        JTable tblStokProduk = new JTable(); // atau sudah ada di form/desain GUI
+        JTable tblStokProduk = new JTable();
         SpinnerNumberModel model = new SpinnerNumberModel(1, 0, 9999, 1);
         SpnJumlah.setModel(model);
-        loadDataProduk(); 
+        loadDataProduk();
         
         
         
@@ -92,16 +92,13 @@ btn_rusak.addActionListener(new ActionListener() {
         }
 
         try {
-            // Ambil ID Produk dari baris yang dipilih
             String idProduk = dataStok.getValueAt(selectedRow, 0).toString();
 
-            // Tampilkan panel input rusak
-            pnlRusak.setVisible(true);     // pastikan pnlRusak sudah disiapkan sebelumnya
+            pnlRusak.setVisible(true);
             pnlRusak.setEnabled(true);
 
-            // Masukkan nilai ID produk ke dalam textfield
             jtId.setText(idProduk);
-            jtId.setEditable(false); // supaya tidak bisa diubah user
+            jtId.setEditable(false);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Gagal memproses: " + ex.getMessage());
@@ -524,17 +521,15 @@ btn_rusak.addActionListener(new ActionListener() {
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
 int row = tblData.getSelectedRow();
 if (row != -1) {
-    // Tampilkan panel input
+
     pnUbah.setVisible(true);
 
-    // Ambil data dari tabel dan isi ke form input
-    String idProduk = tblData.getValueAt(row, 0).toString(); // kolom ID
-    String namaProduk = tblData.getValueAt(row, 1).toString(); // kolom nama produk
+    String idProduk = tblData.getValueAt(row, 0).toString();
+    String namaProduk = tblData.getValueAt(row, 1).toString();
 
-    // Isi ke form input
     txtNamaproduk1.setText(namaProduk);
 
-    // Simpan idProduk ke variabel global agar bisa digunakan saat update
+
     this.selectedIdProduk = idProduk;
 
 } else {
@@ -718,20 +713,16 @@ try (
     private void btnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpan1ActionPerformed
  String sqlGetLastId = "SELECT id_produk FROM produk ORDER BY id_produk DESC LIMIT 1";
 
-// Query untuk memasukkan data produk baru
 String sqlInsert = "INSERT INTO produk (id_produk, nama_produk) VALUES (?, ?)";
 
-// ✅ [PERUBAHAN] → ambil juga kolom barcode agar tidak hilang di UI
 String sqlSelectAll = "SELECT id_produk, nama_produk, barcode FROM produk";
 
 try (
-    // Membuka koneksi ke database dan menyiapkan statement
     Connection conn = dbtokko.configDB();
     PreparedStatement psGetLastId = conn.prepareStatement(sqlGetLastId);
     PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
     PreparedStatement psSelectAll = conn.prepareStatement(sqlSelectAll);
 ) {
-    // Validasi input kosong
     String namaProduk = txtNamaproduk.getText().trim();
 
     if (namaProduk.isEmpty()) {
@@ -757,19 +748,19 @@ try (
     // Tampilkan pesan sukses
     JOptionPane.showMessageDialog(null, "Data produk berhasil disimpan.");
 
-    // Kosongkan form input setelah penyimpanan
+    pnTambah.setVisible(false);
     txtNamaproduk.setText("");
 
-    // Ambil semua data produk dari database dan tampilkan di tabel
     ResultSet rsAll = psSelectAll.executeQuery();
     DefaultTableModel model = (DefaultTableModel) tblData.getModel();
-    model.setRowCount(0); // Kosongkan tabel
-    
+    model.setRowCount(0);
+
     while (rsAll.next()) {
         String idProduk = rsAll.getString("id_produk");
         String nama = rsAll.getString("nama_produk");
-        String barcode = rsAll.getString("barcode"); // ✅ Ambil juga barcode
-        model.addRow(new Object[] {idProduk, nama, barcode}); // ✅ Tambahkan ke tabel
+        String barcode = rsAll.getString("barcode");
+        model.addRow(new Object[] {idProduk, nama, barcode});
+//                loadDataProduk();
     }
 
 } catch (SQLException e) {
@@ -889,7 +880,6 @@ if (barcode.isEmpty()) {
     return;
 }
 
-// Ambil baris yang dipilih di JTable
 int row = tblData.getSelectedRow();
 
 if (row == -1) {
@@ -900,7 +890,6 @@ if (row == -1) {
 // Ambil ID produk dari kolom pertama tabel (asumsinya kolom 0 = id_produk)
 String idProduk = tblData.getValueAt(row, 0).toString();
 
-// Update barcode ke database
 String sqlUpdate = "UPDATE produk SET barcode = ? WHERE id_produk = ?";
 
 try (

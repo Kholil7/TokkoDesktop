@@ -458,8 +458,13 @@ barcode.addActionListener(new ActionListener() {
                 kd_barang.setText(idProduk);
                 txtHargaJual.setText(String.valueOf(harga));
 
-                // Set comboBox ke nama yang sesuai, tanpa menghapus semua item
                 comboBox.setSelectedItem(nama);
+                
+
+                spnJumlah.setValue(1);
+
+                btnTambah.doClick();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Produk tidak ditemukan!");
                 barcode.setText("");
@@ -784,6 +789,12 @@ SwingUtilities.invokeLater(() -> {
 
         showTotalField.setBorder(null);
         getContentPane().add(showTotalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 680, 210, 30));
+
+        barcode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                barcodeKeyTyped(evt);
+            }
+        });
         getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10000, 120, 150, -1));
 
         backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Master_penjualan.png"))); // NOI18N
@@ -1071,7 +1082,6 @@ try {
         rsCekStok.close();
 
         if (jumlah > totalStokTersedia) {
-            // Ambil nama produk untuk ditampilkan
             String namaProduk = "Tidak Diketahui";
             psNamaProduk.setString(1, idProduk);
             ResultSet rsNama = psNamaProduk.executeQuery();
@@ -1080,16 +1090,15 @@ try {
             }
             rsNama.close();
 
-            conn.rollback(); // rollback transaksi
+            conn.rollback();
             JOptionPane.showMessageDialog(this,
                 "Stok untuk produk '" + namaProduk + "' tidak mencukupi.\n" +
                 "Jumlah diminta: " + jumlah + " | Stok tersedia: " + totalStokTersedia,
                 "Stok Tidak Cukup", JOptionPane.WARNING_MESSAGE);
-            return; // hentikan proses transaksi
+            return;
         }
     }
 
-    // --- SIMPAN PENJUALAN SETELAH DIPASTIKAN STOK CUKUP ---
     psPenjualan.setString(1, idPenjualan);
     psPenjualan.setInt(2, total);
     psPenjualan.setInt(3, bayar);
@@ -1133,7 +1142,6 @@ try {
     conn.commit();
     JOptionPane.showMessageDialog(this, "Transaksi berhasil disimpan!");
 
-    // Cetak struk otomatis
         CetakStruk cs = new CetakStruk();
         cs.cetakStrukTransaksiTerakhir();
 
@@ -1161,12 +1169,6 @@ try {
         System.out.println("Gagal setAutoCommit true: " + ex.getMessage());
     }
 }
-
-
-
-
-
-
     }//GEN-LAST:event_btnBayarMouseClicked
 
     private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
@@ -1242,6 +1244,10 @@ try {
         // TODO add your handling code here:
         System.out.println("Sekarang Dalam Page Laporan " + "Master");
     }//GEN-LAST:event_btn_laporanMouseClicked
+
+    private void barcodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barcodeKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barcodeKeyTyped
     private void resetTabel() {
         // Menghapus semua baris di tabel setelah pembayaran berhasil
         model.setRowCount(0);
@@ -1344,7 +1350,7 @@ public class CetakStruk {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                idPenjualan = rs.getString("id_penjualan"); // ambil id_penjualan terakhir (varchar)
+                idPenjualan = rs.getString("id_penjualan");
             }
 
             rs.close();
@@ -1356,9 +1362,8 @@ public class CetakStruk {
         return idPenjualan;
     }
 
-    // Method untuk cetak struk dengan id_penjualan parameter
     public void cetakStruk(String idPenjualan) {
-        try {
+        try { 
             Connection conn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/db_kasirtoko", "root", "");
 
@@ -1376,7 +1381,6 @@ public class CetakStruk {
         }
     }
 
-    // Method utama menjalankan cetak otomatis transaksi terakhir
     public void cetakStrukTransaksiTerakhir() {
         String idPenjualanTerakhir = ambilIdPenjualanTerakhir();
         if (idPenjualanTerakhir != null) {
