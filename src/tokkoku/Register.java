@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,8 +29,6 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         ipt_username.setBackground(new java.awt.Color(255, 255, 255, 0));
         ipt_password.setBackground(new java.awt.Color(255, 255, 255, 0));
-        btn_show.setBackground(new java.awt.Color(255, 255, 255, 0));
-        cmbRole.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_submit.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_masuk.setBackground(new java.awt.Color(255, 255, 255, 0));
         
@@ -45,9 +45,7 @@ public class Register extends javax.swing.JFrame {
 
         btn_submit = new javax.swing.JButton();
         ipt_username = new javax.swing.JTextField();
-        cmbRole = new javax.swing.JComboBox<>();
         ipt_password = new javax.swing.JPasswordField();
-        btn_show = new javax.swing.JCheckBox();
         btn_masuk = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -65,33 +63,15 @@ public class Register extends javax.swing.JFrame {
                 btn_submitActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 580, 140, 40));
+        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 550, 140, 40));
 
         ipt_username.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_username.setBorder(null);
         getContentPane().add(ipt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 280, 360, 40));
 
-        cmbRole.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Master", "Admin"}));
-        cmbRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRoleActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cmbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 440, 200, 50));
-
         ipt_password.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_password.setBorder(null);
-        getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 365, 320, 40));
-
-        btn_show.setFont(new java.awt.Font("Dialog", 0, 50)); // NOI18N
-        btn_show.setBorder(null);
-        btn_show.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_showActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_show, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 360, 40, 50));
+        getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 390, 360, 40));
 
         btn_masuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,9 +83,9 @@ public class Register extends javax.swing.JFrame {
                 btn_masukActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_masuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 520, 90, 30));
+        getContentPane().add(btn_masuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 480, 90, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Register (2).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_register.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -115,9 +95,7 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
 String username = ipt_username.getText().trim();
 String password = new String(ipt_password.getPassword()).trim();
-String role = cmbRole.getSelectedItem().toString().trim();
 
-// Validasi input
 if (username.isEmpty()) {
     JOptionPane.showMessageDialog(this, "Username wajib diisi", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
@@ -126,12 +104,7 @@ if (password.isEmpty()) {
     JOptionPane.showMessageDialog(this, "Password wajib diisi", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
 }
-if (role.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Role wajib dipilih", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
-    return;
-}
 
-// Validasi panjang username dan password
 if (username.length() < 3) {
     JOptionPane.showMessageDialog(this, "Username minimal 3 karakter", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
@@ -141,62 +114,62 @@ if (password.length() < 6) {
     return;
 }
 
-
 if (!password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).+$")) {
     JOptionPane.showMessageDialog(this, "Password harus mengandung huruf besar, kecil, dan angka", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
 }
 
-
 try (Connection conn = dbtokko.configDB()) {
-
-
-    if (role.equalsIgnoreCase("Master")) {
-        String checkMasterSql = "SELECT COUNT(*) AS master_count FROM pengguna WHERE role = 'Master'";
-        try (PreparedStatement checkStmt = conn.prepareStatement(checkMasterSql)) {
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next() && rs.getInt("master_count") > 0) {
-                JOptionPane.showMessageDialog(this, "Anda Tidak Diberkanankan Menggunakan Role Master", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
+    String checkSql = "SELECT * FROM pengguna WHERE username = ?";
+    try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+        checkStmt.setString(1, username);
+        ResultSet rs = checkStmt.executeQuery();
+        if (rs.next()) {
+            JOptionPane.showMessageDialog(this, "Username sudah digunakan", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
+            return;
         }
     }
 
-    // Query untuk memasukkan data ke tabel pengguna
-    String sql = "INSERT INTO pengguna (username, password, role) VALUES (?, ?, ?)";
+    String hashedPassword = hashPassword(password);
+    if (hashedPassword == null) {
+        JOptionPane.showMessageDialog(this, "Terjadi kesalahan pada proses hashing password.", "Gagal Registrasi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String sql = "INSERT INTO pengguna (username, password) VALUES (?, ?)";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, username);
-        stmt.setString(2, password);
-        stmt.setString(3, role);
+        stmt.setString(2, hashedPassword);
 
         int rowsInserted = stmt.executeUpdate();
         if (rowsInserted > 0) {
-            JOptionPane.showMessageDialog(this, "Akun Anda telah berhasil dibuat!");
+            JOptionPane.showMessageDialog(this, "Akun berhasil dibuat!");
             this.setVisible(false);
-            Login loginFrame = new Login();
-            loginFrame.setVisible(true);
+            new Login().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Registrasi gagal. Coba lagi.", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
         }
     }
 
 } catch (SQLException ex) {
-    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Ada Masalah, Coba Ulangi", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
 }
     }//GEN-LAST:event_btn_submitActionPerformed
-
-    private void cmbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRoleActionPerformed
-
-    private void btn_showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_showActionPerformed
-        // TODO add your handling code here
-        if(btn_show.isSelected()){
-           ipt_password.setEchoChar((char)0);
-       } else{
-           ipt_password.setEchoChar('*');}
-    }//GEN-LAST:event_btn_showActionPerformed
-
+// Fungsi hashing password dengan SHA-256
+private String hashPassword(String password) {
+    try {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hashedBytes = md.digest(password.getBytes("UTF-8"));
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashedBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    } catch (NoSuchAlgorithmException | java.io.UnsupportedEncodingException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
     private void btn_masukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_masukMouseClicked
         // TODO add your handling code here:
         Login Jlogin = new Login();
@@ -252,9 +225,7 @@ try (Connection conn = dbtokko.configDB()) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_masuk;
-    private javax.swing.JCheckBox btn_show;
     private javax.swing.JButton btn_submit;
-    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JPasswordField ipt_password;
     private javax.swing.JTextField ipt_username;
     private javax.swing.JLabel jLabel3;
