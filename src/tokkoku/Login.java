@@ -99,8 +99,8 @@ public class Login extends javax.swing.JFrame {
         cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Master", "Admin" }));
         getContentPane().add(cmbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 190, 40));
 
-        ipt_username.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        ipt_username.setBorder(null);
+        ipt_username.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        ipt_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ipt_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ipt_usernameActionPerformed(evt);
