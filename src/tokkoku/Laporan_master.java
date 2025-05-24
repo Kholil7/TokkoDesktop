@@ -85,21 +85,16 @@ Claporan.addActionListener(new ActionListener() {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        sidebar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btn_laporan = new javax.swing.JButton();
-        btn_dashboard = new javax.swing.JButton();
-        btn_penjualan = new javax.swing.JButton();
-        btn_pembelian = new javax.swing.JButton();
-        btn_pemasok = new javax.swing.JButton();
-        btn_pengembalian = new javax.swing.JButton();
-        btn_stok = new javax.swing.JButton();
-        sidebarout = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        sidebarIn = new javax.swing.JLabel();
         Claporan = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btn_laporan = new javax.swing.JButton();
+        btn_stok = new javax.swing.JButton();
+        btn_pengembalian = new javax.swing.JButton();
+        btn_pemasok = new javax.swing.JButton();
+        btn_pembelian = new javax.swing.JButton();
+        btn_penjualan = new javax.swing.JButton();
+        btn_dashboard = new javax.swing.JButton();
         pembelianTbl = new javax.swing.JScrollPane();
         pembelian = new javax.swing.JTable();
         penjualanTbl = new javax.swing.JScrollPane();
@@ -119,15 +114,17 @@ Claporan.addActionListener(new ActionListener() {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Claporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laporan Penjualan", "Laporan Pembelian", "Laporan Produk", "Laporan Pengembalian Barang", "Laporan Barang Rusak"}));
+        jPanel1.add(Claporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 220, 50));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-        sidebar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 70, 70));
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButton1.setText("Print");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, 140, 40));
+
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("S/d");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 30, -1));
 
         btn_laporan.setBorder(null);
         btn_laporan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,72 +137,7 @@ Claporan.addActionListener(new ActionListener() {
                 btn_laporanActionPerformed(evt);
             }
         });
-        sidebar.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
-
-        btn_dashboard.setBorder(null);
-        btn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_dashboardMouseClicked(evt);
-            }
-        });
-        btn_dashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_dashboardActionPerformed(evt);
-            }
-        });
-        sidebar.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 240, 50));
-
-        btn_penjualan.setBorder(null);
-        btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_penjualanMouseClicked(evt);
-            }
-        });
-        btn_penjualan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_penjualanActionPerformed(evt);
-            }
-        });
-        sidebar.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 240, 50));
-
-        btn_pembelian.setBorder(null);
-        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pembelianMouseClicked(evt);
-            }
-        });
-        btn_pembelian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pembelianActionPerformed(evt);
-            }
-        });
-        sidebar.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 240, 50));
-
-        btn_pemasok.setBorder(null);
-        btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pemasokMouseClicked(evt);
-            }
-        });
-        btn_pemasok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pemasokActionPerformed(evt);
-            }
-        });
-        sidebar.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 240, 50));
-
-        btn_pengembalian.setBorder(null);
-        btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pengembalianMouseClicked(evt);
-            }
-        });
-        btn_pengembalian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pengembalianActionPerformed(evt);
-            }
-        });
-        sidebar.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 240, 50));
+        jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
 
         btn_stok.setBorder(null);
         btn_stok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,35 +150,72 @@ Claporan.addActionListener(new ActionListener() {
                 btn_stokActionPerformed(evt);
             }
         });
-        sidebar.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 240, 50));
+        jPanel1.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 240, 50));
 
-        sidebarout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/sidebar.png"))); // NOI18N
-        sidebar.add(sidebarout, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 250, -1));
-
-        jPanel1.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_pengembalian.setBorder(null);
+        btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                btn_pengembalianMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 160, 70));
+        btn_pengembalian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pengembalianActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 50));
 
-        sidebarIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/side-bar-in/sidebar-in-home.png"))); // NOI18N
-        jPanel1.add(sidebarIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        btn_pemasok.setBorder(null);
+        btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pemasokMouseClicked(evt);
+            }
+        });
+        btn_pemasok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pemasokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 50));
 
-        Claporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laporan Penjualan", "Laporan Pembelian", "Laporan Produk", "Laporan Pengembalian Barang", "Laporan Barang Rusak"}));
-        jPanel1.add(Claporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 220, 50));
+        btn_pembelian.setBorder(null);
+        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pembelianMouseClicked(evt);
+            }
+        });
+        btn_pembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pembelianActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setText("Print");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, 140, 40));
+        btn_penjualan.setBorder(null);
+        btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_penjualanMouseClicked(evt);
+            }
+        });
+        btn_penjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_penjualanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 50));
 
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("S/d");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 125, 30, -1));
+        btn_dashboard.setBorder(null);
+        btn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_dashboardMouseClicked(evt);
+            }
+        });
+        btn_dashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_dashboardActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 240, 50));
 
         pembelian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,7 +230,7 @@ Claporan.addActionListener(new ActionListener() {
         ));
         pembelianTbl.setViewportView(pembelian);
 
-        jPanel1.add(pembelianTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 1040, 510));
+        jPanel1.add(pembelianTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 1040, 510));
 
         penjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,62 +271,73 @@ Claporan.addActionListener(new ActionListener() {
         ));
         penjualanTbl.setViewportView(penjualan);
 
-        jPanel1.add(penjualanTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 1040, 510));
-        jPanel1.add(jCalendarComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 130, 30));
-        jPanel1.add(jCalendarComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 130, 30));
+        jPanel1.add(penjualanTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 520));
+        jPanel1.add(jCalendarComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 130, 30));
+        jPanel1.add(jCalendarComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 130, 30));
 
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/master/Laporan.png"))); // NOI18N
-        jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1440, -1));
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_laporan.png"))); // NOI18N
+        jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
-    new Thread(() -> {
-        try {
-            for (int i = 0; i <= 240; i += 10) { // Tambah ukuran per 10 biar smooth
-                Thread.sleep(5); // Delay biar animasi ga terlalu cepat
-                sidebar.setSize(i, 780);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-        }
-    }).start();
-    
-    x = 210; // Ubah x ke 210 biar nanti bisa ditutup lagi
-}
-
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseEntered
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
         // TODO add your handling code here:
-        if (x == 210) {
-            Timer timer = new Timer(5, new ActionListener() {
-                int width = 240;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (width <= 0) { // Sidebar tetap menyisakan 50px
-                        ((Timer) e.getSource()).stop();
-                        x = 0;
+    }//GEN-LAST:event_btn_stokActionPerformed
 
-                    } else {
-                        width -= 10;
-                        sidebar.setSize(width, 780);
-                        //                sidebar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true)); // Border melengkung
-                    }
-                }
-            });
-            timer.start();
-        }
-    }//GEN-LAST:event_jLabel2MouseClicked
+    private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_stokMouseClicked
+
+    private void btn_pengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pengembalianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pengembalianActionPerformed
+
+    private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pengembalianMouseClicked
+
+    private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pemasokActionPerformed
+
+    private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pemasokMouseClicked
+
+    private void btn_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pembelianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pembelianActionPerformed
+
+    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pembelianMouseClicked
+
+    private void btn_penjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_penjualanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_penjualanActionPerformed
+
+    private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_penjualanMouseClicked
+
+    private void btn_dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dashboardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_dashboardActionPerformed
+
+    private void btn_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dashboardMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_dashboardMouseClicked
+
+    private void btn_laporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_laporanActionPerformed
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
         // TODO add your handling code here:
@@ -367,58 +347,6 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
         dispose();
         System.out.println("Memasuki Dashboard Master");
     }//GEN-LAST:event_btn_laporanMouseClicked
-
-    private void btn_laporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_laporanActionPerformed
-
-    private void btn_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dashboardMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_dashboardMouseClicked
-
-    private void btn_dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dashboardActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_dashboardActionPerformed
-
-    private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_penjualanMouseClicked
-
-    private void btn_penjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_penjualanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_penjualanActionPerformed
-
-    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pembelianMouseClicked
-
-    private void btn_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pembelianActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pembelianActionPerformed
-
-    private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pemasokMouseClicked
-
-    private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pemasokActionPerformed
-
-    private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pengembalianMouseClicked
-
-    private void btn_pengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pengembalianActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pengembalianActionPerformed
-
-    private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_stokMouseClicked
-
-    private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_stokActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,16 +412,11 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
     private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox1;
     private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable pembelian;
     private javax.swing.JScrollPane pembelianTbl;
     private javax.swing.JTable penjualan;
     private javax.swing.JScrollPane penjualanTbl;
-    private javax.swing.JPanel sidebar;
-    private javax.swing.JLabel sidebarIn;
-    private javax.swing.JLabel sidebarout;
     // End of variables declaration//GEN-END:variables
 
 private void tampilkanDataPenjualan() {
