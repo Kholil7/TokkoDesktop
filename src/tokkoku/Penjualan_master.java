@@ -30,6 +30,8 @@ import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
+import javax.swing.text.PlainDocument;
+import support.NumericFilter;
 /**
  *
  * @author Yiung Za
@@ -322,25 +324,30 @@ private void updateTotal() {
 // Fungsi untuk menghitung selisih antara pembayaran dan total
 private void updateKembali() {
     try {
-        String totalText = showTotalField.getText().replace(".", "").replace(",", ".");
-        String bayarText = textBayar.getText().replace(".", "").replace(",", ".");
+        String totalText = showTotalField.getText().trim().replace(".", "").replace(",", ".");
+        String bayarText = textBayar.getText().trim().replace(".", "").replace(",", ".");
 
-        System.out.println("Total Field: " + totalText);
-        System.out.println("Bayar Field: " + bayarText);
+        System.out.println("Total Field (parsed): " + totalText);
+        System.out.println("Bayar Field (parsed): " + bayarText);
 
         double total = totalText.isEmpty() ? 0.0 : Double.parseDouble(totalText);
         double bayar = bayarText.isEmpty() ? 0.0 : Double.parseDouble(bayarText);
 
         double kembali = bayar - total;
 
-        NumberFormat formatRibuan = NumberFormat.getInstance(new Locale("id", "ID"));
+        NumberFormat formatRibuan = NumberFormat.getNumberInstance(new Locale("id", "ID"));
+        formatRibuan.setMaximumFractionDigits(2);
+        formatRibuan.setMinimumFractionDigits(0); // Ini membuat ,00 hilang kalau tidak perlu
+
         textKembali.setText(formatRibuan.format(kembali));
 
     } catch (NumberFormatException ex) {
-        System.out.println("Format tidak valid: " + ex.getMessage());
+        System.err.println("Format tidak valid: " + ex.getMessage());
         textKembali.setText("0");
     }
 }
+
+
 
 //subtotalJumlahDatabase
 //private double calculateTotal() {
@@ -404,15 +411,14 @@ private void updateKembali() {
         barcode.setOpaque(false);
         barcode.setBorder(null);
         barcode.setFocusable(true);
-        
+        setNumericOnly(txtHarga, txtHargaJual, txtRp, showTotalField, textBayar, textKembali);
+
         initModel();
-        // Menambahkan TableModelListener untuk mendeteksi perubahan data
         model.addTableModelListener(new TableModelListener() {
         @Override
         public void tableChanged(TableModelEvent e) {
-        // Memastikan perubahan terjadi pada kolom subtotal (kolom 6)
         if (e.getColumn() == 6 || e.getColumn() == TableModelEvent.ALL_COLUMNS) {
-            updateTotal(); // Memanggil fungsi untuk update total
+            updateTotal();
         }
     }
 });
@@ -548,11 +554,11 @@ SwingUtilities.invokeLater(() -> {
         textBayar = new javax.swing.JTextField();
         textKembali = new javax.swing.JTextField();
         btnBayar = new javax.swing.JButton();
-        spnJumlah = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_transaksi = new javax.swing.JTable();
         showTotalField = new javax.swing.JTextField();
         barcode = new javax.swing.JTextField();
+        spnJumlah = new javax.swing.JSpinner();
         backgoundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -699,6 +705,8 @@ SwingUtilities.invokeLater(() -> {
         });
         getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 49, 357, 25));
 
+        txtRp.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        txtRp.setBorder(null);
         txtRp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRpActionPerformed(evt);
@@ -709,7 +717,7 @@ SwingUtilities.invokeLater(() -> {
                 txtRpKeyReleased(evt);
             }
         });
-        getContentPane().add(txtRp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 250, 390, 60));
+        getContentPane().add(txtRp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1002, 250, 390, 60));
 
         btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -730,11 +738,18 @@ SwingUtilities.invokeLater(() -> {
         });
         getContentPane().add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 150, 50));
 
+        textBayar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         textBayar.setBorder(null);
-        getContentPane().add(textBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 680, 210, 30));
+        textBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textBayarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 680, 210, 30));
 
+        textKembali.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         textKembali.setBorder(null);
-        getContentPane().add(textKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 680, 210, 30));
+        getContentPane().add(textKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(782, 680, 210, 30));
 
         btnBayar.setBorder(null);
         btnBayar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -748,18 +763,6 @@ SwingUtilities.invokeLater(() -> {
             }
         });
         getContentPane().add(btnBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 650, 210, 70));
-
-        spnJumlah.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                spnJumlahStateChanged(evt);
-            }
-        });
-        spnJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                spnJumlahKeyReleased(evt);
-            }
-        });
-        getContentPane().add(spnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 120, 60, 30));
 
         tabel_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -787,8 +790,9 @@ SwingUtilities.invokeLater(() -> {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 1170, 270));
 
+        showTotalField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         showTotalField.setBorder(null);
-        getContentPane().add(showTotalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 680, 210, 30));
+        getContentPane().add(showTotalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 680, 210, 30));
 
         barcode.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -796,6 +800,7 @@ SwingUtilities.invokeLater(() -> {
             }
         });
         getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10000, 120, 150, -1));
+        getContentPane().add(spnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, 70, 30));
 
         backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Master_penjualan.png"))); // NOI18N
         getContentPane().add(backgoundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -930,20 +935,6 @@ comboBox.setEditable(true);
 
 
     }//GEN-LAST:event_comboBoxActionPerformed
-
-    private void spnJumlahKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spnJumlahKeyReleased
-        spnJumlah.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
-                updateTotalHarga();
-            }
-        });
-    }//GEN-LAST:event_spnJumlahKeyReleased
-
-    private void spnJumlahStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnJumlahStateChanged
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_spnJumlahStateChanged
 
     private void txtRpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRpKeyReleased
         // TODO add your handling code here:
@@ -1248,6 +1239,10 @@ try {
     private void barcodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barcodeKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_barcodeKeyTyped
+
+    private void textBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textBayarActionPerformed
     private void resetTabel() {
         // Menghapus semua baris di tabel setelah pembayaran berhasil
         model.setRowCount(0);
@@ -1388,5 +1383,21 @@ public class CetakStruk {
         } else {
             System.out.println("Tidak ada transaksi penjualan yang ditemukan.");
         }
-    }}}
+    }}
+
+public void setNumericOnly(JTextField... fields) {
+    for (JTextField field : fields) {
+        field.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != ',' && c != '.') {
+                    e.consume();
+                }
+            }
+        });
+    }
+}
+
+
+}
 
