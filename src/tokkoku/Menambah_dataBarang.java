@@ -34,11 +34,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author NINDY
  */
-public class Menambah_Stok1 extends javax.swing.JFrame {
+public class Menambah_dataBarang extends javax.swing.JFrame {
         
     private String selectedIdProduk;
 
-    public Menambah_Stok1() {
+    public Menambah_dataBarang() {
         initComponents();
         pnTambah.setVisible(false);
         pnUbah.setVisible(false);
@@ -504,7 +504,7 @@ btn_rusak.addActionListener(new ActionListener() {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 1120, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Stok.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Barang-Karyawan.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -1159,14 +1159,22 @@ btnMasuk.addActionListener(new ActionListener() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menambah_Stok1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menambah_dataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menambah_Stok1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menambah_dataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menambah_Stok1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menambah_dataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menambah_Stok1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menambah_dataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1179,7 +1187,7 @@ btnMasuk.addActionListener(new ActionListener() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menambah_Stok1().setVisible(true);
+                new Menambah_dataBarang().setVisible(true);
             }
         });
     }

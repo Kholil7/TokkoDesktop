@@ -36,7 +36,7 @@ import support.NumericFilter;
  *
  * @author Yiung Za
  */
-public class Penjualan_master extends javax.swing.JFrame {
+public class Penjualan_karyawan extends javax.swing.JFrame {
     private JTextField ipt_jumlah;
     private JTextField txtHarga;
     private JTextField txtTotal;
@@ -149,7 +149,7 @@ public class AutoCompleteBarang {
         }}}
 
 //        pt2
-public Penjualan_master(JComboBox<String> comboBox, JTextField txtKodeTransaksi, JTextField txtHargaJual, JTextField kd_barang) {
+public Penjualan_karyawan(JComboBox<String> comboBox, JTextField txtKodeTransaksi, JTextField txtHargaJual, JTextField kd_barang) {
         this.comboBox = comboBox;
         this.txtKodeTransaksi = txtKodeTransaksi;
         this.txtHargaJual = txtHargaJual;
@@ -396,14 +396,14 @@ private void updateKembali() {
 
 
 
-    public Penjualan_master() throws SQLException {
+    public Penjualan_karyawan() throws SQLException {
         initComponents();
         conn = dbtokko.configDB();
         setupListeners();
         SpinnerNumberModel modelJumlah = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
         spnJumlah.setModel(modelJumlah);
         new AutoCompleteBarang(comboBox);
-        new Penjualan_master(comboBox, txtKodeTransaksi, txtHargaJual, kd_barang);
+        new Penjualan_karyawan(comboBox, txtKodeTransaksi, txtHargaJual, kd_barang);
         comboBox.setEditable(true);
         txtHarga = new JTextField();
         new TransaksiGenerator(txtKodeTransaksi);
@@ -532,18 +532,12 @@ SwingUtilities.invokeLater(() -> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sidebar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         btn_dashboard = new javax.swing.JButton();
         btn_pembelian = new javax.swing.JButton();
         btn_pemasok = new javax.swing.JButton();
         btn_pengembalian = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtKodeTransaksi = new javax.swing.JTextField();
         kd_barang = new javax.swing.JTextField();
         txtHargaJual = new javax.swing.JTextField();
@@ -576,16 +570,6 @@ SwingUtilities.invokeLater(() -> {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-        sidebar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 70, 70));
-
         btn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_dashboardMouseClicked(evt);
@@ -596,7 +580,7 @@ SwingUtilities.invokeLater(() -> {
                 btn_dashboardActionPerformed(evt);
             }
         });
-        sidebar.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 240, 50));
+        getContentPane().add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 240, 50));
 
         btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -608,7 +592,7 @@ SwingUtilities.invokeLater(() -> {
                 btn_pembelianActionPerformed(evt);
             }
         });
-        sidebar.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 240, 50));
+        getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
 
         btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -620,7 +604,7 @@ SwingUtilities.invokeLater(() -> {
                 btn_pemasokActionPerformed(evt);
             }
         });
-        sidebar.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 240, 50));
+        getContentPane().add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 50));
 
         btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -632,7 +616,7 @@ SwingUtilities.invokeLater(() -> {
                 btn_pengembalianActionPerformed(evt);
             }
         });
-        sidebar.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 240, 70));
+        getContentPane().add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 60));
 
         btn_stok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -644,34 +628,14 @@ SwingUtilities.invokeLater(() -> {
                 btn_stokActionPerformed(evt);
             }
         });
-        sidebar.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 240, 50));
+        getContentPane().add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 240, 50));
 
         btn_laporan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_laporanMouseClicked(evt);
             }
         });
-        sidebar.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/sidebar_penjualan.png"))); // NOI18N
-        sidebar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        getContentPane().add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 240, 70));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/sidebar-in2.png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
+        getContentPane().add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
 
         txtKodeTransaksi.setBorder(null);
         txtKodeTransaksi.addActionListener(new java.awt.event.ActionListener() {
@@ -788,7 +752,7 @@ SwingUtilities.invokeLater(() -> {
         ));
         jScrollPane1.setViewportView(tabel_transaksi);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 1170, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 1170, 270));
 
         showTotalField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         showTotalField.setBorder(null);
@@ -802,30 +766,11 @@ SwingUtilities.invokeLater(() -> {
         getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10000, 120, 150, -1));
         getContentPane().add(spnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, 70, 30));
 
-        backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Master_penjualan.png"))); // NOI18N
+        backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Karyawan-Penjualan (1).png"))); // NOI18N
         getContentPane().add(backgoundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-        if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
-            new Thread(() -> {
-                try {
-                    for (int i = 0; i <= 240; i += 10) { // Tambah ukuran per 10 biar smooth
-                        Thread.sleep(3); // Delay biar animasi ga terlalu cepat
-                        sidebar.setSize(i, 780);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-                }
-            }).start();
-
-            x = 210; // Ubah x ke 210 biar nanti bisa ditutup lagi
-        }
-
-    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
@@ -901,29 +846,6 @@ public class TransaksiForm {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        if (x == 210) {
-            Timer timer = new Timer(5, new ActionListener() {
-                int width = 240;
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (width <= 0) { // Sidebar tetap menyisakan 50px
-                        ((Timer) e.getSource()).stop();
-                        x = 0;
-
-                    } else {
-                        width -= 10;
-                        sidebar.setSize(width, 780);
-                        //                sidebar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true)); // Border melengkung
-                    }
-                }
-            });
-            timer.start();
-        }
-    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void txtKodeTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeTransaksiActionPerformed
         // TODO add your handling code here:
@@ -1172,7 +1094,7 @@ try {
 
     private void btn_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dashboardMouseClicked
         // TODO add your handling code here:
-        Dashboard_master dashboard = new Dashboard_master();
+        Dashboard_karyawan dashboard = new Dashboard_karyawan();
         dashboard.setVisible(true);
         dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
@@ -1181,7 +1103,7 @@ try {
 
     private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
         // TODO add your handling code here:
-        Pembelian_master pembelian = new Pembelian_master();
+        Pembelian_karyawan pembelian = new Pembelian_karyawan();
         pembelian.setVisible(true);
         pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
@@ -1194,7 +1116,7 @@ try {
 
     private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
         // TODO add your handling code here:
-        Pemasok_master pamasok = new Pemasok_master();
+        Pemasok_Karyawan pamasok = new Pemasok_Karyawan();
         pamasok.setVisible(true);
         pamasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
@@ -1220,7 +1142,7 @@ try {
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
         // TODO add your handling code here:
-        Stok_master stok = new Stok_master();
+        Menambah_dataBarang stok = new Menambah_dataBarang();
         stok.setVisible(true);
         stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
@@ -1264,14 +1186,30 @@ try {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Penjualan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Penjualan_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Penjualan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Penjualan_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Penjualan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Penjualan_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Penjualan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Penjualan_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1293,9 +1231,9 @@ try {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Penjualan_master().setVisible(true);
+                    new Penjualan_karyawan().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Penjualan_master.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Penjualan_karyawan.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -1314,15 +1252,9 @@ try {
     private javax.swing.JButton btn_pengembalian;
     private javax.swing.JButton btn_stok;
     private javax.swing.JComboBox<String> comboBox;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField kd_barang;
     private javax.swing.JTextField showTotalField;
-    private javax.swing.JPanel sidebar;
     private javax.swing.JSpinner spnJumlah;
     private javax.swing.JTable tabel_transaksi;
     private javax.swing.JTextField textBayar;

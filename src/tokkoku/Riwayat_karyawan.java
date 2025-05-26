@@ -4,6 +4,7 @@
  */
 package tokkoku;
 import database.dbtokko;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -15,20 +16,23 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 
 /**
  *
  * @author Yiung Za
  */
-public class Laporan_master extends javax.swing.JFrame {
+public class Riwayat_karyawan extends javax.swing.JFrame {
             private int x = 210;
 //            JPanel activePanel = null;
 
 
-    public Laporan_master() {
+    public Riwayat_karyawan() {
         initComponents();
           btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
@@ -43,7 +47,7 @@ public class Laporan_master extends javax.swing.JFrame {
 //          tampilkanPengguna();
 //            penjualanTbl.setVisible(false);
             tampilkanDataPenjualan();
-            pembelianTbl.setVisible(false);
+//            pembelianTbl.setVisible(false);
 //            produkTbl.setVisible(false);
 //JcomboBox Report
 Claporan.addActionListener(new ActionListener() {
@@ -54,14 +58,14 @@ Claporan.addActionListener(new ActionListener() {
 
         // Sembunyikan semua
         penjualanTbl.setVisible(false);
-        pembelianTbl.setVisible(false);
+//        pembelianTbl.setVisible(false);
 //        produkTbl.setVisible(false);
 
         // Tampilkan sesuai pilihan
         if ("Laporan Penjualan".equals(selected)) {
             penjualanTbl.setVisible(true);
         } else if ("Laporan Pembelian".equals(selected)) {
-            pembelianTbl.setVisible(true);
+//            pembelianTbl.setVisible(true);
         } else if ("Laporan Produk".equals(selected)) {
 //            produkTbl.setVisible(true);
         }
@@ -86,7 +90,6 @@ Claporan.addActionListener(new ActionListener() {
 
         jPanel1 = new javax.swing.JPanel();
         Claporan = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_laporan = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
@@ -95,12 +98,10 @@ Claporan.addActionListener(new ActionListener() {
         btn_pembelian = new javax.swing.JButton();
         btn_penjualan = new javax.swing.JButton();
         btn_dashboard = new javax.swing.JButton();
-        pembelianTbl = new javax.swing.JScrollPane();
-        pembelian = new javax.swing.JTable();
         penjualanTbl = new javax.swing.JScrollPane();
         penjualan = new javax.swing.JTable();
-        jCalendarComboBox1 = new de.wannawork.jcalendar.JCalendarComboBox();
-        jCalendarComboBox2 = new de.wannawork.jcalendar.JCalendarComboBox();
+        Jsampai = new de.wannawork.jcalendar.JCalendarComboBox();
+        Jdari = new de.wannawork.jcalendar.JCalendarComboBox();
         backgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,10 +117,6 @@ Claporan.addActionListener(new ActionListener() {
 
         Claporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laporan Penjualan", "Laporan Pembelian", "Laporan Produk", "Laporan Pengembalian Barang", "Laporan Barang Rusak"}));
         jPanel1.add(Claporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 220, 50));
-
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setText("Print");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, 140, 40));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,66 +214,51 @@ Claporan.addActionListener(new ActionListener() {
         });
         jPanel1.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 240, 50));
 
-        pembelian.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        pembelianTbl.setViewportView(pembelian);
-
-        jPanel1.add(pembelianTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 1040, 510));
-
         penjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Penjualan", "Kasir", "ID Produk", "Produk", "Barcode", "Harga", "Jumlah", "Subtotal"
+                "ID Penjualan", "Kasir", "ID Produk", "Produk", "Barcode", "Harga", "Jumlah", "Subtotal", "Tanggal Transaksi"
             }
         ));
         penjualanTbl.setViewportView(penjualan);
 
         jPanel1.add(penjualanTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 520));
-        jPanel1.add(jCalendarComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 130, 30));
-        jPanel1.add(jCalendarComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 130, 30));
+        jPanel1.add(Jsampai, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 130, 30));
+        jPanel1.add(Jdari, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 130, 30));
 
         backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_laporan.png"))); // NOI18N
-        jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
+        jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 750));
 
@@ -341,7 +323,7 @@ Claporan.addActionListener(new ActionListener() {
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
         // TODO add your handling code here:
-        Dashboard_master dashboard = new Dashboard_master();
+        Dashboard_karyawan dashboard = new Dashboard_karyawan();
         dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dashboard.setVisible(true);
         dispose();
@@ -365,14 +347,30 @@ Claporan.addActionListener(new ActionListener() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Laporan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Riwayat_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Laporan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Riwayat_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Laporan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Riwayat_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Laporan_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Riwayat_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -393,13 +391,15 @@ Claporan.addActionListener(new ActionListener() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Laporan_master().setVisible(true);
+                new Riwayat_karyawan().setVisible(true);
             }
         });
     }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Claporan;
+    private de.wannawork.jcalendar.JCalendarComboBox Jdari;
+    private de.wannawork.jcalendar.JCalendarComboBox Jsampai;
     private javax.swing.JLabel backgroundUtama;
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_laporan;
@@ -408,13 +408,8 @@ Claporan.addActionListener(new ActionListener() {
     private javax.swing.JButton btn_pengembalian;
     private javax.swing.JButton btn_penjualan;
     private javax.swing.JButton btn_stok;
-    private javax.swing.JButton jButton1;
-    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox1;
-    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable pembelian;
-    private javax.swing.JScrollPane pembelianTbl;
     private javax.swing.JTable penjualan;
     private javax.swing.JScrollPane penjualanTbl;
     // End of variables declaration//GEN-END:variables
@@ -422,12 +417,12 @@ Claporan.addActionListener(new ActionListener() {
 private void tampilkanDataPenjualan() {
     DefaultTableModel model = new DefaultTableModel();
     model.setColumnIdentifiers(new String[]{
-        "ID Penjualan", "Username", "ID Produk", "Nama Produk", "Barcode", "Harga", "Jumlah", "Subtotal"
+        "ID Penjualan", "Kasir", "ID Produk", "Nama Produk", "Barcode", "Harga", "Jumlah", "Subtotal", "Tanggal Transaksi"
     });
 
     try {
         String sql = "SELECT p.id_penjualan, u.username, pr.id_produk, pr.nama_produk, pr.barcode, " +
-                     "dp.harga_jual, dp.jumlah, dp.subtotal " +
+                     "dp.harga_jual, dp.jumlah, dp.subtotal, p.tanggal_transaksi " + // Perbaikan: ambil dari tabel penjualan
                      "FROM penjualan p " +
                      "JOIN pengguna u ON p.id_pengguna = u.id_pengguna " +
                      "JOIN detail_penjualan dp ON p.id_penjualan = dp.id_penjualan " +
@@ -436,6 +431,9 @@ private void tampilkanDataPenjualan() {
         Connection conn = dbtokko.configDB();
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
+
+        // Format tanggal jika ingin tampil rapi
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         while (rs.next()) {
             Object[] row = new Object[]{
@@ -446,12 +444,14 @@ private void tampilkanDataPenjualan() {
                 rs.getString("barcode"),
                 rs.getDouble("harga_jual"),
                 rs.getInt("jumlah"),
-                rs.getDouble("subtotal")
+                rs.getDouble("subtotal"),
+                sdf.format(rs.getTimestamp("tanggal_transaksi")) // Gunakan format tanggal
             };
             model.addRow(row);
         }
 
         penjualan.setModel(model);
+        sesuaikanLebarKolom(penjualan);
 
         rs.close();
         ps.close();
@@ -461,6 +461,20 @@ private void tampilkanDataPenjualan() {
     }
 }
 
+private void sesuaikanLebarKolom(JTable table) {
+    final TableColumnModel columnModel = table.getColumnModel();
+    for (int column = 0; column < table.getColumnCount(); column++) {
+        int lebar = 15; // lebar minimum
+        for (int row = 0; row < table.getRowCount(); row++) {
+            TableCellRenderer renderer = table.getCellRenderer(row, column);
+            Component comp = table.prepareRenderer(renderer, row, column);
+            lebar = Math.max(comp.getPreferredSize().width + 10, lebar);
+        }
+        if (lebar > 300)
+            lebar = 300; // batas maksimum opsional
+        columnModel.getColumn(column).setPreferredWidth(lebar);
+    }
+}
 
 }
 

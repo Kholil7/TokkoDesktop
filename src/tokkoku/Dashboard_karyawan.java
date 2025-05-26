@@ -20,20 +20,23 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.text.PlainDocument;
+import support.NumericFilter;
 
 /**
  *
  * @author Yiung Za
  */
-public class Dashboard_master extends javax.swing.JFrame {
+public class Dashboard_karyawan extends javax.swing.JFrame {
             private int x = 210;
 //            JPanel activePanel = null;
 
     /**
      * Creates new form dbAdmin
      */
-    public Dashboard_master() {
+    public Dashboard_karyawan() {
         initComponents();
           btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
@@ -41,15 +44,10 @@ public class Dashboard_master extends javax.swing.JFrame {
           btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_pengguna.setBackground(new java.awt.Color(255, 255, 255, 0));
           btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_list_master.setBackground(new java.awt.Color(255, 255, 255, 0));
-          dataMaster.setVisible(false);
-          dataPengguna.setVisible(false);
-          pnlRfid.setVisible(false);
-          tampilkanMaster();
+//          pnlRfid.setVisible(false);
+          menambahRfid.setLocationRelativeTo(null);
           tampilkanPengguna();
-          
           
           
 btnCard.addActionListener(new ActionListener() {
@@ -102,42 +100,71 @@ btnPrint.addActionListener(new ActionListener() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menambahRfid = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        iptRfid = new javax.swing.JTextField();
+        pnlCard = new javax.swing.JPanel();
+        btnSimpan = new javax.swing.JButton();
+        btnCard = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
+        dataRPengguna = new javax.swing.JScrollPane();
+        tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        sidebar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        btnRfid = new javax.swing.JButton();
         btn_penjualan = new javax.swing.JButton();
         btn_pembelian = new javax.swing.JButton();
         btn_pemasok = new javax.swing.JButton();
         btn_pengembalian = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
-        sidebarout = new javax.swing.JLabel();
-        pnlRfid = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        iptRfid = new javax.swing.JTextField();
-        pnlCard = new javax.swing.JPanel();
-        btnSimpan = new javax.swing.JButton();
-        btnCard = new javax.swing.JButton();
-        kembali = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
-        dataRPengguna = new javax.swing.JScrollPane();
-        tbrPengguna = new javax.swing.JTable();
-        dataMaster = new javax.swing.JPanel();
-        master = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        dataMasterTbl = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        sidebarIn = new javax.swing.JLabel();
-        btn_list_master = new javax.swing.JButton();
-        btn_pengguna = new javax.swing.JButton();
-        dataPengguna = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        dataPenggunaTbl = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        btnRfid = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
+
+        menambahRfid.setTitle("Menambahkan RFID");
+        menambahRfid.setBackground(new java.awt.Color(255, 255, 255));
+        menambahRfid.setSize(new java.awt.Dimension(800, 600));
+        menambahRfid.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel5.setText("Membuat RFID");
+        menambahRfid.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        menambahRfid.getContentPane().add(iptRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 210, 40));
+
+        pnlCard.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCard.setForeground(new java.awt.Color(255, 255, 255));
+        menambahRfid.getContentPane().add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 410, 140));
+
+        btnSimpan.setText("Simpan");
+        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSimpanMouseClicked(evt);
+            }
+        });
+        menambahRfid.getContentPane().add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 110, -1));
+
+        btnCard.setText("Buat Kartu");
+        menambahRfid.getContentPane().add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+
+        btnPrint.setText("Print");
+        menambahRfid.getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
+
+        tbrPengguna.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nama", "RFID"
+            }
+        ));
+        dataRPengguna.setViewportView(tbrPengguna);
+
+        menambahRfid.getContentPane().add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -150,15 +177,12 @@ btnPrint.addActionListener(new ActionListener() {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRfid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                btnRfidMouseClicked(evt);
             }
         });
-        sidebar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 70, 70));
+        jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 220, 110));
 
         btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,7 +194,7 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_penjualanActionPerformed(evt);
             }
         });
-        sidebar.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 305, 240, 50));
+        jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 50));
 
         btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -182,21 +206,26 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_pembelianActionPerformed(evt);
             }
         });
-        sidebar.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 240, 50));
+        jPanel1.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
 
         btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pemasokMouseClicked(evt);
             }
         });
-        sidebar.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 240, 50));
+        btn_pemasok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pemasokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 50));
 
         btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pengembalianMouseClicked(evt);
             }
         });
-        sidebar.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 240, 50));
+        jPanel1.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 50));
 
         btn_stok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -208,7 +237,7 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_stokActionPerformed(evt);
             }
         });
-        sidebar.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 240, 50));
+        jPanel1.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 240, 50));
 
         btn_laporan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -220,172 +249,9 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_laporanActionPerformed(evt);
             }
         });
-        sidebar.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
+        jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
 
-        sidebarout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/sidebar.png"))); // NOI18N
-        sidebar.add(sidebarout, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 250, -1));
-
-        jPanel1.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
-
-        pnlRfid.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel5.setText("Membuat RFID");
-        pnlRfid.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        pnlRfid.add(iptRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 210, 40));
-
-        pnlCard.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCard.setForeground(new java.awt.Color(255, 255, 255));
-        pnlRfid.add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 410, 140));
-
-        btnSimpan.setText("Simpan");
-        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpanMouseClicked(evt);
-            }
-        });
-        pnlRfid.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 110, -1));
-
-        btnCard.setText("Buat Kartu");
-        pnlRfid.add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
-
-        kembali.setText("Kembali");
-        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kembaliMouseClicked(evt);
-            }
-        });
-        pnlRfid.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
-
-        btnPrint.setText("Print");
-        pnlRfid.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
-
-        tbrPengguna.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Nama", "RFID"
-            }
-        ));
-        dataRPengguna.setViewportView(tbrPengguna);
-
-        pnlRfid.add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
-
-        jPanel1.add(pnlRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 800, 420));
-
-        dataMaster.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        master.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        master.setText("Data Master");
-        dataMaster.add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, -1, -1));
-
-        dataMasterTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "No", "Nama", "Role"
-            }
-        ));
-        jScrollPane2.setViewportView(dataMasterTbl);
-
-        dataMaster.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 770, 210));
-
-        jButton1.setText("Tutup");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        dataMaster.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
-
-        jPanel1.add(dataMaster, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 790, 360));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/hamburger.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 160, 70));
-
-        sidebarIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/side-bar-in/sidebar-in-home.png"))); // NOI18N
-        jPanel1.add(sidebarIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        btn_list_master.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_list_masterMouseClicked(evt);
-            }
-        });
-        btn_list_master.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_list_masterActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_list_master, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 180, 90));
-
-        btn_pengguna.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_penggunaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btn_pengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 220, 90));
-
-        dataPengguna.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel4.setText("Data Pengguna");
-        dataPengguna.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 5, -1, -1));
-
-        dataPenggunaTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "No", "Nama", "Role", "RFID"
-            }
-        ));
-        jScrollPane3.setViewportView(dataPenggunaTbl);
-
-        dataPengguna.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 770, 210));
-
-        jButton2.setText("Tutup");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        dataPengguna.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
-
-        jPanel1.add(dataPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 790, 360));
-
-        btnRfid.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRfidMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 170, 80));
-
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/master/Desktop-Master.png"))); // NOI18N
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_dashboard.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
@@ -393,50 +259,9 @@ btnPrint.addActionListener(new ActionListener() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
-    new Thread(() -> {
-        try {
-            for (int i = 0; i <= 240; i += 10) { // Tambah ukuran per 10 biar smooth
-                Thread.sleep(5); // Delay biar animasi ga terlalu cepat
-                sidebar.setSize(i, 780);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-        }
-    }).start();
-    
-    x = 210; // Ubah x ke 210 biar nanti bisa ditutup lagi
-}
-
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseEntered
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        if (x == 210) {
-            Timer timer = new Timer(5, new ActionListener() {
-                int width = 240;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (width <= 0) { // Sidebar tetap menyisakan 50px
-                        ((Timer) e.getSource()).stop();
-                        x = 0;
-
-                    } else {
-                        width -= 10;
-                        sidebar.setSize(width, 780);
-                        //                sidebar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true)); // Border melengkung
-                    }
-                }
-            });
-            timer.start();
-        }
-    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void btn_penjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_penjualanActionPerformed
         // TODO add your handling code here:
@@ -444,13 +269,13 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
 
     private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
                 try {
-                    Penjualan_master penjualan = new Penjualan_master();
+                    Penjualan_karyawan penjualan = new Penjualan_karyawan();
                     penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     penjualan.setVisible(true);
                     dispose();
                     System.out.println("Sekarang Page Penjualan");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Dashboard_master.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Dashboard_karyawan.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_btn_penjualanMouseClicked
 
@@ -460,7 +285,7 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
 
     private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
         // TODO add your handling code here:
-            Pemasok_master pemasok = new Pemasok_master();
+            Pemasok_Karyawan pemasok = new Pemasok_Karyawan();
             pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
             pemasok.setVisible(true);
             dispose();
@@ -475,14 +300,9 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_stokActionPerformed
 
-    private void btn_penggunaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penggunaMouseClicked
-        // TODO add your handling code here:
-        dataPengguna.setVisible(true);
-    }//GEN-LAST:event_btn_penggunaMouseClicked
-
     private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
         // TODO add your handling code here:
-            Pembelian_master pembelian = new Pembelian_master();
+            Pembelian_karyawan pembelian = new Pembelian_karyawan();
             pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
             pembelian.setVisible(true);
             dispose();
@@ -496,37 +316,15 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
         // TODO add your handling code here:
-        Stok_master stok = new Stok_master();
+        Menambah_dataBarang stok = new Menambah_dataBarang();
         stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         stok.setVisible(true);
         dispose();
         System.out.println("Sekarang Dalam Page Stok " + "Master");
     }//GEN-LAST:event_btn_stokMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        dataPengguna.setVisible(false);
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void btn_list_masterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_list_masterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_list_masterActionPerformed
-
-    private void btn_list_masterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_list_masterMouseClicked
-        // TODO add your handling code here:
-        dataMaster.setVisible(true);
-    }//GEN-LAST:event_btn_list_masterMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dataMaster.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
-        Laporan_master laporan = new Laporan_master();
+        Riwayat_karyawan laporan = new Riwayat_karyawan();
         laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
         laporan.setVisible(true);
         dispose();
@@ -535,20 +333,19 @@ if (x == 0) { // Cek apakah sidebar dalam keadaan tertutup
 
     private void btnRfidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRfidMouseClicked
         // TODO add your handling code here:
-        pnlRfid.setVisible(true);
+menambahRfid.setVisible(true);
     }//GEN-LAST:event_btnRfidMouseClicked
 
-    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
+    private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
         // TODO add your handling code here:
-        pnlRfid.setVisible(false);
-    }//GEN-LAST:event_kembaliMouseClicked
+    }//GEN-LAST:event_btn_pemasokActionPerformed
 
     private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
         // TODO add your handling code here:
 btnSimpan.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-        int baris = tbrPengguna.getSelectedRow(); // Ambil baris yang dipilih
+        int baris = tbrPengguna.getSelectedRow();
 
         if (baris == -1) {
             JOptionPane.showMessageDialog(null, "Pilih dulu baris pengguna pada tabel.");
@@ -561,11 +358,11 @@ btnSimpan.addActionListener(new ActionListener() {
             return;
         }
 
-        // Ambil ID pengguna dari baris yang dipilih
-        String idPengguna = tbrPengguna.getValueAt(baris, 0).toString(); // Asumsikan kolom 0 adalah id_pengguna
+        // Ambil ID pengguna dari list berdasarkan index baris yang dipilih
+        String idPengguna = idPenggunaList.get(baris);
 
         try {
-            Connection conn = dbtokko.configDB(); // Koneksi dari class dbtokko
+            Connection conn = dbtokko.configDB();
             String sql = "UPDATE pengguna SET rfid = ? WHERE id_pengguna = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, rfid);
@@ -575,7 +372,7 @@ btnSimpan.addActionListener(new ActionListener() {
 
             if (hasil > 0) {
                 JOptionPane.showMessageDialog(null, "RFID berhasil disimpan ke pengguna ID: " + idPengguna);
-                // Refresh tabel jika perlu
+                tampilkanPengguna();
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menyimpan RFID.");
             }
@@ -607,14 +404,18 @@ btnSimpan.addActionListener(new ActionListener() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard_master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard_karyawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -623,7 +424,7 @@ btnSimpan.addActionListener(new ActionListener() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard_master().setVisible(true);
+                new Dashboard_karyawan().setVisible(true);
             }
         });
     }
@@ -635,95 +436,47 @@ btnSimpan.addActionListener(new ActionListener() {
     private javax.swing.JButton btnRfid;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
-    private javax.swing.JButton btn_list_master;
     private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pembelian;
     private javax.swing.JButton btn_pengembalian;
-    private javax.swing.JButton btn_pengguna;
     private javax.swing.JButton btn_penjualan;
     private javax.swing.JButton btn_stok;
-    private javax.swing.JPanel dataMaster;
-    private javax.swing.JTable dataMasterTbl;
-    private javax.swing.JPanel dataPengguna;
-    private javax.swing.JTable dataPenggunaTbl;
     private javax.swing.JScrollPane dataRPengguna;
     private javax.swing.JTextField iptRfid;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton kembali;
-    private javax.swing.JLabel master;
+    private javax.swing.JDialog menambahRfid;
     private javax.swing.JPanel pnlCard;
-    private javax.swing.JPanel pnlRfid;
-    private javax.swing.JPanel sidebar;
-    private javax.swing.JLabel sidebarIn;
-    private javax.swing.JLabel sidebarout;
     private javax.swing.JTable tbrPengguna;
     // End of variables declaration//GEN-END:variables
-private void tampilkanMaster() {
-    // Membuat model tabel dengan kolom yang diinginkan
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("ID Pengguna");
-    model.addColumn("Nama");
-    model.addColumn("Role");
-
-    String sql = "SELECT id_pengguna, username, role FROM pengguna WHERE role = 'Master'";
-
-    try {
-        Connection conn = dbtokko.configDB(); // Menggunakan koneksi yang sudah tersedia
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            model.addRow(new Object[] {
-                rs.getString("id_pengguna"),
-                rs.getString("username"),
-                rs.getString("role")
-            });
-        }
-
-        dataMasterTbl.setModel(model); // Tampilkan data ke JTable
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
-    }
-}
+private List<String> idPenggunaList = new ArrayList<>();
 
 private void tampilkanPengguna() {
-    // Membuat model tabel dengan kolom yang diinginkan
     DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("ID Pengguna");
     model.addColumn("Nama");
-    model.addColumn("Role");
     model.addColumn("RFID");
+    idPenggunaList.clear();
 
-    // Query untuk mengambil data pengguna dengan role 'Admin'
-    String sql = "SELECT id_pengguna, username, role FROM pengguna WHERE role LIKE 'Admin%'"; // Menyesuaikan dengan lebih banyak varian nama admin
+    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
 
     try {
-        Connection conn = dbtokko.configDB(); // Menggunakan koneksi yang sudah tersedia
+        Connection conn = dbtokko.configDB();
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
-        // Cek apakah ada hasil
         if (!rs.next()) {
-            JOptionPane.showMessageDialog(this, "Tidak ada pengguna dengan role 'Admin'.");
+            JOptionPane.showMessageDialog(this, "Tidak ada data pengguna.");
         } else {
             do {
-                model.addRow(new Object[] {
-                    rs.getString("id_pengguna"),
-                    rs.getString("username"),
-                    rs.getString("role")
-                });
+                String idPengguna = rs.getString("id_pengguna");
+                String username = rs.getString("username");
+                String rfid = rs.getString("rfid");
+
+                idPenggunaList.add(idPengguna);
+
+                model.addRow(new Object[] { username, rfid });
             } while (rs.next());
         }
-
-        dataPenggunaTbl.setModel(model);
         tbrPengguna.setModel(model);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
