@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import support.SecurityUtil;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Register extends javax.swing.JFrame {
         ipt_password.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_submit.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_masuk.setBackground(new java.awt.Color(255, 255, 255, 0));
+        cmb.setBackground(new java.awt.Color(255, 255, 255, 0));
         
     }
 
@@ -47,7 +49,8 @@ public class Register extends javax.swing.JFrame {
         ipt_username = new javax.swing.JTextField();
         ipt_password = new javax.swing.JPasswordField();
         btn_masuk = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        cmb = new javax.swing.JComboBox<>();
+        BackgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,7 +66,7 @@ public class Register extends javax.swing.JFrame {
                 btn_submitActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 550, 140, 40));
+        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 620, 150, 50));
 
         ipt_username.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_username.setBorder(null);
@@ -83,10 +86,18 @@ public class Register extends javax.swing.JFrame {
                 btn_masukActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_masuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 480, 90, 30));
+        getContentPane().add(btn_masuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 560, 90, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_register.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Karyawan"}));
+        cmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 480, 170, 50));
+
+        BackgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_register.png"))); // NOI18N
+        getContentPane().add(BackgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,6 +106,7 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
 String username = ipt_username.getText().trim();
 String password = new String(ipt_password.getPassword()).trim();
+String role = cmb.getSelectedItem().toString();
 
 if (username.isEmpty()) {
     JOptionPane.showMessageDialog(this, "Username wajib diisi", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
@@ -104,7 +116,6 @@ if (password.isEmpty()) {
     JOptionPane.showMessageDialog(this, "Password wajib diisi", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
 }
-
 if (username.length() < 3) {
     JOptionPane.showMessageDialog(this, "Username minimal 3 karakter", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
@@ -113,15 +124,14 @@ if (password.length() < 6) {
     JOptionPane.showMessageDialog(this, "Password minimal 6 karakter", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
 }
-
 if (!password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).+$")) {
     JOptionPane.showMessageDialog(this, "Password harus mengandung huruf besar, kecil, dan angka", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
 }
 
 try (Connection conn = dbtokko.configDB()) {
-    String checkSql = "SELECT * FROM pengguna WHERE username = ?";
-    try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+    String checkUserSql = "SELECT * FROM pengguna WHERE username = ?";
+    try (PreparedStatement checkStmt = conn.prepareStatement(checkUserSql)) {
         checkStmt.setString(1, username);
         ResultSet rs = checkStmt.executeQuery();
         if (rs.next()) {
@@ -130,18 +140,30 @@ try (Connection conn = dbtokko.configDB()) {
         }
     }
 
-    String hashedPassword = hashPassword(password);
+    if (role.equalsIgnoreCase("Owner")) {
+        String checkOwnerSql = "SELECT COUNT(*) AS jumlah FROM pengguna WHERE role = 'Owner'";
+        try (PreparedStatement ownerStmt = conn.prepareStatement(checkOwnerSql)) {
+            ResultSet rs = ownerStmt.executeQuery();
+            if (rs.next() && rs.getInt("jumlah") > 0) {
+                JOptionPane.showMessageDialog(this, "Hanya boleh ada satu pengguna dengan role Owner", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+    }
+
+    String hashedPassword = SecurityUtil.hashPassword(password);
     if (hashedPassword == null) {
         JOptionPane.showMessageDialog(this, "Terjadi kesalahan pada proses hashing password.", "Gagal Registrasi", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    String sql = "INSERT INTO pengguna (username, password) VALUES (?, ?)";
-    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setString(1, username);
-        stmt.setString(2, hashedPassword);
+    String insertSql = "INSERT INTO pengguna (username, password, role) VALUES (?, ?, ?)";
+    try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+        insertStmt.setString(1, username);
+        insertStmt.setString(2, hashedPassword);
+        insertStmt.setString(3, role);
 
-        int rowsInserted = stmt.executeUpdate();
+        int rowsInserted = insertStmt.executeUpdate();
         if (rowsInserted > 0) {
             JOptionPane.showMessageDialog(this, "Akun berhasil dibuat!");
             this.setVisible(false);
@@ -185,6 +207,10 @@ private String hashPassword(String password) {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_submitMouseClicked
 
+    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,10 +250,11 @@ private String hashPassword(String password) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundUtama;
     private javax.swing.JButton btn_masuk;
     private javax.swing.JButton btn_submit;
+    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JPasswordField ipt_password;
     private javax.swing.JTextField ipt_username;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

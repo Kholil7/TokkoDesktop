@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import support.SecurityUtil;
 /**
  *
  * @author Yiung Za
@@ -26,7 +27,6 @@ public class Login extends javax.swing.JFrame {
         ipt_username.setBackground(new java.awt.Color(255, 255, 255, 0));
         ipt_password.setBackground(new java.awt.Color(255, 255, 255, 0));
         showPass.setBackground(new java.awt.Color(255, 255, 255, 0));
-        cmbRole.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_submit.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_daftar.setBackground(new java.awt.Color(255, 255, 255, 0));
         
@@ -65,13 +65,13 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_submit = new javax.swing.JButton();
-        cmbRole = new javax.swing.JComboBox<>();
         ipt_username = new javax.swing.JTextField();
         ipt_password = new javax.swing.JPasswordField();
         btn_daftar = new javax.swing.JButton();
         showPass = new javax.swing.JCheckBox();
         ipt_rfid = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        BackgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,11 +93,7 @@ public class Login extends javax.swing.JFrame {
                 btn_submitActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, 140, 40));
-
-        cmbRole.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Master", "Admin" }));
-        getContentPane().add(cmbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 190, 40));
+        getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 150, 50));
 
         ipt_username.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         ipt_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -106,11 +102,11 @@ public class Login extends javax.swing.JFrame {
                 ipt_usernameActionPerformed(evt);
             }
         });
-        getContentPane().add(ipt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 275, 360, 40));
+        getContentPane().add(ipt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 360, 40));
 
         ipt_password.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_password.setBorder(null);
-        getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 310, 40));
+        getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 310, 40));
 
         btn_daftar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,18 +118,21 @@ public class Login extends javax.swing.JFrame {
                 btn_daftarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 90, 30));
+        getContentPane().add(btn_daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 90, 30));
 
         showPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 showPassMouseClicked(evt);
             }
         });
-        getContentPane().add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 40, 40));
+        getContentPane().add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 40, 40));
         getContentPane().add(ipt_rfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(16000, 490, 200, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Login2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Karyawan" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 160, 40));
+
+        BackgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_login.png"))); // NOI18N
+        getContentPane().add(BackgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,99 +153,91 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_daftarMouseClicked
 
     private void btn_submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_submitMouseClicked
-    String username = ipt_username.getText().trim();
-    String password = new String(ipt_password.getPassword()).trim();
-    String role = cmbRole.getSelectedItem().toString().trim();
-    String rfid = ipt_rfid.getText().trim();
+String username = ipt_username.getText().trim();
+String password = new String(ipt_password.getPassword()).trim();
+String rfid = ipt_rfid.getText().trim();
 
-    try (Connection conn = dbtokko.configDB()) {
+try (Connection conn = dbtokko.configDB()) {
 
-        if (!rfid.isEmpty()) {
-            String rfidSql = "SELECT id_pengguna, role FROM pengguna WHERE rfid = ?";
-            try (PreparedStatement rfidStmt = conn.prepareStatement(rfidSql)) {
-                rfidStmt.setString(1, rfid);
-                ResultSet rfidRs = rfidStmt.executeQuery();
+    // Login via RFID
+    if (!rfid.isEmpty()) {
+        String rfidSql = "SELECT id_pengguna, role FROM pengguna WHERE rfid = ?";
+        try (PreparedStatement rfidStmt = conn.prepareStatement(rfidSql)) {
+            rfidStmt.setString(1, rfid);
+            ResultSet rfidRs = rfidStmt.executeQuery();
 
-                if (rfidRs.next()) {
-                    int idPengguna = rfidRs.getInt("id_pengguna");
-                    String dbRole = rfidRs.getString("role").trim();
+            if (rfidRs.next()) {
+                int idPengguna = rfidRs.getInt("id_pengguna");
+                String role = rfidRs.getString("role");
 
-                    LoginSession.getInstance().setIdPengguna(idPengguna);
+                LoginSession.getInstance().setIdPengguna(idPengguna);
 
-                    JOptionPane.showMessageDialog(null, "Selamat datang, " + dbRole + "!", "Login Berhasil (RFID)", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Selamat datang!", "Login Berhasil (RFID)", JOptionPane.INFORMATION_MESSAGE);
 
-                    JFrame dashboard = null;
-                    switch (dbRole) {
-                        case "Master":
-                            dashboard = new Dashboard_master();
-                            break;
-                        case "Admin":
-                            dashboard = new Dashboard_admin();
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Role tidak dikenal", "Login Gagal", JOptionPane.ERROR_MESSAGE);
-                            return;
-                    }
-
+                if ("OWNER".equalsIgnoreCase(role)) {
+                    Dashboard_owner dashboard = new Dashboard_owner();
                     dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     dashboard.setVisible(true);
-                    dispose();
-                    return; // selesai login via RFID
-                }
-            }
-
-            JOptionPane.showMessageDialog(null, "RFID tidak ditemukan, silakan login manual.", "RFID Tidak Valid", JOptionPane.WARNING_MESSAGE);
-            ipt_rfid.setText("");
-            ipt_rfid.requestFocus();
-        }
-
-        if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Username dan Password wajib diisi", "Login Gagal", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        String sql = "SELECT id_pengguna, password, role FROM pengguna WHERE username = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                String dbPassword = rs.getString("password");
-                String dbRole = rs.getString("role").trim();
-
-                if (password.equals(dbPassword) && role.equals(dbRole)) {
-                    LoginSession.getInstance().setIdPengguna(rs.getInt("id_pengguna"));
-
-                    JOptionPane.showMessageDialog(null, "Selamat datang, " + dbRole + "!", "Login Berhasil", JOptionPane.INFORMATION_MESSAGE);
-
-                    JFrame dashboard = null;
-                    switch (dbRole) {
-                        case "Master":
-                            dashboard = new Dashboard_master();
-                            break;
-                        case "Admin":
-                            dashboard = new Dashboard_admin();
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Role tidak dikenal", "Login Gagal", JOptionPane.ERROR_MESSAGE);
-                            return;
-                    }
-
-                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    dashboard.setVisible(true);
-                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Password atau Role salah", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                    Dashboard_karyawan dashboard = new Dashboard_karyawan();
+                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    dashboard.setVisible(true);
                 }
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                dispose();
+                return;
             }
         }
 
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Kesalahan koneksi: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "RFID tidak ditemukan, silakan login manual.", "RFID Tidak Valid", JOptionPane.WARNING_MESSAGE);
+        ipt_rfid.setText("");
+        ipt_rfid.requestFocus();
     }
+
+    // Login manual dengan username dan password
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Username dan Password wajib diisi", "Login Gagal", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    String sql = "SELECT id_pengguna, password, role FROM pengguna WHERE username = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            String dbPassword = rs.getString("password");
+            String inputHashedPassword = SecurityUtil.hashPassword(password);
+            String role = rs.getString("role");
+
+            if (inputHashedPassword != null && inputHashedPassword.equals(dbPassword)) {
+                LoginSession.getInstance().setIdPengguna(rs.getInt("id_pengguna"));
+
+                JOptionPane.showMessageDialog(null, "Selamat datang!", "Login Berhasil", JOptionPane.INFORMATION_MESSAGE);
+
+                if ("Owner".equalsIgnoreCase(role)) {
+                    Dashboard_owner dashboard = new Dashboard_owner();
+                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    dashboard.setVisible(true);
+                } else {
+                    Dashboard_karyawan dashboard = new Dashboard_karyawan();
+                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    dashboard.setVisible(true);
+                }
+
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Password salah", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+} catch (SQLException ex) {
+    JOptionPane.showMessageDialog(null, "Kesalahan koneksi: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_btn_submitMouseClicked
 
     private void btn_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarActionPerformed
@@ -305,50 +296,38 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundUtama;
     private javax.swing.JButton btn_daftar;
     private javax.swing.JButton btn_submit;
-    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JPasswordField ipt_password;
     private javax.swing.JTextField ipt_rfid;
     private javax.swing.JTextField ipt_username;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JCheckBox showPass;
     // End of variables declaration//GEN-END:variables
 private void loginProsesViaRFID(String rfid) {
     try (Connection conn = dbtokko.configDB()) {
-        String sql = "SELECT id_pengguna, role FROM pengguna WHERE rfid = ?";
+        String sql = "SELECT id_pengguna, username, password FROM pengguna WHERE rfid = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, rfid);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 int idPengguna = rs.getInt("id_pengguna");
-                String role = rs.getString("role").trim();
+                String username = rs.getString("username");
+                String dbPassword = rs.getString("password"); // password hash di DB
 
                 LoginSession.getInstance().setIdPengguna(idPengguna);
 
-                JOptionPane.showMessageDialog(null, "Selamat datang, " + role + "!", "Login Berhasil (RFID)", JOptionPane.INFORMATION_MESSAGE);
-
-                JFrame dashboard = null;
-                switch (role) {
-                    case "Master":
-                        dashboard = new Dashboard_master();
-                        break;
-                    case "Admin":
-                        dashboard = new Dashboard_admin();
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "Role tidak dikenal", "Login Gagal", JOptionPane.ERROR_MESSAGE);
-                        return;
-                }
-
+                Dashboard_karyawan dashboard = new Dashboard_karyawan();
                 dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 dashboard.setVisible(true);
                 dispose();
 
             } else {
                 JOptionPane.showMessageDialog(null, "RFID tidak ditemukan, silakan coba lagi.", "RFID Tidak Valid", JOptionPane.WARNING_MESSAGE);
-                ipt_rfid.setText(""); // kosongkan input untuk scan ulang
+                ipt_rfid.setText("");
+                ipt_rfid.requestFocus();
             }
         }
     } catch (SQLException ex) {
