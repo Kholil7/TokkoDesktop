@@ -1,3 +1,0 @@
-net.sf.jasperreports.javascript.JavaScriptCompilerBase$Errors
-net.sf.jasperreports.javascript.JavaScriptCompilerBase$ScriptExpressionVisitor
-net.sf.jasperreports.javascript.JavaScriptCompilerBase

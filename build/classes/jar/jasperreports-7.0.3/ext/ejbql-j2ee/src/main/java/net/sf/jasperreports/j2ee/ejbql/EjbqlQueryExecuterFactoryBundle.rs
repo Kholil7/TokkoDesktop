@@ -1,1 +1,0 @@
-net.sf.jasperreports.j2ee.ejbql.EjbqlQueryExecuterFactoryBundle

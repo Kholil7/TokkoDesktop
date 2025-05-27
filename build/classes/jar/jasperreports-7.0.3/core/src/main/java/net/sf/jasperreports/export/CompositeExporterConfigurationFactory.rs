@@ -1,2 +1,0 @@
-net.sf.jasperreports.export.CompositeExporterConfigurationFactory
-net.sf.jasperreports.export.CompositeExporterConfigurationFactory$DelegateInvocationHandler

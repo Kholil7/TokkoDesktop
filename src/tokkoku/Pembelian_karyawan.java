@@ -136,13 +136,13 @@ private void hapusBarisDariTabel() {
         isinamaproduk = new javax.swing.JTextField();
         isikodepemasok = new javax.swing.JTextField();
         isikodeproduk = new javax.swing.JTextField();
-        tanggalkadaluwarsa = new de.wannawork.jcalendar.JCalendarComboBox();
         btn_penjualan = new javax.swing.JButton();
         btn_dashboard = new javax.swing.JButton();
         btn_pemasok = new javax.swing.JButton();
         btn_pengembalian = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
+        tanggalkadaluwarsa = new de.wannawork.jcalendar.JCalendarComboBox();
         backgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -220,7 +220,6 @@ private void hapusBarisDariTabel() {
             }
         });
         jPanel1.add(isikodeproduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 120, 40));
-        jPanel1.add(tanggalkadaluwarsa, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 500, -1, -1));
 
         btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,6 +287,7 @@ private void hapusBarisDariTabel() {
             }
         });
         jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 240, 50));
+        jPanel1.add(tanggalkadaluwarsa, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 440, -1, -1));
 
         backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pembelian-Karyawan.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1460, 750));

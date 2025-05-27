@@ -1,4 +1,0 @@
-net.sf.jasperreports.hibernate.JRHibernateAbstractDataSource$IndexFieldReader
-net.sf.jasperreports.hibernate.JRHibernateAbstractDataSource
-net.sf.jasperreports.hibernate.JRHibernateAbstractDataSource$IndexPropertyFieldReader
-net.sf.jasperreports.hibernate.JRHibernateAbstractDataSource$FieldReader

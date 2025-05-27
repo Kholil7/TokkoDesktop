@@ -1,3 +1,0 @@
-net.sf.jasperreports.customizers.shape.LineDotShapeCustomizer$XYPlotSeriesCounter
-net.sf.jasperreports.customizers.shape.LineDotShapeCustomizer
-net.sf.jasperreports.customizers.shape.LineDotShapeCustomizer$AbstractRendererSeriesShapeSetter

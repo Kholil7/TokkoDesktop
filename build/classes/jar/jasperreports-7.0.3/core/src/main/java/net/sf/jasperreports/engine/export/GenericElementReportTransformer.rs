@@ -1,2 +1,0 @@
-net.sf.jasperreports.engine.export.GenericElementReportTransformer$TransformerContext
-net.sf.jasperreports.engine.export.GenericElementReportTransformer

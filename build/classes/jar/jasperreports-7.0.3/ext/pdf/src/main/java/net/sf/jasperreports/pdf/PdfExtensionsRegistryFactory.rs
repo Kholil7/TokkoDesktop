@@ -1,2 +1,0 @@
-net.sf.jasperreports.pdf.PdfExtensionsRegistryFactory
-net.sf.jasperreports.pdf.PdfExtensionsRegistryFactory$1

@@ -1,3 +1,0 @@
-net.sf.jasperreports.engine.export.JRXlsAbstractExporter
-net.sf.jasperreports.engine.export.JRXlsAbstractExporter$SheetInfo$SheetPrintSettings
-net.sf.jasperreports.engine.export.JRXlsAbstractExporter$SheetInfo

@@ -1,1 +1,0 @@
-net.sf.jasperreports.markup.bulletedlist.BulletedListSvgTest

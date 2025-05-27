@@ -1,2 +1,0 @@
-net.sf.jasperreports.extensions.DefaultExtensionsRegistry$URLRegistries
-net.sf.jasperreports.extensions.DefaultExtensionsRegistry

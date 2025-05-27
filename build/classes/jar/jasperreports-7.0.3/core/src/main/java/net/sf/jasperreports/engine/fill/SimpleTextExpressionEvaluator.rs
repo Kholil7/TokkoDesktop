@@ -1,2 +1,0 @@
-net.sf.jasperreports.engine.fill.SimpleTextExpressionEvaluator$ResultCollector
-net.sf.jasperreports.engine.fill.SimpleTextExpressionEvaluator

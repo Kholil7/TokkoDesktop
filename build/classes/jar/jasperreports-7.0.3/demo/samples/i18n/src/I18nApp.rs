@@ -1,2 +1,0 @@
-LocaleWrapper
-I18nApp

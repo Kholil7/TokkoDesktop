@@ -1,5 +1,0 @@
-net.sf.jasperreports.crosstabs.fill.calculation.CrosstabBucketingService$SequentialCollectedList
-net.sf.jasperreports.crosstabs.fill.calculation.CrosstabBucketingService$CollectedListComparator
-net.sf.jasperreports.crosstabs.fill.calculation.CrosstabBucketingService$CollectedList
-net.sf.jasperreports.crosstabs.fill.calculation.CrosstabBucketingService$OrderedCollectedList
-net.sf.jasperreports.crosstabs.fill.calculation.CrosstabBucketingService

@@ -1,4 +1,0 @@
-net.sf.jasperreports.engine.fill.JRDefaultNothingIncrementer
-net.sf.jasperreports.engine.fill.JRDefaultSystemIncrementer
-net.sf.jasperreports.engine.fill.JRDefaultIncrementerFactory
-net.sf.jasperreports.engine.fill.JRDefaultFirstIncrementer

@@ -1,2 +1,0 @@
-net.sf.jasperreports.export.PropertiesNoDefaultsConfigurationFactory
-net.sf.jasperreports.export.PropertiesNoDefaultsConfigurationFactory$PropertiesInvocationHandler

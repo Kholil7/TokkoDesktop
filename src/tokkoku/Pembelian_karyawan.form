@@ -216,13 +216,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="tanggalkadaluwarsa">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="900" y="500" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JButton" name="btn_penjualan">
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_penjualanMouseClicked"/>
@@ -285,6 +278,13 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="600" width="240" height="50"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="tanggalkadaluwarsa">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="860" y="440" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -1,2 +1,0 @@
-net.sf.jasperreports.poi.PoiExtensionsRegistryFactory$1
-net.sf.jasperreports.poi.PoiExtensionsRegistryFactory

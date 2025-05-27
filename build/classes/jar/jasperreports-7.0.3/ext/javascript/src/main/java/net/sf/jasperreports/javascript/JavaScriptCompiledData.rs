@@ -1,3 +1,0 @@
-net.sf.jasperreports.javascript.JavaScriptCompiledData$CompiledClass
-net.sf.jasperreports.javascript.JavaScriptCompiledData
-net.sf.jasperreports.javascript.JavaScriptCompiledData$ExpressionIndexes

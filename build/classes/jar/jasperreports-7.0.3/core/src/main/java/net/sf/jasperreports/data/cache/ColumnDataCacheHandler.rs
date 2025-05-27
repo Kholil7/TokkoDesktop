@@ -1,3 +1,0 @@
-net.sf.jasperreports.data.cache.ColumnDataCacheHandler$ColumnDataCollector
-net.sf.jasperreports.data.cache.ColumnDataCacheHandler$DataCollector
-net.sf.jasperreports.data.cache.ColumnDataCacheHandler
