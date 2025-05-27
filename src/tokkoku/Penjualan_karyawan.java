@@ -4,10 +4,7 @@
  */
 package tokkoku;
 import database.dbtokko;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
 import java.sql.*;
 import java.util.logging.*;
 import javax.swing.*;
@@ -16,22 +13,12 @@ import java.text.*;
 import java.util.Locale;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.view.JasperViewer;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.File;
-import javax.swing.text.PlainDocument;
-import support.NumericFilter;
 /**
  *
  * @author Yiung Za

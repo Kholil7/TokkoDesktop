@@ -18,13 +18,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.ArrayList;
-import javax.swing.text.PlainDocument;
-import support.NumericFilter;
-
 /**
  *
  * @author Yiung Za
@@ -38,11 +34,10 @@ public class Dashboard_owner extends javax.swing.JFrame {
      */
     public Dashboard_owner() {
         initComponents();
-          btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_pemasok.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_manajemenKaryawanan.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_manajemenKaryawanan.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
 //          pnlRfid.setVisible(false);
@@ -111,11 +106,7 @@ btnPrint.addActionListener(new ActionListener() {
         tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btnRfid = new javax.swing.JButton();
-        btn_penjualan = new javax.swing.JButton();
-        btn_pembelian = new javax.swing.JButton();
-        btn_pemasok = new javax.swing.JButton();
-        btn_pengembalian = new javax.swing.JButton();
-        btn_stok = new javax.swing.JButton();
+        btn_manajemenKaryawanan = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
 
@@ -184,60 +175,17 @@ btnPrint.addActionListener(new ActionListener() {
         });
         jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 220, 110));
 
-        btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_manajemenKaryawanan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_penjualanMouseClicked(evt);
+                btn_manajemenKaryawananMouseClicked(evt);
             }
         });
-        btn_penjualan.addActionListener(new java.awt.event.ActionListener() {
+        btn_manajemenKaryawanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_penjualanActionPerformed(evt);
+                btn_manajemenKaryawananActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 50));
-
-        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pembelianMouseClicked(evt);
-            }
-        });
-        btn_pembelian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pembelianActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
-
-        btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pemasokMouseClicked(evt);
-            }
-        });
-        btn_pemasok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pemasokActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 50));
-
-        btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pengembalianMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 50));
-
-        btn_stok.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_stokMouseClicked(evt);
-            }
-        });
-        btn_stok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_stokActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 240, 50));
+        jPanel1.add(btn_manajemenKaryawanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 240, 60));
 
         btn_laporan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -249,9 +197,9 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_laporanActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
+        jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 240, 50));
 
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_dashboard.png"))); // NOI18N
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/pg-owner/Pg_Desktop-Owner.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
@@ -263,82 +211,35 @@ btnPrint.addActionListener(new ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseEntered
 
-    private void btn_penjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_penjualanActionPerformed
+    private void btn_manajemenKaryawananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_manajemenKaryawananActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_penjualanActionPerformed
+    }//GEN-LAST:event_btn_manajemenKaryawananActionPerformed
 
-    private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
-                try {
-                    Penjualan_karyawan penjualan = new Penjualan_karyawan();
-                    penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    penjualan.setVisible(true);
-                    dispose();
-                    System.out.println("Sekarang Page Penjualan");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Dashboard_owner.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }//GEN-LAST:event_btn_penjualanMouseClicked
-
-    private void btn_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pembelianActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pembelianActionPerformed
-
-    private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
-        // TODO add your handling code here:
-            Pemasok_Karyawan pemasok = new Pemasok_Karyawan();
-            pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            pemasok.setVisible(true);
-            dispose();
-            System.out.println("Sekarang Dalam Page Pemasok " + "Master");
-    }//GEN-LAST:event_btn_pemasokMouseClicked
+    private void btn_manajemenKaryawananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_manajemenKaryawananMouseClicked
+    Manajemen_karyawan_Owner manajemen = new Manajemen_karyawan_Owner();
+    manajemen.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    manajemen.setVisible(true);
+    dispose();
+    System.out.println("Sekarang Berada Di Page Manajemen Karyawan");
+    }//GEN-LAST:event_btn_manajemenKaryawananMouseClicked
 
     private void btn_laporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_laporanActionPerformed
 
-    private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_stokActionPerformed
-
-    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
-        // TODO add your handling code here:
-            Pembelian_karyawan pembelian = new Pembelian_karyawan();
-            pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            pembelian.setVisible(true);
-            dispose();
-            System.out.println("Sekarang Dalam Page Pembelian " + "Master");
-    }//GEN-LAST:event_btn_pembelianMouseClicked
-
-    private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
-        // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Pengembalian Barang " + "Master");
-    }//GEN-LAST:event_btn_pengembalianMouseClicked
-
-    private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
-        // TODO add your handling code here:
-        Menambah_dataBarang stok = new Menambah_dataBarang();
-        stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        stok.setVisible(true);
-        dispose();
-        System.out.println("Sekarang Dalam Page Stok " + "Master");
-    }//GEN-LAST:event_btn_stokMouseClicked
-
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
-        Riwayat_karyawan laporan = new Riwayat_karyawan();
-        laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        laporan.setVisible(true);
-        dispose();
-        System.out.println("Sekarang Dalam Page Laporan " + "Master");
+        // TODO add your handling code here:
+    Laporan_Owner laporan = new Laporan_Owner();
+    laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    laporan.setVisible(true);
+    dispose();
+    System.out.println("Sekarang Berada Di Page Laporan");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
     private void btnRfidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRfidMouseClicked
         // TODO add your handling code here:
 menambahRfid.setVisible(true);
     }//GEN-LAST:event_btnRfidMouseClicked
-
-    private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_pemasokActionPerformed
 
     private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
         // TODO add your handling code here:
@@ -444,11 +345,7 @@ btnSimpan.addActionListener(new ActionListener() {
     private javax.swing.JButton btnRfid;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
-    private javax.swing.JButton btn_pemasok;
-    private javax.swing.JButton btn_pembelian;
-    private javax.swing.JButton btn_pengembalian;
-    private javax.swing.JButton btn_penjualan;
-    private javax.swing.JButton btn_stok;
+    private javax.swing.JButton btn_manajemenKaryawanan;
     private javax.swing.JScrollPane dataRPengguna;
     private javax.swing.JTextField iptRfid;
     private javax.swing.JLabel jLabel5;

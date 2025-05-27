@@ -11,13 +11,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -41,31 +38,26 @@ public class Riwayat_karyawan extends javax.swing.JFrame {
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_dashboard.setBackground(new java.awt.Color(255, 255, 255, 0));
-//          dataMaster.setVisible(false);
-//          dataPengguna.setVisible(false);
-//          tampilkanMaster();
-//          tampilkanPengguna();
-//            penjualanTbl.setVisible(false);
-            tampilkanDataPenjualan();
-//            pembelianTbl.setVisible(false);
-//            produkTbl.setVisible(false);
+          
+          tampilkanDataPenjualan(false, null, null);
+          tampilkanDataPembelian(false, null, null);
+          pembelianTbl.setVisible(false);
+          
+          
 //JcomboBox Report
 Claporan.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         String selected = (String) Claporan.getSelectedItem();
-        System.out.println("Selected: " + selected); // untuk memastikan event jalan
+        System.out.println("Selected: " + selected);
 
         // Sembunyikan semua
         penjualanTbl.setVisible(false);
-//        pembelianTbl.setVisible(false);
-//        produkTbl.setVisible(false);
-
-        // Tampilkan sesuai pilihan
+        pembelianTbl.setVisible(false);
         if ("Laporan Penjualan".equals(selected)) {
             penjualanTbl.setVisible(true);
         } else if ("Laporan Pembelian".equals(selected)) {
-//            pembelianTbl.setVisible(true);
+          pembelianTbl.setVisible(true);
         } else if ("Laporan Produk".equals(selected)) {
 //            produkTbl.setVisible(true);
         }
@@ -102,6 +94,9 @@ Claporan.addActionListener(new ActionListener() {
         penjualan = new javax.swing.JTable();
         Jsampai = new de.wannawork.jcalendar.JCalendarComboBox();
         Jdari = new de.wannawork.jcalendar.JCalendarComboBox();
+        Tampilkan = new javax.swing.JButton();
+        pembelianTbl = new javax.swing.JScrollPane();
+        pembelian = new javax.swing.JTable();
         backgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,9 +248,41 @@ Claporan.addActionListener(new ActionListener() {
         ));
         penjualanTbl.setViewportView(penjualan);
 
-        jPanel1.add(penjualanTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 520));
+        jPanel1.add(penjualanTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 280));
         jPanel1.add(Jsampai, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 130, 30));
         jPanel1.add(Jdari, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 130, 30));
+
+        Tampilkan.setText("Tampilkan");
+        Tampilkan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TampilkanMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Tampilkan, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 120, -1, -1));
+
+        pembelian.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Pembelian", "Nama Kasir", "ID Produk", "Nama Produk", "Jumlah", "Harga Beli", "Subtotal", "Tanggal Transaksi"
+            }
+        ));
+        pembelianTbl.setViewportView(pembelian);
+
+        jPanel1.add(pembelianTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 240));
 
         backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_laporan.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
@@ -330,6 +357,19 @@ Claporan.addActionListener(new ActionListener() {
         System.out.println("Memasuki Dashboard Master");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
+    private void TampilkanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TampilkanMouseClicked
+        // TODO add your handling code here:
+        java.util.Date dari = Jdari.getDate();
+        java.util.Date sampai = Jsampai.getDate();
+
+        if (dari == null || sampai == null) {
+        JOptionPane.showMessageDialog(null, "Silakan pilih rentang tanggal terlebih dahulu.");
+        return;
+        }
+
+    tampilkanDataPenjualan(true, dari, sampai);
+    }//GEN-LAST:event_TampilkanMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -400,6 +440,7 @@ Claporan.addActionListener(new ActionListener() {
     private javax.swing.JComboBox<String> Claporan;
     private de.wannawork.jcalendar.JCalendarComboBox Jdari;
     private de.wannawork.jcalendar.JCalendarComboBox Jsampai;
+    private javax.swing.JButton Tampilkan;
     private javax.swing.JLabel backgroundUtama;
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_laporan;
@@ -410,30 +451,44 @@ Claporan.addActionListener(new ActionListener() {
     private javax.swing.JButton btn_stok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable pembelian;
+    private javax.swing.JScrollPane pembelianTbl;
     private javax.swing.JTable penjualan;
     private javax.swing.JScrollPane penjualanTbl;
     // End of variables declaration//GEN-END:variables
 
-private void tampilkanDataPenjualan() {
+private void tampilkanDataPenjualan(boolean filterTanggal, java.util.Date dariDate, java.util.Date sampaiDate) {
     DefaultTableModel model = new DefaultTableModel();
     model.setColumnIdentifiers(new String[]{
         "ID Penjualan", "Kasir", "ID Produk", "Nama Produk", "Barcode", "Harga", "Jumlah", "Subtotal", "Tanggal Transaksi"
     });
 
     try {
+        SimpleDateFormat sdfSQL = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfTampil = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         String sql = "SELECT p.id_penjualan, u.username, pr.id_produk, pr.nama_produk, pr.barcode, " +
-                     "dp.harga_jual, dp.jumlah, dp.subtotal, p.tanggal_transaksi " + // Perbaikan: ambil dari tabel penjualan
+                     "dp.harga_jual, dp.jumlah, dp.subtotal, p.tanggal_transaksi " +
                      "FROM penjualan p " +
                      "JOIN pengguna u ON p.id_pengguna = u.id_pengguna " +
                      "JOIN detail_penjualan dp ON p.id_penjualan = dp.id_penjualan " +
                      "JOIN produk pr ON dp.id_produk = pr.id_produk";
 
+        if (filterTanggal) {
+            sql += " WHERE DATE(p.tanggal_transaksi) BETWEEN ? AND ?";
+        }
+
+        sql += " ORDER BY p.tanggal_transaksi ASC";
+
         Connection conn = dbtokko.configDB();
         PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
 
-        // Format tanggal jika ingin tampil rapi
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (filterTanggal) {
+            ps.setString(1, sdfSQL.format(dariDate));
+            ps.setString(2, sdfSQL.format(sampaiDate));
+        }
+
+        ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             Object[] row = new Object[]{
@@ -445,7 +500,7 @@ private void tampilkanDataPenjualan() {
                 rs.getDouble("harga_jual"),
                 rs.getInt("jumlah"),
                 rs.getDouble("subtotal"),
-                sdf.format(rs.getTimestamp("tanggal_transaksi")) // Gunakan format tanggal
+                sdfTampil.format(rs.getTimestamp("tanggal_transaksi"))
             };
             model.addRow(row);
         }
@@ -461,20 +516,109 @@ private void tampilkanDataPenjualan() {
     }
 }
 
+private void tampilkanDataPembelian(boolean filterTanggal, java.util.Date dariDate, java.util.Date sampaiDate) {
+    DefaultTableModel model = new DefaultTableModel();
+    model.setColumnIdentifiers(new String[]{
+        "ID Pembelian", "Nama Kasir", "ID Produk", "Nama Produk", "Jumlah", "Harga Beli", "Subtotal", "Tanggal Pembelian"
+    });
+
+    try {
+        SimpleDateFormat sdfSQL = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfTampil = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String sql = "SELECT p.id_pembelian, u.username, pr.id_produk, pr.nama_produk, " +
+                     "dp.jumlah, dp.harga_beli, dp.subtotal, p.tanggal_pembelian " +
+                     "FROM pembelian p " +
+                     "JOIN pengguna u ON p.id_pengguna = u.id_pengguna " +
+                     "JOIN detail_pembelian dp ON p.id_pembelian = dp.id_pembelian " +
+                     "JOIN produk pr ON dp.id_produk = pr.id_produk";
+
+        if (filterTanggal) {
+            sql += " WHERE DATE(p.tanggal_pembelian) BETWEEN ? AND ?";
+        }
+
+        sql += " ORDER BY p.tanggal_pembelian ASC";
+
+        Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        if (filterTanggal) {
+            ps.setString(1, sdfSQL.format(dariDate));
+            ps.setString(2, sdfSQL.format(sampaiDate));
+        }
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] row = new Object[]{
+                rs.getString("id_pembelian"),
+                rs.getString("username"),
+                rs.getString("id_produk"),
+                rs.getString("nama_produk"),
+                rs.getInt("jumlah"),
+                rs.getDouble("harga_beli"),
+                rs.getDouble("subtotal"),
+                sdfTampil.format(rs.getTimestamp("tanggal_pembelian"))
+            };
+            model.addRow(row);
+        }
+
+        pembelian.setModel(model);
+        sesuaikanLebarKolom(pembelian);
+
+        rs.close();
+        ps.close();
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Gagal menampilkan data pembelian: " + e.getMessage());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 private void sesuaikanLebarKolom(JTable table) {
     final TableColumnModel columnModel = table.getColumnModel();
     for (int column = 0; column < table.getColumnCount(); column++) {
-        int lebar = 15; // lebar minimum
+        int lebar = 15;
         for (int row = 0; row < table.getRowCount(); row++) {
             TableCellRenderer renderer = table.getCellRenderer(row, column);
             Component comp = table.prepareRenderer(renderer, row, column);
             lebar = Math.max(comp.getPreferredSize().width + 10, lebar);
         }
         if (lebar > 300)
-            lebar = 300; // batas maksimum opsional
+            lebar = 300;
         columnModel.getColumn(column).setPreferredWidth(lebar);
     }
 }
+
+    private void tampilkanDataPenjualan() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
 

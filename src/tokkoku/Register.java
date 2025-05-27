@@ -32,8 +32,8 @@ public class Register extends javax.swing.JFrame {
         ipt_password.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_submit.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_masuk.setBackground(new java.awt.Color(255, 255, 255, 0));
-        cmb.setBackground(new java.awt.Color(255, 255, 255, 0));
-        
+        ComboDaftar.setBackground(new java.awt.Color(255, 255, 255, 0));
+        ComboDaftar.setBackground(new java.awt.Color(255, 255, 255, 0));
     }
 
     /**
@@ -49,7 +49,7 @@ public class Register extends javax.swing.JFrame {
         ipt_username = new javax.swing.JTextField();
         ipt_password = new javax.swing.JPasswordField();
         btn_masuk = new javax.swing.JButton();
-        cmb = new javax.swing.JComboBox<>();
+        ComboDaftar = new javax.swing.JComboBox<>();
         BackgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,13 +88,13 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(btn_masuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 560, 90, 30));
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Karyawan"}));
-        cmb.addActionListener(new java.awt.event.ActionListener() {
+        ComboDaftar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Karyawan"}));
+        ComboDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbActionPerformed(evt);
+                ComboDaftarActionPerformed(evt);
             }
         });
-        getContentPane().add(cmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 480, 170, 50));
+        getContentPane().add(ComboDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 480, 170, 50));
 
         BackgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_register.png"))); // NOI18N
         getContentPane().add(BackgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -106,7 +106,7 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
 String username = ipt_username.getText().trim();
 String password = new String(ipt_password.getPassword()).trim();
-String role = cmb.getSelectedItem().toString();
+String role = ComboDaftar.getSelectedItem().toString();
 
 if (username.isEmpty()) {
     JOptionPane.showMessageDialog(this, "Username wajib diisi", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
@@ -207,9 +207,9 @@ private String hashPassword(String password) {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_submitMouseClicked
 
-    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
+    private void ComboDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboDaftarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbActionPerformed
+    }//GEN-LAST:event_ComboDaftarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,9 +251,9 @@ private String hashPassword(String password) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundUtama;
+    private javax.swing.JComboBox<String> ComboDaftar;
     private javax.swing.JButton btn_masuk;
     private javax.swing.JButton btn_submit;
-    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JPasswordField ipt_password;
     private javax.swing.JTextField ipt_username;
     // End of variables declaration//GEN-END:variables
