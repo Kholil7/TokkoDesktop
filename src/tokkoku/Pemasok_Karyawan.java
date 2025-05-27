@@ -57,6 +57,8 @@ public class Pemasok_Karyawan extends javax.swing.JFrame {
         btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_dashboard.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
+
+
         
         tambahPemasok.setLocationRelativeTo(null);
     }
@@ -374,7 +376,7 @@ public class Pemasok_Karyawan extends javax.swing.JFrame {
     }
 
     try {
-        String sql = "INSERT INTO pemasok (nama, kontak, alamat) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO suplier (nama, kontak, alamat) VALUES (?, ?, ?)";
         Connection conn = dbtokko.configDB();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, nama);
@@ -384,6 +386,7 @@ public class Pemasok_Karyawan extends javax.swing.JFrame {
         int rowsInserted = ps.executeUpdate();
         if (rowsInserted > 0) {
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+            tampilkanDataSuplier();
             ipt_nama.setText("");
             ipt_kontak.setText("");
             ipt_alamat.setText("");

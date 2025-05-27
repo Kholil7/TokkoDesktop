@@ -44,7 +44,6 @@ public class Dashboard_karyawan extends javax.swing.JFrame {
           btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
 //          pnlRfid.setVisible(false);
           menambahRfid.setLocationRelativeTo(null);
           tampilkanPengguna();
@@ -110,7 +109,6 @@ btnPrint.addActionListener(new ActionListener() {
         dataRPengguna = new javax.swing.JScrollPane();
         tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btnRfid = new javax.swing.JButton();
         btn_penjualan = new javax.swing.JButton();
         btn_pembelian = new javax.swing.JButton();
         btn_pemasok = new javax.swing.JButton();
@@ -176,13 +174,6 @@ btnPrint.addActionListener(new ActionListener() {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnRfid.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRfidMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 220, 110));
 
         btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -331,11 +322,6 @@ btnPrint.addActionListener(new ActionListener() {
         System.out.println("Sekarang Dalam Page Laporan " + "Master");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
-    private void btnRfidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRfidMouseClicked
-        // TODO add your handling code here:
-menambahRfid.setVisible(true);
-    }//GEN-LAST:event_btnRfidMouseClicked
-
     private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_pemasokActionPerformed
@@ -433,7 +419,6 @@ btnSimpan.addActionListener(new ActionListener() {
     private javax.swing.JLabel backgroundUtama;
     private javax.swing.JButton btnCard;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnRfid;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
     private javax.swing.JButton btn_pemasok;
