@@ -1,2 +1,0 @@
-net.sf.jasperreports.engine.fill.JRVirtualizationContext$CacheTemplateVisitor
-net.sf.jasperreports.engine.fill.JRVirtualizationContext

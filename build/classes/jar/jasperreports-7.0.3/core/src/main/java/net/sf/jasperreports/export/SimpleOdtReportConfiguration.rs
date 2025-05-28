@@ -1,1 +1,0 @@
-net.sf.jasperreports.export.SimpleOdtReportConfiguration

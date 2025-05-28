@@ -1,7 +1,0 @@
-net.sf.jasperreports.engine.fill.JRDoubleIncrementerFactory
-net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer
-net.sf.jasperreports.engine.fill.JRDoubleAverageIncrementer
-net.sf.jasperreports.engine.fill.JRDoubleCountIncrementer
-net.sf.jasperreports.engine.fill.JRDoubleVarianceIncrementer
-net.sf.jasperreports.engine.fill.JRDoubleStandardDeviationIncrementer
-net.sf.jasperreports.engine.fill.JRDoubleDistinctCountIncrementer

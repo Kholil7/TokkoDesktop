@@ -1,2 +1,0 @@
-net.sf.jasperreports.virtualization.ImageElementTest
-net.sf.jasperreports.virtualization.ImageElementTest$CustomRenderer

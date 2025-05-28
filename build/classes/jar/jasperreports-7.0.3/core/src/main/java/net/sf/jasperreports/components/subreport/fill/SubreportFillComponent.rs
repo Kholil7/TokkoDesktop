@@ -1,2 +1,0 @@
-net.sf.jasperreports.components.subreport.fill.SubreportFillComponent$ComponentFillSubreportFactory
-net.sf.jasperreports.components.subreport.fill.SubreportFillComponent

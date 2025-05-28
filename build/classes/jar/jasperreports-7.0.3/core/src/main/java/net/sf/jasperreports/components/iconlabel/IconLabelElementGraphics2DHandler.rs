@@ -1,1 +1,0 @@
-net.sf.jasperreports.components.iconlabel.IconLabelElementGraphics2DHandler

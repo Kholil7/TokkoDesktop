@@ -1,4 +1,0 @@
-net.sf.jasperreports.engine.JRStyledTextAttributeSelector$NoBackcolorSelector
-net.sf.jasperreports.engine.JRStyledTextAttributeSelector
-net.sf.jasperreports.engine.JRStyledTextAttributeSelector$AllSelector
-net.sf.jasperreports.engine.JRStyledTextAttributeSelector$NoneSelector

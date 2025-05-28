@@ -1,2 +1,0 @@
-net.sf.jasperreports.javascript.JavaScriptClassCompiler
-net.sf.jasperreports.javascript.JavaScriptClassCompiler$CompileSources

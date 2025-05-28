@@ -1,2 +1,0 @@
-net.sf.jasperreports.engine.export.JRCsvMetadataExporter
-net.sf.jasperreports.engine.export.JRCsvMetadataExporter$ExporterContext

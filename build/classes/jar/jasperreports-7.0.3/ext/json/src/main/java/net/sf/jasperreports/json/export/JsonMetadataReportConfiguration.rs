@@ -1,1 +1,0 @@
-net.sf.jasperreports.json.export.JsonMetadataReportConfiguration

@@ -1,2 +1,0 @@
-net.sf.jasperreports.javascript.JavaScriptCompileData
-net.sf.jasperreports.javascript.JavaScriptCompileData$Expression

@@ -1,3 +1,0 @@
-net.sf.jasperreports.compilers.StandardExpressionEvaluators
-net.sf.jasperreports.compilers.StandardExpressionEvaluators$SimpleTextEvaluator
-net.sf.jasperreports.compilers.StandardExpressionEvaluators$1

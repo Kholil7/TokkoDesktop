@@ -1,2 +1,0 @@
-net.sf.jasperreports.engine.util.HtmlEditorKitMarkupProcessor$Factory
-net.sf.jasperreports.engine.util.HtmlEditorKitMarkupProcessor

@@ -1,1 +1,0 @@
-net.sf.jasperreports.olap.Olap4jMondrianQueryExecuter

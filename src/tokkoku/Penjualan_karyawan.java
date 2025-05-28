@@ -688,6 +688,11 @@ SwingUtilities.invokeLater(() -> {
                 btnHapusMouseClicked(evt);
             }
         });
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 150, 50));
 
         btnTambah.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1165,6 +1170,10 @@ try {
     private void textBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBayarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBayarActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusActionPerformed
     private void resetTabel() {
         // Menghapus semua baris di tabel setelah pembayaran berhasil
         model.setRowCount(0);
