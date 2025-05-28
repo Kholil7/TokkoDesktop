@@ -480,10 +480,10 @@ try {
 
 String namaSuplier = model.getValueAt(0, 2).toString();
 
-// Potong jika formatnya "7 - PT. Susu Indonesia"
-//if (namaSuplier.contains(" - ")) {
-//    namaSuplier = namaSuplier.split(" - ", 2)[1].trim();
-//}
+ 
+if (namaSuplier.contains(" - ")) {
+    namaSuplier = namaSuplier.split(" - ", 2)[1].trim();
+}
 
 String sqlCariSuplier = "SELECT id_pemasok FROM suplier WHERE nama = ?";
 PreparedStatement pstCariSuplier = conn.prepareStatement(sqlCariSuplier);
