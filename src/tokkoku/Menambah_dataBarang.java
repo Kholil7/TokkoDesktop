@@ -41,12 +41,6 @@ public class Menambah_dataBarang extends javax.swing.JFrame {
     public Menambah_dataBarang() {
         initComponents();
         pnUbahh.setVisible(false);
-        pnl_barangrusak.setVisible(false);
-        pnl_barangrusak.addMouseListener(new MouseAdapter() {});
-        pnl_barangrusak.addMouseMotionListener(new MouseMotionAdapter() {});
-        pnlRusak.setVisible(false);
-        pnlRusak.addMouseListener(new MouseAdapter() {});
-        pnlRusak.addMouseMotionListener(new MouseMotionAdapter() {});
         tblData.addMouseListener(new MouseAdapter() {});
         tblData.addMouseMotionListener(new MouseMotionAdapter() {});
         JTable tblStokProduk = new JTable();
@@ -56,8 +50,8 @@ public class Menambah_dataBarang extends javax.swing.JFrame {
         pnTambahBarcodesee.setLocationRelativeTo(null);
         btnTambahh.setLocationRelativeTo(null);
         pnUbahh.setLocationRelativeTo(null);
-        
-        
+        pnlRusakk.setLocationRelativeTo(null);
+        pnl_barangrusakk.setLocationRelativeTo(null);
         
 
 btnBarangRusak.addActionListener(new ActionListener() {
@@ -91,8 +85,8 @@ btn_rusak.addActionListener(new ActionListener() {
         try {
             String idProduk = dataStok.getValueAt(selectedRow, 0).toString();
 
-            pnlRusak.setVisible(true);
-            pnlRusak.setEnabled(true);
+            pnlRusakk.setVisible(true);
+            pnlRusakk.setEnabled(true);
 
             jtId.setText(idProduk);
             jtId.setEditable(false);
@@ -117,7 +111,6 @@ btn_rusak.addActionListener(new ActionListener() {
     private void initComponents() {
 
         pnTambahBarcodesee = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
         showPanelBarcode = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         outputBarcode = new javax.swing.JTextField();
@@ -125,35 +118,35 @@ btn_rusak.addActionListener(new ActionListener() {
         btn_cetak = new javax.swing.JButton();
         btnBatal2 = new javax.swing.JButton();
         btn_simpanBarcode = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         btnTambahh = new javax.swing.JDialog();
         txtNamaproduk = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnBatal = new javax.swing.JButton();
         btnSimpan1 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         pnUbahh = new javax.swing.JDialog();
         txtNamaproduk1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnBatal1 = new javax.swing.JButton();
         btnSimpan2 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        pnl_barangrusak = new javax.swing.JPanel();
-        pnlRusak = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jtId = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        SpnJumlah = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        btnMasuk = new javax.swing.JButton();
-        btnKembali = new javax.swing.JButton();
-        jtAlasan = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        pnlRusakk = new javax.swing.JDialog();
         jCalenderMasok = new de.wannawork.jcalendar.JCalendarComboBox();
+        SpnJumlah = new javax.swing.JSpinner();
+        jtAlasan = new javax.swing.JComboBox<>();
+        btnMasuk = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jtId = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        pnl_barangrusakk = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         dataStok = new javax.swing.JTable();
         btn_rusak = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnBarcode = new javax.swing.JButton();
@@ -167,24 +160,20 @@ btn_rusak.addActionListener(new ActionListener() {
         pnTambahBarcodesee.setSize(new java.awt.Dimension(500, 350));
         pnTambahBarcodesee.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setText("Generate Barcode");
-        pnTambahBarcodesee.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 135, -1));
-
         javax.swing.GroupLayout showPanelBarcodeLayout = new javax.swing.GroupLayout(showPanelBarcode);
         showPanelBarcode.setLayout(showPanelBarcodeLayout);
         showPanelBarcodeLayout.setHorizontalGroup(
             showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
         showPanelBarcodeLayout.setVerticalGroup(
             showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         pnTambahBarcodesee.getContentPane().add(showPanelBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 350, 100));
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Barcode");
         pnTambahBarcodesee.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 69, -1));
 
@@ -242,6 +231,21 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         pnTambahBarcodesee.getContentPane().add(btn_simpanBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 100, 30));
 
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        pnTambahBarcodesee.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+
         btnTambahh.setTitle("Tambah Barang");
         btnTambahh.setBackground(new java.awt.Color(0, 0, 255));
         btnTambahh.setSize(new java.awt.Dimension(500, 300));
@@ -254,9 +258,9 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         btnTambahh.getContentPane().add(txtNamaproduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Nama Produk :");
-        btnTambahh.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 111, -1));
+        btnTambahh.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 111, 30));
 
         btnBatal.setText("Batal");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
@@ -279,9 +283,20 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         btnTambahh.getContentPane().add(btnSimpan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 112, 42));
 
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel11.setText("Tambah Barang");
-        btnTambahh.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 135, -1));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+
+        btnTambahh.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 310));
 
         pnUbahh.setTitle("Ubah Barang");
         pnUbahh.setSize(new java.awt.Dimension(500, 300));
@@ -294,9 +309,9 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         pnUbahh.getContentPane().add(txtNamaproduk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Nama Produk :");
-        pnUbahh.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 111, -1));
+        pnUbahh.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 87, 111, 30));
 
         btnBatal1.setText("Batal");
         btnBatal1.addActionListener(new java.awt.event.ActionListener() {
@@ -314,40 +329,29 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         pnUbahh.getContentPane().add(btnSimpan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 112, 42));
 
-        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel12.setText("Ubah Barang");
-        pnUbahh.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 135, -1));
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
 
-        pnl_barangrusak.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnUbahh.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 290));
 
-        pnlRusak.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlRusakk.setTitle("Barang Rusak");
+        pnlRusakk.setSize(new java.awt.Dimension(500, 500));
+        pnlRusakk.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlRusakk.getContentPane().add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        pnlRusakk.getContentPane().add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
 
-        jLabel6.setText("ID Produk");
-        pnlRusak.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-
-        jLabel7.setText("Jumlah");
-        pnlRusak.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
-
-        jtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtIdActionPerformed(evt);
-            }
-        });
-        pnlRusak.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("Barang Rusak");
-        pnlRusak.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 60));
-        pnlRusak.add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
-
-        jLabel9.setText("Tanggal Rusak");
-        pnlRusak.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-
-        jLabel10.setText("Alasan");
-        pnlRusak.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Kadaluarsa" }));
+        pnlRusakk.getContentPane().add(jtAlasan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         btnMasuk.setText("Masukkan");
         btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -355,21 +359,34 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnMasukMouseClicked(evt);
             }
         });
-        pnlRusak.add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
+        pnlRusakk.getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
 
-        btnKembali.setText("Kembali");
-        btnKembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnKembaliMouseClicked(evt);
+        jLabel7.setText("Jumlah");
+        pnlRusakk.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
+
+        jLabel9.setText("Tanggal Rusak");
+        pnlRusakk.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        jLabel6.setText("ID Produk");
+        pnlRusakk.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        jtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdActionPerformed(evt);
             }
         });
-        pnlRusak.add(btnKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+        pnlRusakk.getContentPane().add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Kadaluarsa" }));
-        pnlRusak.add(jtAlasan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
-        pnlRusak.add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        jLabel10.setText("Alasan");
+        pnlRusakk.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        pnl_barangrusak.add(pnlRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 440, 480));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setText("Barang Rusak");
+        pnlRusakk.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 60));
+
+        pnl_barangrusakk.setTitle("Tabel Barang Rusak");
+        pnl_barangrusakk.setSize(new java.awt.Dimension(800, 650));
+        pnl_barangrusakk.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dataStok.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -384,7 +401,7 @@ btn_rusak.addActionListener(new ActionListener() {
         ));
         jScrollPane2.setViewportView(dataStok);
 
-        pnl_barangrusak.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 78, 734, 470));
+        pnl_barangrusakk.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 734, 470));
 
         btn_rusak.setText("Barang Rusak");
         btn_rusak.addActionListener(new java.awt.event.ActionListener() {
@@ -392,17 +409,25 @@ btn_rusak.addActionListener(new ActionListener() {
                 btn_rusakActionPerformed(evt);
             }
         });
-        pnl_barangrusak.add(btn_rusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 18, 132, 42));
+        pnl_barangrusakk.getContentPane().add(btn_rusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 132, 42));
 
-        jButton3.setText("Kembali");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        pnl_barangrusak.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 27, -1, -1));
+        jPanel4.setBackground(new java.awt.Color(51, 102, 255));
 
-        getContentPane().add(pnl_barangrusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 840, 570));
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 830, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        pnl_barangrusakk.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 640));
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnTambah.setContentAreaFilled(false);
         btnTambah.setBorderPainted(false);
@@ -477,7 +502,7 @@ btn_rusak.addActionListener(new ActionListener() {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 1120, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Barang-Karyawan.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Data Barang-Karyawan.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -661,7 +686,7 @@ try (
         txtNamaproduk1.setText("");
 
        
-//        pnUbah.setVisible(false);
+//       pnUbah.setVisible(false);
 
      
         loadDataProduk(); // ← Buat method untuk ambil ulang data produk
@@ -751,26 +776,16 @@ btnTambahh.setVisible(false);
 
     private void btnBarangRusakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangRusakMouseClicked
         // TODO add your handling code here:
-        pnl_barangrusak.setVisible(true);
+        pnl_barangrusakk.setVisible(true);
     }//GEN-LAST:event_btnBarangRusakMouseClicked
 
     private void btn_rusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rusakActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_rusakActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-        pnl_barangrusak.setVisible(false);
-    }//GEN-LAST:event_jButton3MouseClicked
-
     private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtIdActionPerformed
-
-    private void btnKembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKembaliMouseClicked
-        // TODO add your handling code here:
-        pnlRusak.setVisible(false);
-    }//GEN-LAST:event_btnKembaliMouseClicked
 
     private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
         // TODO add your handling code here:
@@ -857,7 +872,7 @@ btnMasuk.addActionListener(new ActionListener() {
            
             conn.commit();
             JOptionPane.showMessageDialog(null, "Barang rusak berhasil dicatat & stok dikurangi.");
-            pnlRusak.setVisible(false);
+            pnlRusakk.setVisible(false);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1142,7 +1157,6 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JButton btnBatal1;
     private javax.swing.JButton btnBatal2;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btnSimpan1;
     private javax.swing.JButton btnSimpan2;
@@ -1154,13 +1168,9 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JButton btn_simpanBarcode;
     private javax.swing.JTable dataStok;
     private javax.swing.JButton generateButton;
-    private javax.swing.JButton jButton3;
     private de.wannawork.jcalendar.JCalendarComboBox jCalenderMasok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1168,6 +1178,10 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jtAlasan;
@@ -1175,8 +1189,8 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JTextField outputBarcode;
     private javax.swing.JDialog pnTambahBarcodesee;
     private javax.swing.JDialog pnUbahh;
-    private javax.swing.JPanel pnlRusak;
-    private javax.swing.JPanel pnl_barangrusak;
+    private javax.swing.JDialog pnlRusakk;
+    private javax.swing.JDialog pnl_barangrusakk;
     private javax.swing.JPanel showPanelBarcode;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtNamaproduk;
