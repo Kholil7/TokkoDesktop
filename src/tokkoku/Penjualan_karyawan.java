@@ -457,7 +457,7 @@ barcode.addActionListener(new ActionListener() {
                 spnJumlah.setValue(1);
 
                 btnTambah.doClick();
-                
+                barcode.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Produk tidak ditemukan!");
                 barcode.setText("");
@@ -750,7 +750,7 @@ SwingUtilities.invokeLater(() -> {
                 barcodeKeyTyped(evt);
             }
         });
-        getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10000, 120, 150, -1));
+        getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 150, -1));
         getContentPane().add(spnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, 70, 30));
 
         backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Karyawan-Penjualan (1).png"))); // NOI18N
@@ -1044,12 +1044,15 @@ try {
 
         CetakStruk cs = new CetakStruk();
         cs.cetakStrukTransaksiTerakhir();
-
+        barcode.requestFocusInWindow();
 
     // Reset form
     model.setRowCount(0);
     transaksiGenerator.refreshKodeTransaksi();
     txtRp.setText("");
+    showTotalField.setText("");
+    textBayar.setText("");
+    textKembali.setText("");
     spnJumlah.setModel(modelJumlah);
     kd_barang.setText("");
     txtHargaJual.setText("");

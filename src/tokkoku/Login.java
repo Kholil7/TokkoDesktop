@@ -5,6 +5,7 @@
 package tokkoku;
 
 import database.dbtokko;
+import support.SecurityUtil;
 import javax.swing.*;
 import java.sql.*;
 import java.sql.Connection;
@@ -126,7 +127,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 40, 40));
-        getContentPane().add(ipt_rfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(16000, 490, 200, -1));
+        getContentPane().add(ipt_rfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1500, 490, 200, -1));
 
         ComboLogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Karyawan" }));
         getContentPane().add(ComboLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 160, 40));
@@ -311,7 +312,7 @@ try (Connection conn = dbtokko.configDB()) {
     // End of variables declaration//GEN-END:variables
 private void loginProsesViaRFID(String rfid) {
     try (Connection conn = dbtokko.configDB()) {
-        String sql = "SELECT id_pengguna, username, password FROM pengguna WHERE rfid = ?";
+        String sql = "SELECT id_pengguna, username, role FROM pengguna WHERE rfid = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, rfid);
             ResultSet rs = stmt.executeQuery();
@@ -319,13 +320,27 @@ private void loginProsesViaRFID(String rfid) {
             if (rs.next()) {
                 int idPengguna = rs.getInt("id_pengguna");
                 String username = rs.getString("username");
-                String dbPassword = rs.getString("password");
+                String role = rs.getString("role");
 
                 LoginSession.getInstance().setIdPengguna(idPengguna);
 
-                Dashboard_karyawan dashboard = new Dashboard_karyawan();
-                dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                dashboard.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Selamat datang, " + username + "!", "Login Berhasil", JOptionPane.INFORMATION_MESSAGE);
+
+                if ("Owner".equalsIgnoreCase(role)) {
+                    Dashboard_owner dashboard = new Dashboard_owner();
+                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    dashboard.setVisible(true);
+                    dispose();
+                } else if ("Karyawan".equalsIgnoreCase(role)) {
+                    Dashboard_karyawan dashboard = new Dashboard_karyawan();
+                    dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    dashboard.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Role tidak dikenali: " + role, "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 dispose();
 
             } else {

@@ -39,20 +39,22 @@ public class Manajemen_karyawan_Owner extends javax.swing.JFrame {
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
-//          pnlRfid.setVisible(false);
+
           menambahRfid.setLocationRelativeTo(null);
+          dataKaryawan.setLocationRelativeTo(null);
+          menambahkanAkun.setLocationRelativeTo(null);
           tampilkanPengguna();
           
           
 btnCard.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-        String kodeRFID = "RF" + (int)(Math.random() * 1000000); // Kode RFID acak
-        iptRfid.setText(kodeRFID); // Tampilkan ke textfield
+        String kodeRFID = "RF" + (int)(Math.random() * 1000000);
+        iptRfid.setText(kodeRFID);
 
-        pnlCard.removeAll(); // Bersihkan panel
+        pnlCard.removeAll();
 
-        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png"); // Sesuaikan path
+        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png");
         kartu.setPreferredSize(new Dimension(pnlCard.getWidth(), pnlCard.getHeight()));
         kartu.setKodeRFID(kodeRFID);
 
@@ -108,6 +110,8 @@ btnPrint.addActionListener(new ActionListener() {
         ipt_password = new javax.swing.JPasswordField();
         ComboDaftar = new javax.swing.JComboBox<>();
         btn_submit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         dataKaryawan = new javax.swing.JDialog();
         dataRPengguna1 = new javax.swing.JScrollPane();
         tbrPengguna1 = new javax.swing.JTable();
@@ -150,32 +154,38 @@ btnPrint.addActionListener(new ActionListener() {
 
         tbrPengguna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nama", "RFID"
+                "Nama", "Role", "RFID"
             }
         ));
         dataRPengguna.setViewportView(tbrPengguna);
 
         menambahRfid.getContentPane().add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
 
+        menambahkanAkun.setSize(new java.awt.Dimension(700, 500));
         menambahkanAkun.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ipt_username.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_username.setBorder(null);
-        menambahkanAkun.getContentPane().add(ipt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 360, 40));
+        menambahkanAkun.getContentPane().add(ipt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 360, 40));
 
         ipt_password.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         ipt_password.setBorder(null);
-        menambahkanAkun.getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 360, 40));
+        ipt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ipt_passwordActionPerformed(evt);
+            }
+        });
+        menambahkanAkun.getContentPane().add(ipt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 360, 40));
 
         ComboDaftar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Karyawan"}));
         ComboDaftar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,9 +193,10 @@ btnPrint.addActionListener(new ActionListener() {
                 ComboDaftarActionPerformed(evt);
             }
         });
-        menambahkanAkun.getContentPane().add(ComboDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 170, 50));
+        menambahkanAkun.getContentPane().add(ComboDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 170, 40));
 
-        btn_submit.setBorder(null);
+        btn_submit.setText("Simpan");
+        btn_submit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_submit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_submitMouseClicked(evt);
@@ -196,8 +207,19 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_submitActionPerformed(evt);
             }
         });
-        menambahkanAkun.getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 150, 50));
+        menambahkanAkun.getContentPane().add(btn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 150, 50));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Password");
+        menambahkanAkun.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 90, 20));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nama pengguna");
+        menambahkanAkun.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 140, 20));
+
+        dataKaryawan.setSize(new java.awt.Dimension(800, 400));
         dataKaryawan.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbrPengguna1.setModel(new javax.swing.table.DefaultTableModel(
@@ -406,7 +428,6 @@ String username = ipt_username.getText().trim();
 String password = new String(ipt_password.getPassword()).trim();
 String role = ComboDaftar.getSelectedItem().toString().trim();
 
-// Validasi hanya boleh daftar sebagai KARYAWAN
 if (!role.equalsIgnoreCase("Karyawan")) {
     JOptionPane.showMessageDialog(this, "Pendaftaran hanya diizinkan untuk role Karyawan", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
     return;
@@ -462,6 +483,7 @@ try (Connection conn = dbtokko.configDB()) {
             JOptionPane.showMessageDialog(this, "Akun berhasil dibuat!");
             ipt_username.setText("");
             ipt_password.setText("");
+            tampilkanPengguna();
         } else {
             JOptionPane.showMessageDialog(this, "Registrasi gagal. Coba lagi.", "Gagal Registrasi", JOptionPane.WARNING_MESSAGE);
         }
@@ -491,8 +513,12 @@ try (Connection conn = dbtokko.configDB()) {
 
     private void btn_menambahAkun1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_menambahAkun1MouseClicked
         // TODO add your handling code here:
-        menambahkanAkun.setVisible(true);
+        menambahkanAkun.setVisible(true); 
     }//GEN-LAST:event_btn_menambahAkun1MouseClicked
+
+    private void ipt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipt_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipt_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,6 +605,8 @@ try (Connection conn = dbtokko.configDB()) {
     private javax.swing.JTextField iptRfid;
     private javax.swing.JPasswordField ipt_password;
     private javax.swing.JTextField ipt_username;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDialog menambahRfid;
@@ -592,10 +620,11 @@ private List<String> idPenggunaList = new ArrayList<>();
 private void tampilkanPengguna() {
     DefaultTableModel model = new DefaultTableModel();
     model.addColumn("Nama");
+    model.addColumn("Role");
     model.addColumn("RFID");
     idPenggunaList.clear();
 
-    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
+    String sql = "SELECT id_pengguna, username, role, rfid FROM pengguna";
 
     try {
         Connection conn = dbtokko.configDB();
@@ -608,14 +637,15 @@ private void tampilkanPengguna() {
             do {
                 String idPengguna = rs.getString("id_pengguna");
                 String username = rs.getString("username");
+                String role = rs.getString("role");
                 String rfid = rs.getString("rfid");
 
                 idPenggunaList.add(idPengguna);
 
-                model.addRow(new Object[] { username, rfid });
+                model.addRow(new Object[] { username, role, rfid });
             } while (rs.next());
         }
-        tbrPengguna1.setModel(model);
+        tbrPengguna.setModel(model);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
     }

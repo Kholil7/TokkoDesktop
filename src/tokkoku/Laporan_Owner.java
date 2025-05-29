@@ -18,6 +18,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import tokkoku.Penjualan_karyawan.Koneksi;
 
 
 /**
@@ -43,7 +48,6 @@ Claporan.addActionListener(new ActionListener() {
         String selected = (String) Claporan.getSelectedItem();
         System.out.println("Selected: " + selected);
 
-        // Sembunyikan semua
         penjualanTbl.setVisible(false);
         pembelianTbl.setVisible(false);
         if ("Laporan Penjualan".equals(selected)) {
@@ -84,6 +88,12 @@ Claporan.addActionListener(new ActionListener() {
         Tampilkan = new javax.swing.JButton();
         pembelianTbl = new javax.swing.JScrollPane();
         pembelian = new javax.swing.JTable();
+        Jkerugian = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        show_kerugian = new javax.swing.JTextField();
+        show_keuntungan = new javax.swing.JTextField();
+        btn_segarkan = new javax.swing.JButton();
+        btn_print = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,6 +216,32 @@ Claporan.addActionListener(new ActionListener() {
 
         jPanel1.add(pembelianTbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 1060, 240));
 
+        Jkerugian.setForeground(new java.awt.Color(0, 0, 0));
+        Jkerugian.setText("Kerugian");
+        jPanel1.add(Jkerugian, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Keuntungan");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
+        jPanel1.add(show_kerugian, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 560, 100, -1));
+        jPanel1.add(show_keuntungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 520, 100, -1));
+
+        btn_segarkan.setText("Segarkan");
+        btn_segarkan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_segarkanMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_segarkan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 120, -1, -1));
+
+        btn_print.setText("Cetak");
+        btn_print.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_printMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_print, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 120, -1, -1));
+
         backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/pg-owner/Pg_laporan-Owner.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
 
@@ -256,6 +292,17 @@ Claporan.addActionListener(new ActionListener() {
 
     tampilkanDataPenjualan(true, dari, sampai);
     }//GEN-LAST:event_TampilkanMouseClicked
+
+    private void btn_segarkanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_segarkanMouseClicked
+        // TODO add your handling code here:
+    tampilkanDataPenjualan(false, null, null);
+    }//GEN-LAST:event_btn_segarkanMouseClicked
+
+    private void btn_printMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_printMouseClicked
+        // TODO add your handling code here:
+        CetakLaporan laporan = new CetakLaporan();
+        laporan.tampilkanLaporanLabaRugi();
+    }//GEN-LAST:event_btn_printMouseClicked
 
     /**
      * @param args the command line arguments
@@ -358,17 +405,23 @@ Claporan.addActionListener(new ActionListener() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Claporan;
     private de.wannawork.jcalendar.JCalendarComboBox Jdari;
+    private javax.swing.JLabel Jkerugian;
     private de.wannawork.jcalendar.JCalendarComboBox Jsampai;
     private javax.swing.JButton Tampilkan;
     private javax.swing.JLabel backgroundUtama;
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_penjualan;
+    private javax.swing.JButton btn_print;
+    private javax.swing.JButton btn_segarkan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable pembelian;
     private javax.swing.JScrollPane pembelianTbl;
     private javax.swing.JTable penjualan;
     private javax.swing.JScrollPane penjualanTbl;
+    private javax.swing.JTextField show_kerugian;
+    private javax.swing.JTextField show_keuntungan;
     // End of variables declaration//GEN-END:variables
 
 private void tampilkanDataPenjualan(boolean filterTanggal, java.util.Date dariDate, java.util.Date sampaiDate) {
@@ -530,10 +583,32 @@ private void sesuaikanLebarKolom(JTable table) {
     }
 }
 
+
+
+public class CetakLaporan {
+
+    public void tampilkanLaporanLabaRugi() {
+        try {
+            String reportPath = "src/laporan/Laporan.jasper";
+
+            Connection conn = Koneksi.getKoneksi();
+
+
+            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, conn);
+
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setTitle("Laporan Laba Rugi");
+            viewer.setVisible(true);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, "Gagal menampilkan laporan: " + e.getMessage());
+        }
+    }
+}
+
+
     private void tampilkanDataPenjualan() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }
 
 

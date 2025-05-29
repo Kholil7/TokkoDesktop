@@ -45,47 +45,47 @@ public class Dashboard_karyawan extends javax.swing.JFrame {
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
 //          pnlRfid.setVisible(false);
-          menambahRfid.setLocationRelativeTo(null);
-          tampilkanPengguna();
+//          menambahRfid.setLocationRelativeTo(null);
+//          tampilkanPengguna();
           
           
-btnCard.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String kodeRFID = "RF" + (int)(Math.random() * 1000000); // Kode RFID acak
-        iptRfid.setText(kodeRFID); // Tampilkan ke textfield
+//btnCard.addActionListener(new ActionListener() {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        String kodeRFID = "RF" + (int)(Math.random() * 1000000); // Kode RFID acak
+//        iptRfid.setText(kodeRFID); // Tampilkan ke textfield
+//
+//        pnlCard.removeAll(); // Bersihkan panel
+//
+//        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png"); // Sesuaikan path
+//        kartu.setPreferredSize(new Dimension(pnlCard.getWidth(), pnlCard.getHeight()));
+//        kartu.setKodeRFID(kodeRFID);
+//
+//        pnlCard.setLayout(new BorderLayout());
+//        pnlCard.add(kartu, BorderLayout.CENTER);
+//        pnlCard.revalidate();
+//        pnlCard.repaint();
+//    }
+//});
 
-        pnlCard.removeAll(); // Bersihkan panel
-
-        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png"); // Sesuaikan path
-        kartu.setPreferredSize(new Dimension(pnlCard.getWidth(), pnlCard.getHeight()));
-        kartu.setKodeRFID(kodeRFID);
-
-        pnlCard.setLayout(new BorderLayout());
-        pnlCard.add(kartu, BorderLayout.CENTER);
-        pnlCard.revalidate();
-        pnlCard.repaint();
-    }
-});
 
 
-
-btnPrint.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        BufferedImage image = new BufferedImage(pnlCard.getWidth(), pnlCard.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = image.createGraphics();
-        pnlCard.paint(g2);
-        g2.dispose();
-
-        try {
-            ImageIO.write(image, "png", new File("kartu_rfid.png"));
-            JOptionPane.showMessageDialog(null, "Kartu berhasil disimpan sebagai kartu_rfid.png");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-});
+//btnPrint.addActionListener(new ActionListener() {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        BufferedImage image = new BufferedImage(pnlCard.getWidth(), pnlCard.getHeight(), BufferedImage.TYPE_INT_RGB);
+//        Graphics2D g2 = image.createGraphics();
+//        pnlCard.paint(g2);
+//        g2.dispose();
+//
+//        try {
+//            ImageIO.write(image, "png", new File("kartu_rfid.png"));
+//            JOptionPane.showMessageDialog(null, "Kartu berhasil disimpan sebagai kartu_rfid.png");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
+//});
 
 
     }
@@ -99,15 +99,6 @@ btnPrint.addActionListener(new ActionListener() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menambahRfid = new javax.swing.JDialog();
-        jLabel5 = new javax.swing.JLabel();
-        iptRfid = new javax.swing.JTextField();
-        pnlCard = new javax.swing.JPanel();
-        btnSimpan = new javax.swing.JButton();
-        btnCard = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
-        dataRPengguna = new javax.swing.JScrollPane();
-        tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btn_penjualan = new javax.swing.JButton();
         btn_pembelian = new javax.swing.JButton();
@@ -116,53 +107,6 @@ btnPrint.addActionListener(new ActionListener() {
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
-
-        menambahRfid.setTitle("Menambahkan RFID");
-        menambahRfid.setBackground(new java.awt.Color(255, 255, 255));
-        menambahRfid.setSize(new java.awt.Dimension(800, 600));
-        menambahRfid.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel5.setText("Membuat RFID");
-        menambahRfid.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        menambahRfid.getContentPane().add(iptRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 210, 40));
-
-        pnlCard.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCard.setForeground(new java.awt.Color(255, 255, 255));
-        menambahRfid.getContentPane().add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 410, 140));
-
-        btnSimpan.setText("Simpan");
-        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpanMouseClicked(evt);
-            }
-        });
-        menambahRfid.getContentPane().add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 110, -1));
-
-        btnCard.setText("Buat Kartu");
-        menambahRfid.getContentPane().add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
-
-        btnPrint.setText("Print");
-        menambahRfid.getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
-
-        tbrPengguna.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nama", "RFID"
-            }
-        ));
-        dataRPengguna.setViewportView(tbrPengguna);
-
-        menambahRfid.getContentPane().add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -326,53 +270,6 @@ btnPrint.addActionListener(new ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_pemasokActionPerformed
 
-    private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
-        // TODO add your handling code here:
-btnSimpan.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        int baris = tbrPengguna.getSelectedRow();
-
-        if (baris == -1) {
-            JOptionPane.showMessageDialog(null, "Pilih dulu baris pengguna pada tabel.");
-            return;
-        }
-
-        String rfid = iptRfid.getText();
-        if (rfid.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Kode RFID belum tersedia.");
-            return;
-        }
-
-        // Ambil ID pengguna dari list berdasarkan index baris yang dipilih
-        String idPengguna = idPenggunaList.get(baris);
-
-        try {
-            Connection conn = dbtokko.configDB();
-            String sql = "UPDATE pengguna SET rfid = ? WHERE id_pengguna = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, rfid);
-            ps.setString(2, idPengguna);
-
-            int hasil = ps.executeUpdate();
-
-            if (hasil > 0) {
-                JOptionPane.showMessageDialog(null, "RFID berhasil disimpan ke pengguna ID: " + idPengguna);
-                tampilkanPengguna();
-            } else {
-                JOptionPane.showMessageDialog(null, "Gagal menyimpan RFID.");
-            }
-
-            ps.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + ex.getMessage());
-        }
-    }
-});
-    }//GEN-LAST:event_btnSimpanMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -417,56 +314,47 @@ btnSimpan.addActionListener(new ActionListener() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundUtama;
-    private javax.swing.JButton btnCard;
-    private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
     private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pembelian;
     private javax.swing.JButton btn_pengembalian;
     private javax.swing.JButton btn_penjualan;
     private javax.swing.JButton btn_stok;
-    private javax.swing.JScrollPane dataRPengguna;
-    private javax.swing.JTextField iptRfid;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JDialog menambahRfid;
-    private javax.swing.JPanel pnlCard;
-    private javax.swing.JTable tbrPengguna;
     // End of variables declaration//GEN-END:variables
-private List<String> idPenggunaList = new ArrayList<>();
-
-private void tampilkanPengguna() {
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("Nama");
-    model.addColumn("RFID");
-    idPenggunaList.clear();
-
-    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
-
-    try {
-        Connection conn = dbtokko.configDB();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        if (!rs.next()) {
-            JOptionPane.showMessageDialog(this, "Tidak ada data pengguna.");
-        } else {
-            do {
-                String idPengguna = rs.getString("id_pengguna");
-                String username = rs.getString("username");
-                String rfid = rs.getString("rfid");
-
-                idPenggunaList.add(idPengguna);
-
-                model.addRow(new Object[] { username, rfid });
-            } while (rs.next());
-        }
-        tbrPengguna.setModel(model);
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
-    }
-}
+//private List<String> idPenggunaList = new ArrayList<>();
+//
+//private void tampilkanPengguna() {
+//    DefaultTableModel model = new DefaultTableModel();
+//    model.addColumn("Nama");
+//    model.addColumn("RFID");
+//    idPenggunaList.clear();
+//
+//    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
+//
+//    try {
+//        Connection conn = dbtokko.configDB();
+//        PreparedStatement ps = conn.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
+//
+//        if (!rs.next()) {
+//            JOptionPane.showMessageDialog(this, "Tidak ada data pengguna.");
+//        } else {
+//            do {
+//                String idPengguna = rs.getString("id_pengguna");
+//                String username = rs.getString("username");
+//                String rfid = rs.getString("rfid");
+//
+//                idPenggunaList.add(idPengguna);
+//
+//                model.addRow(new Object[] { username, rfid });
+//            } while (rs.next());
+//        }
+//        tbrPengguna.setModel(model);
+//    } catch (SQLException e) {
+//        JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
+//    }
+//}
 
 //private void tampilkanRfid() {
 //    // Membuat model tabel dengan kolom yang diinginkan

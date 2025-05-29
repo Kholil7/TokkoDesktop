@@ -355,7 +355,7 @@ private void loadComboBoxPemasok() {
         });
         jPanel1.add(totaljumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 660, 150, 30));
 
-        tanggalpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pembelian-Karyawan.png"))); // NOI18N
+        tanggalpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Pembelian-Karyawan.png"))); // NOI18N
         jPanel1.add(tanggalpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1460, 750));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
