@@ -40,27 +40,18 @@ public class Menambah_dataBarang extends javax.swing.JFrame {
 
     public Menambah_dataBarang() {
         initComponents();
-        pnTambah.setVisible(false);
-        pnUbah.setVisible(false);
-        pnTambahBarcode.setVisible(false);
-        pnTambahBarcode.addMouseListener(new MouseAdapter() {});
-        pnTambahBarcode.addMouseMotionListener(new MouseMotionAdapter() {});
-        pnTambah.addMouseListener(new MouseAdapter() {});
-        pnTambah.addMouseMotionListener(new MouseMotionAdapter() {});
-        pnl_barangrusak.setVisible(false);
-        pnl_barangrusak.addMouseListener(new MouseAdapter() {});
-        pnl_barangrusak.addMouseMotionListener(new MouseMotionAdapter() {});
-        pnlRusak.setVisible(false);
-        pnlRusak.addMouseListener(new MouseAdapter() {});
-        pnlRusak.addMouseMotionListener(new MouseMotionAdapter() {});
+        pnUbahh.setVisible(false);
         tblData.addMouseListener(new MouseAdapter() {});
         tblData.addMouseMotionListener(new MouseMotionAdapter() {});
         JTable tblStokProduk = new JTable();
         SpinnerNumberModel model = new SpinnerNumberModel(1, 0, 9999, 1);
         SpnJumlah.setModel(model);
         loadDataProduk();
-        
-        
+        pnTambahBarcodesee.setLocationRelativeTo(null);
+        btnTambahh.setLocationRelativeTo(null);
+        pnUbahh.setLocationRelativeTo(null);
+        pnlRusakk.setLocationRelativeTo(null);
+        pnl_barangrusakk.setLocationRelativeTo(null);
         
 
 btnBarangRusak.addActionListener(new ActionListener() {
@@ -94,8 +85,8 @@ btn_rusak.addActionListener(new ActionListener() {
         try {
             String idProduk = dataStok.getValueAt(selectedRow, 0).toString();
 
-            pnlRusak.setVisible(true);
-            pnlRusak.setEnabled(true);
+            pnlRusakk.setVisible(true);
+            pnlRusakk.setEnabled(true);
 
             jtId.setText(idProduk);
             jtId.setEditable(false);
@@ -119,26 +110,7 @@ btn_rusak.addActionListener(new ActionListener() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnl_barangrusak = new javax.swing.JPanel();
-        pnlRusak = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jtId = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        SpnJumlah = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        btnMasuk = new javax.swing.JButton();
-        btnKembali = new javax.swing.JButton();
-        jtAlasan = new javax.swing.JComboBox<>();
-        jCalenderMasok = new de.wannawork.jcalendar.JCalendarComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        dataStok = new javax.swing.JTable();
-        btn_rusak = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        pnTambahBarcode = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        pnTambahBarcodesee = new javax.swing.JDialog();
         showPanelBarcode = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         outputBarcode = new javax.swing.JTextField();
@@ -146,55 +118,240 @@ btn_rusak.addActionListener(new ActionListener() {
         btn_cetak = new javax.swing.JButton();
         btnBatal2 = new javax.swing.JButton();
         btn_simpanBarcode = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnTambahh = new javax.swing.JDialog();
+        txtNamaproduk = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnBatal = new javax.swing.JButton();
+        btnSimpan1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        pnUbahh = new javax.swing.JDialog();
+        txtNamaproduk1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btnBatal1 = new javax.swing.JButton();
+        btnSimpan2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        pnlRusakk = new javax.swing.JDialog();
+        jCalenderMasok = new de.wannawork.jcalendar.JCalendarComboBox();
+        SpnJumlah = new javax.swing.JSpinner();
+        jtAlasan = new javax.swing.JComboBox<>();
+        btnMasuk = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jtId = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        pnl_barangrusakk = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        dataStok = new javax.swing.JTable();
+        btn_rusak = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnBarcode = new javax.swing.JButton();
         btnBarangRusak = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        pnUbah = new javax.swing.JPanel();
-        txtNamaproduk1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        btnBatal1 = new javax.swing.JButton();
-        btnSimpan2 = new javax.swing.JButton();
-        pnTambah = new javax.swing.JPanel();
-        txtNamaproduk = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        btnBatal = new javax.swing.JButton();
-        btnSimpan1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnTambahBarcodesee.setTitle("Generate Barcode");
+        pnTambahBarcodesee.setSize(new java.awt.Dimension(500, 350));
+        pnTambahBarcodesee.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnl_barangrusak.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout showPanelBarcodeLayout = new javax.swing.GroupLayout(showPanelBarcode);
+        showPanelBarcode.setLayout(showPanelBarcodeLayout);
+        showPanelBarcodeLayout.setHorizontalGroup(
+            showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+        showPanelBarcodeLayout.setVerticalGroup(
+            showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        pnlRusak.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnTambahBarcodesee.getContentPane().add(showPanelBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 350, 100));
 
-        jLabel6.setText("ID Produk");
-        pnlRusak.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setText("Barcode");
+        pnTambahBarcodesee.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 69, -1));
 
-        jLabel7.setText("Jumlah");
-        pnlRusak.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
-
-        jtId.addActionListener(new java.awt.event.ActionListener() {
+        outputBarcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtIdActionPerformed(evt);
+                outputBarcodeActionPerformed(evt);
             }
         });
-        pnlRusak.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        pnTambahBarcodesee.getContentPane().add(outputBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 240, 32));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("Barang Rusak");
-        pnlRusak.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 60));
-        pnlRusak.add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
+        generateButton.setText("Generate");
+        generateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generateButtonMouseClicked(evt);
+            }
+        });
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
+        pnTambahBarcodesee.getContentPane().add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 93, 32));
 
-        jLabel9.setText("Tanggal Rusak");
-        pnlRusak.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        btn_cetak.setText("Cetak");
+        btn_cetak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cetakMouseClicked(evt);
+            }
+        });
+        btn_cetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cetakActionPerformed(evt);
+            }
+        });
+        pnTambahBarcodesee.getContentPane().add(btn_cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 93, 32));
 
-        jLabel10.setText("Alasan");
-        pnlRusak.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        btnBatal2.setText("Batal");
+        btnBatal2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatal2ActionPerformed(evt);
+            }
+        });
+        pnTambahBarcodesee.getContentPane().add(btnBatal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 112, 30));
+
+        btn_simpanBarcode.setText("Simpan");
+        btn_simpanBarcode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_simpanBarcodeMouseClicked(evt);
+            }
+        });
+        btn_simpanBarcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_simpanBarcodeActionPerformed(evt);
+            }
+        });
+        pnTambahBarcodesee.getContentPane().add(btn_simpanBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 100, 30));
+
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        pnTambahBarcodesee.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+
+        btnTambahh.setTitle("Tambah Barang");
+        btnTambahh.setBackground(new java.awt.Color(0, 0, 255));
+        btnTambahh.setSize(new java.awt.Dimension(500, 300));
+        btnTambahh.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtNamaproduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaprodukActionPerformed(evt);
+            }
+        });
+        btnTambahh.getContentPane().add(txtNamaproduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setText("Nama Produk :");
+        btnTambahh.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 111, 30));
+
+        btnBatal.setText("Batal");
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
+        btnTambahh.getContentPane().add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 112, 42));
+
+        btnSimpan1.setText("Simpan");
+        btnSimpan1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSimpan1MouseClicked(evt);
+            }
+        });
+        btnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpan1ActionPerformed(evt);
+            }
+        });
+        btnTambahh.getContentPane().add(btnSimpan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 112, 42));
+
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+
+        btnTambahh.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 310));
+
+        pnUbahh.setTitle("Ubah Barang");
+        pnUbahh.setSize(new java.awt.Dimension(500, 300));
+        pnUbahh.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtNamaproduk1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaproduk1ActionPerformed(evt);
+            }
+        });
+        pnUbahh.getContentPane().add(txtNamaproduk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setText("Nama Produk :");
+        pnUbahh.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 87, 111, 30));
+
+        btnBatal1.setText("Batal");
+        btnBatal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatal1ActionPerformed(evt);
+            }
+        });
+        pnUbahh.getContentPane().add(btnBatal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 112, 42));
+
+        btnSimpan2.setText("Simpan");
+        btnSimpan2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpan2ActionPerformed(evt);
+            }
+        });
+        pnUbahh.getContentPane().add(btnSimpan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 112, 42));
+
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+
+        pnUbahh.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 290));
+
+        pnlRusakk.setTitle("Barang Rusak");
+        pnlRusakk.setSize(new java.awt.Dimension(500, 500));
+        pnlRusakk.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlRusakk.getContentPane().add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        pnlRusakk.getContentPane().add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
+
+        jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Kadaluarsa" }));
+        pnlRusakk.getContentPane().add(jtAlasan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         btnMasuk.setText("Masukkan");
         btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,21 +359,34 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnMasukMouseClicked(evt);
             }
         });
-        pnlRusak.add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
+        pnlRusakk.getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
 
-        btnKembali.setText("Kembali");
-        btnKembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnKembaliMouseClicked(evt);
+        jLabel7.setText("Jumlah");
+        pnlRusakk.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
+
+        jLabel9.setText("Tanggal Rusak");
+        pnlRusakk.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        jLabel6.setText("ID Produk");
+        pnlRusakk.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        jtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdActionPerformed(evt);
             }
         });
-        pnlRusak.add(btnKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+        pnlRusakk.getContentPane().add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Kadaluarsa" }));
-        pnlRusak.add(jtAlasan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
-        pnlRusak.add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        jLabel10.setText("Alasan");
+        pnlRusakk.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        pnl_barangrusak.add(pnlRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 440, 480));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setText("Barang Rusak");
+        pnlRusakk.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 60));
+
+        pnl_barangrusakk.setTitle("Tabel Barang Rusak");
+        pnl_barangrusakk.setSize(new java.awt.Dimension(800, 650));
+        pnl_barangrusakk.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dataStok.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,7 +401,7 @@ btn_rusak.addActionListener(new ActionListener() {
         ));
         jScrollPane2.setViewportView(dataStok);
 
-        pnl_barangrusak.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 78, 734, 470));
+        pnl_barangrusakk.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 734, 470));
 
         btn_rusak.setText("Barang Rusak");
         btn_rusak.addActionListener(new java.awt.event.ActionListener() {
@@ -239,110 +409,25 @@ btn_rusak.addActionListener(new ActionListener() {
                 btn_rusakActionPerformed(evt);
             }
         });
-        pnl_barangrusak.add(btn_rusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 18, 132, 42));
+        pnl_barangrusakk.getContentPane().add(btn_rusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 132, 42));
 
-        jButton3.setText("Kembali");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        pnl_barangrusak.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 27, -1, -1));
+        jPanel4.setBackground(new java.awt.Color(51, 102, 255));
 
-        getContentPane().add(pnl_barangrusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 840, 570));
-
-        pnTambahBarcode.setBackground(new java.awt.Color(51, 51, 255));
-        pnTambahBarcode.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 783, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 830, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
-        pnTambahBarcode.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 458, 783, -1));
+        pnl_barangrusakk.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 640));
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setText("Generate Barcode");
-        pnTambahBarcode.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 0, 135, -1));
-
-        javax.swing.GroupLayout showPanelBarcodeLayout = new javax.swing.GroupLayout(showPanelBarcode);
-        showPanelBarcode.setLayout(showPanelBarcodeLayout);
-        showPanelBarcodeLayout.setHorizontalGroup(
-            showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-        showPanelBarcodeLayout.setVerticalGroup(
-            showPanelBarcodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        pnTambahBarcode.add(showPanelBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 350, 100));
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel5.setText("Barcode");
-        pnTambahBarcode.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 84, 69, -1));
-
-        outputBarcode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outputBarcodeActionPerformed(evt);
-            }
-        });
-        pnTambahBarcode.add(outputBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 109, 240, 32));
-
-        generateButton.setText("Generate");
-        generateButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                generateButtonMouseClicked(evt);
-            }
-        });
-        generateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateButtonActionPerformed(evt);
-            }
-        });
-        pnTambahBarcode.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 93, 32));
-
-        btn_cetak.setText("Cetak");
-        btn_cetak.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cetakMouseClicked(evt);
-            }
-        });
-        btn_cetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cetakActionPerformed(evt);
-            }
-        });
-        pnTambahBarcode.add(btn_cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 93, 32));
-
-        btnBatal2.setText("Batal");
-        btnBatal2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatal2ActionPerformed(evt);
-            }
-        });
-        pnTambahBarcode.add(btnBatal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 112, 30));
-
-        btn_simpanBarcode.setText("Simpan");
-        btn_simpanBarcode.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_simpanBarcodeMouseClicked(evt);
-            }
-        });
-        btn_simpanBarcode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_simpanBarcodeActionPerformed(evt);
-            }
-        });
-        pnTambahBarcode.add(btn_simpanBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 100, 30));
-
-        getContentPane().add(pnTambahBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 430, -1));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnTambah.setContentAreaFilled(false);
         btnTambah.setBorderPainted(false);
@@ -402,93 +487,6 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 50, 110, 50));
 
-        pnUbah.setBackground(new java.awt.Color(51, 51, 255));
-        pnUbah.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                pnUbahAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        pnUbah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtNamaproduk1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaproduk1ActionPerformed(evt);
-            }
-        });
-        pnUbah.add(txtNamaproduk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 21, 206, 32));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Nama Produk :");
-        pnUbah.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 26, 111, -1));
-
-        btnBatal1.setText("Batal");
-        btnBatal1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatal1ActionPerformed(evt);
-            }
-        });
-        pnUbah.add(btnBatal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 179, 112, 42));
-
-        btnSimpan2.setText("Simpan");
-        btnSimpan2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpan2ActionPerformed(evt);
-            }
-        });
-        pnUbah.add(btnSimpan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 179, 112, 42));
-
-        getContentPane().add(pnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 400, 270));
-
-        pnTambah.setBackground(new java.awt.Color(51, 51, 255));
-        pnTambah.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                pnTambahAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        pnTambah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtNamaproduk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaprodukActionPerformed(evt);
-            }
-        });
-        pnTambah.add(txtNamaproduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 21, 206, 32));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nama Produk :");
-        pnTambah.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 26, 111, -1));
-
-        btnBatal.setText("Batal");
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
-            }
-        });
-        pnTambah.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 179, 112, 42));
-
-        btnSimpan1.setText("Simpan");
-        btnSimpan1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpan1MouseClicked(evt);
-            }
-        });
-        btnSimpan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpan1ActionPerformed(evt);
-            }
-        });
-        pnTambah.add(btnSimpan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 179, 112, 42));
-
-        getContentPane().add(pnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 400, 270));
-
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -504,14 +502,14 @@ btn_rusak.addActionListener(new ActionListener() {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 1120, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Barang-Karyawan.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Data Barang-Karyawan.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        pnTambah.setVisible(true);
+        btnTambahh.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnBarangRusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangRusakActionPerformed
@@ -522,7 +520,7 @@ btn_rusak.addActionListener(new ActionListener() {
 int row = tblData.getSelectedRow();
 if (row != -1) {
 
-    pnUbah.setVisible(true);
+    pnUbahh.setVisible(true);
 
     String idProduk = tblData.getValueAt(row, 0).toString();
     String namaProduk = tblData.getValueAt(row, 1).toString();
@@ -543,7 +541,7 @@ if (row != -1) {
         
      int row = tblData.getSelectedRow();
         if (row != -1) {
-        pnTambahBarcode.setVisible(true);
+        pnTambahBarcodesee.setVisible(true);
         }
 
    
@@ -560,7 +558,7 @@ if (row != -1) {
             Connection conn = dbtokko.configDB();
             conn.setAutoCommit(false); // Mulai transaksi
 
-            // Jika database kamu sudah pakai ON DELETE CASCADE di FK, ini cukup
+            
             String sql = "DELETE FROM produk WHERE id_produk = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, idProduk);
@@ -604,21 +602,21 @@ if (row != -1) {
             try {
                 Connection conn = dbtokko.configDB();
 
-                // Hapus dari detail_pembelian
+               
                 String sqlHapusDetailPembelian = "DELETE FROM detail_pembelian WHERE id_produk = ?";
                 PreparedStatement pst1 = conn.prepareStatement(sqlHapusDetailPembelian);
                 pst1.setString(1, idProduk);
                 pst1.executeUpdate();
                 pst1.close();
 
-                // Hapus dari detail_penjualan
+               
                 String sqlHapusDetailPenjualan = "DELETE FROM detail_penjualan WHERE id_produk = ?";
                 PreparedStatement pst2 = conn.prepareStatement(sqlHapusDetailPenjualan);
                 pst2.setString(1, idProduk);
                 pst2.executeUpdate();
                 pst2.close();
 
-                // Jika ada foreign key langsung dari penjualan ke produk (biasanya tidak), hapus juga:
+                
                 String sqlHapusPenjualan = "DELETE FROM penjualan WHERE id_produk = ?";
                 try {
                     PreparedStatement pst3 = conn.prepareStatement(sqlHapusPenjualan);
@@ -626,10 +624,10 @@ if (row != -1) {
                     pst3.executeUpdate();
                     pst3.close();
                 } catch (SQLException e) {
-                    // Abaikan jika tidak ada FK dari penjualan ke produk (wajar)
+                   
                 }
 
-                // Hapus dari tabel utama produk
+                
                 String sqlHapusProduk = "DELETE FROM produk WHERE id_produk = ?";
                 PreparedStatement pst4 = conn.prepareStatement(sqlHapusProduk);
                 pst4.setString(1, idProduk);
@@ -638,7 +636,7 @@ if (row != -1) {
 
                 if (affected > 0) {
                     JOptionPane.showMessageDialog(null, "Produk dan semua relasinya berhasil dihapus.");
-                    // TODO: refreshTable(); jika ada tabel yang perlu disegarkan
+                
                 } else {
                     JOptionPane.showMessageDialog(null, "Produk tidak ditemukan.");
                 }
@@ -659,11 +657,11 @@ if (row != -1) {
     }//GEN-LAST:event_txtNamaproduk1ActionPerformed
 
     private void btnBatal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatal1ActionPerformed
-        pnUbah.setVisible(false);
+        pnUbahh.setVisible(false);
     }//GEN-LAST:event_btnBatal1ActionPerformed
 
     private void btnSimpan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpan2ActionPerformed
-/// Validasi input
+
 String namaProduk = txtNamaproduk1.getText().trim();
 
 if (namaProduk.isEmpty()) {
@@ -671,7 +669,7 @@ if (namaProduk.isEmpty()) {
     return;
 }
 
-// UPDATE ke database
+
 String sqlUpdate = "UPDATE produk SET nama_produk = ? WHERE id_produk = ?";
 try (
     Connection conn = dbtokko.configDB();
@@ -684,13 +682,13 @@ try (
     if (updated > 0) {
         JOptionPane.showMessageDialog(null, "Data produk berhasil diubah.");
 
-        // Kosongkan form
+    
         txtNamaproduk1.setText("");
 
-        // Sembunyikan panel
-        pnUbah.setVisible(false);
+       
+//       pnUbah.setVisible(false);
 
-        // Refresh tabel
+     
         loadDataProduk(); // ← Buat method untuk ambil ulang data produk
     } else {
         JOptionPane.showMessageDialog(null, "Data gagal diubah.");
@@ -702,19 +700,9 @@ try (
 
     }//GEN-LAST:event_btnSimpan2ActionPerformed
 
-    private void pnUbahAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_pnUbahAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnUbahAncestorAdded
-
-    private void pnTambahAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_pnTambahAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnTambahAncestorAdded
-
     private void btnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpan1ActionPerformed
  String sqlGetLastId = "SELECT id_produk FROM produk ORDER BY id_produk DESC LIMIT 1";
-
 String sqlInsert = "INSERT INTO produk (id_produk, nama_produk) VALUES (?, ?)";
-
 String sqlSelectAll = "SELECT id_produk, nama_produk, barcode FROM produk";
 
 try (
@@ -730,280 +718,57 @@ try (
         return;
     }
 
-    // Generate ID Produk baru
-    ResultSet rs = psGetLastId.executeQuery();
+   
     String newId = "P001";
-
-    if (rs.next()) {
-        String lastId = rs.getString("id_produk");
-        int number = Integer.parseInt(lastId.substring(1)) + 1;
-        newId = String.format("P%03d", number);
+    try (ResultSet rs = psGetLastId.executeQuery()) {
+        if (rs.next()) {
+            String lastId = rs.getString("id_produk");
+            int number = Integer.parseInt(lastId.substring(1)) + 1;
+            newId = String.format("P%03d", number);
+        }
     }
 
-    // Simpan data produk baru ke database
+    
     psInsert.setString(1, newId);
     psInsert.setString(2, namaProduk);
-    psInsert.executeUpdate(); // Eksekusi insert
+    psInsert.executeUpdate();
 
-    // Tampilkan pesan sukses
+  
     JOptionPane.showMessageDialog(null, "Data produk berhasil disimpan.");
-
-    pnTambah.setVisible(false);
     txtNamaproduk.setText("");
 
-    ResultSet rsAll = psSelectAll.executeQuery();
-    DefaultTableModel model = (DefaultTableModel) tblData.getModel();
-    model.setRowCount(0);
+   
+    try (ResultSet rsAll = psSelectAll.executeQuery()) {
+        DefaultTableModel model = (DefaultTableModel) tblData.getModel();
+        model.setRowCount(0);
 
-    while (rsAll.next()) {
-        String idProduk = rsAll.getString("id_produk");
-        String nama = rsAll.getString("nama_produk");
-        String barcode = rsAll.getString("barcode");
-        model.addRow(new Object[] {idProduk, nama, barcode});
-//                loadDataProduk();
+        while (rsAll.next()) {
+            String idProduk = rsAll.getString("id_produk");
+            String nama = rsAll.getString("nama_produk");
+            String barcode = rsAll.getString("barcode");
+            model.addRow(new Object[]{idProduk, nama, barcode});
+        }
     }
 
+    
+    loadDataProduk();
+
 } catch (SQLException e) {
-    e.printStackTrace(); // Log kesalahan
+    e.printStackTrace();
     JOptionPane.showMessageDialog(null, "Gagal menyimpan data: " + e.getMessage());
 }
+
 
 
     }//GEN-LAST:event_btnSimpan1ActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        pnTambah.setVisible(false);
+btnTambahh.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void txtNamaprodukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaprodukActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaprodukActionPerformed
-
-    private void outputBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputBarcodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_outputBarcodeActionPerformed
-
-    private void generateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButtonMouseClicked
-        // TODO add your handling code here:
- try {
-    // Generate 9 digit angka acak
-    StringBuilder kode = new StringBuilder();
-    for (int i = 0; i < 13; i++) {
-        kode.append((int)(Math.random() * 10));
-    }
-
-    // Tampilkan ke JTextField
-    outputBarcode.setText(kode.toString());
-
-    // Generate barcode image (BitMatrix)
-    BitMatrix matrix = new MultiFormatWriter().encode(
-        kode.toString(), BarcodeFormat.CODE_128, 300, 100
-    );
-
-    // Buat BufferedImage dengan ruang tambahan untuk angka di bawah barcode
-    int width = matrix.getWidth();
-    int height = matrix.getHeight();
-    BufferedImage image = new BufferedImage(width, height + 30, BufferedImage.TYPE_INT_RGB);
-    Graphics2D g = image.createGraphics();
-
-    // Background putih
-    g.setColor(Color.WHITE);
-    g.fillRect(0, 0, width, height + 30);
-
-    // Gambar barcode
-    g.setColor(Color.BLACK);
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            if (matrix.get(x, y)) {
-                g.fillRect(x, y, 1, 1);
-            }
-        }
-    }
-
-    // Tambahkan angka di bawah barcode
-    g.setFont(new Font("Arial", Font.PLAIN, 20));
-    FontMetrics fontMetrics = g.getFontMetrics();
-    int textWidth = fontMetrics.stringWidth(kode.toString());
-    int xText = (width - textWidth) / 2;
-    int yText = height + 20;
-    g.drawString(kode.toString(), xText, yText);
-    g.dispose();
-
-    // ✅ Tampilkan preview ke showPanelBarcode
-    showPanelBarcode.removeAll(); // Bersihkan isi sebelumnya
-    JLabel lbl = new JLabel(new ImageIcon(image.getScaledInstance(
-        showPanelBarcode.getWidth(),
-        showPanelBarcode.getHeight(),
-        Image.SCALE_SMOOTH
-    )));
-    lbl.setHorizontalAlignment(JLabel.CENTER);
-    lbl.setVerticalAlignment(JLabel.CENTER);
-    showPanelBarcode.setLayout(new BorderLayout());
-    showPanelBarcode.add(lbl, BorderLayout.CENTER);
-    showPanelBarcode.revalidate();
-    showPanelBarcode.repaint();
-
-} catch (Exception ex) {
-    ex.printStackTrace();
-    JOptionPane.showMessageDialog(null,
-        "Gagal membuat barcode", "Error", JOptionPane.ERROR_MESSAGE);
-}
-
-
-
-
-    }//GEN-LAST:event_generateButtonMouseClicked
-
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_generateButtonActionPerformed
-
-    private void btn_cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cetakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_cetakActionPerformed
-
-    private void btnBatal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatal2ActionPerformed
-        pnTambahBarcode.setVisible(false);
-    }//GEN-LAST:event_btnBatal2ActionPerformed
-
-    private void btn_simpanBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanBarcodeActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btn_simpanBarcodeActionPerformed
-
-    private void btn_simpanBarcodeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanBarcodeMouseClicked
-        // TODO add your handling code here:
- String barcode = outputBarcode.getText().trim();
-
-if (barcode.isEmpty()) {
-    JOptionPane.showMessageDialog(null, "Barcode tidak boleh kosong.");
-    return;
-}
-
-int row = tblData.getSelectedRow();
-
-if (row == -1) {
-    JOptionPane.showMessageDialog(null, "Pilih data produk terlebih dahulu di tabel.");
-    return;
-}
-
-// Ambil ID produk dari kolom pertama tabel (asumsinya kolom 0 = id_produk)
-String idProduk = tblData.getValueAt(row, 0).toString();
-
-String sqlUpdate = "UPDATE produk SET barcode = ? WHERE id_produk = ?";
-
-try (
-    Connection conn = dbtokko.configDB();
-    PreparedStatement ps = conn.prepareStatement(sqlUpdate);
-) {
-    ps.setString(1, barcode);
-    ps.setString(2, idProduk);
-
-    int result = ps.executeUpdate();
-
-    if (result > 0) {
-        JOptionPane.showMessageDialog(null, "Barcode berhasil disimpan.");
-        outputBarcode.setText("");
-        pnTambahBarcode.setVisible(false);
-        // Bersihkan panel barcode setelah simpan
-        showPanelBarcode.removeAll();
-        showPanelBarcode.revalidate();
-        showPanelBarcode.repaint();
-
-        loadDataProduk();
-    } else {
-        JOptionPane.showMessageDialog(null, "Gagal menyimpan barcode.");
-    }
-
-} catch (SQLException e) {
-    e.printStackTrace();
-    JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
-}
-
-    }//GEN-LAST:event_btn_simpanBarcodeMouseClicked
-
-    private void btn_cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cetakMouseClicked
-        // TODO add your handling code here:
-        btn_cetak.addActionListener(e -> {
-    try {
-        String kode = outputBarcode.getText();
-        if (kode == null || kode.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Barcode belum dibuat!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Generate barcode BitMatrix
-        BitMatrix matrix = new MultiFormatWriter().encode(
-            kode, BarcodeFormat.CODE_128, 300, 100
-        );
-
-        // Buat BufferedImage dengan angka di bawah
-        int width = matrix.getWidth();
-        int height = matrix.getHeight();
-        BufferedImage image = new BufferedImage(width, height + 30, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = image.createGraphics();
-
-        // Background putih
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, width, height + 30);
-
-        // Gambar barcode
-        g.setColor(Color.BLACK);
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if (matrix.get(x, y)) {
-                    g.fillRect(x, y, 1, 1);
-                }
-            }
-        }
-
-        // Gambar kode angka di bawah barcode
-        g.setFont(new Font("Arial", Font.PLAIN, 20));
-        FontMetrics fontMetrics = g.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(kode);
-        int xText = (width - textWidth) / 2;
-        int yText = height + 20;
-        g.drawString(kode, xText, yText);
-        g.dispose();
-
-        // ✅ Simpan ke folder lokal
-        String folder = "barcodes/";
-        File folderDir = new File(folder);
-        if (!folderDir.exists()) {
-            folderDir.mkdirs();
-        }
-
-        File outputFile = new File(folder + kode + ".png");
-        ImageIO.write(image, "PNG", outputFile);
-
-        // ✅ Cetak barcode
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setJobName("Cetak Barcode");
-
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
-            if (pageIndex > 0) return Printable.NO_SUCH_PAGE;
-
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-
-            // Gambar barcode ke halaman cetak
-            g2d.drawImage(image, 100, 100, null);
-            return Printable.PAGE_EXISTS;
-        });
-
-        boolean doPrint = job.printDialog(); // Tampilkan dialog printer
-        if (doPrint) {
-            job.print();
-        }
-
-    } catch (Exception ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null,
-            "Gagal mencetak barcode", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-});
-
-    }//GEN-LAST:event_btn_cetakMouseClicked
 
     private void btnSimpan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpan1MouseClicked
         // TODO add your handling code here:
@@ -1011,26 +776,16 @@ try (
 
     private void btnBarangRusakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangRusakMouseClicked
         // TODO add your handling code here:
-        pnl_barangrusak.setVisible(true);
+        pnl_barangrusakk.setVisible(true);
     }//GEN-LAST:event_btnBarangRusakMouseClicked
 
     private void btn_rusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rusakActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_rusakActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-        pnl_barangrusak.setVisible(false);
-    }//GEN-LAST:event_jButton3MouseClicked
-
     private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtIdActionPerformed
-
-    private void btnKembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKembaliMouseClicked
-        // TODO add your handling code here:
-        pnlRusak.setVisible(false);
-    }//GEN-LAST:event_btnKembaliMouseClicked
 
     private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
         // TODO add your handling code here:
@@ -1054,7 +809,7 @@ btnMasuk.addActionListener(new ActionListener() {
             conn = dbtokko.configDB();
             conn.setAutoCommit(false);
 
-            // Validasi id_produk ada di produk
+           
             String cekProduk = "SELECT id_produk FROM produk WHERE id_produk = ?";
             PreparedStatement psCek = conn.prepareStatement(cekProduk);
             psCek.setString(1, idProduk);
@@ -1065,7 +820,7 @@ btnMasuk.addActionListener(new ActionListener() {
                 return;
             }
 
-            // Cek stok
+           
             String sqlCekStok = "SELECT stok FROM stok_produk WHERE id_produk = ?";
             PreparedStatement psStok = conn.prepareStatement(sqlCekStok);
             psStok.setString(1, idProduk);
@@ -1084,7 +839,7 @@ btnMasuk.addActionListener(new ActionListener() {
                 return;
             }
 
-            // Insert ke barang_rusak
+           
             String sqlInsert = "INSERT INTO barang_rusak (id_produk, alasan, tanggal_rusak, jumlah) VALUES (?, ?, ?, ?)";
             PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
             psInsert.setString(1, idProduk);
@@ -1101,7 +856,7 @@ btnMasuk.addActionListener(new ActionListener() {
                 return;
             }
 
-            // Update stok
+         
             String sqlUpdate = "UPDATE stok_produk SET stok = stok - ? WHERE id_produk = ?";
             PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate);
             psUpdate.setInt(1, jumlahRusak);
@@ -1114,10 +869,10 @@ btnMasuk.addActionListener(new ActionListener() {
                 return;
             }
 
-            // Commit semua
+           
             conn.commit();
             JOptionPane.showMessageDialog(null, "Barang rusak berhasil dicatat & stok dikurangi.");
-            pnlRusak.setVisible(false);
+            pnlRusakk.setVisible(false);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1141,6 +896,208 @@ btnMasuk.addActionListener(new ActionListener() {
 });
 
     }//GEN-LAST:event_btnMasukMouseClicked
+
+    private void btn_simpanBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanBarcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_simpanBarcodeActionPerformed
+
+    private void btn_simpanBarcodeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanBarcodeMouseClicked
+        // TODO add your handling code here:
+        String barcode = outputBarcode.getText().trim();
+
+        if (barcode.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Barcode tidak boleh kosong.");
+            return;
+        }
+
+        int row = tblData.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Pilih data produk terlebih dahulu di tabel.");
+            return;
+        }
+
+        String idProduk = tblData.getValueAt(row, 0).toString();
+
+        String sqlUpdate = "UPDATE produk SET barcode = ? WHERE id_produk = ?";
+
+        try (
+            Connection conn = dbtokko.configDB();
+            PreparedStatement ps = conn.prepareStatement(sqlUpdate);
+        ) {
+            ps.setString(1, barcode);
+            ps.setString(2, idProduk);
+
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "Barcode berhasil disimpan.");
+                outputBarcode.setText("");
+                // Bersihkan panel barcode setelah simpan
+                showPanelBarcode.removeAll();
+                showPanelBarcode.revalidate();
+                showPanelBarcode.repaint();
+
+                loadDataProduk();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menyimpan barcode.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btn_simpanBarcodeMouseClicked
+
+    private void btnBatal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatal2ActionPerformed
+        pnTambahBarcodesee.setVisible(false);
+    }//GEN-LAST:event_btnBatal2ActionPerformed
+
+    private void btn_cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cetakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cetakActionPerformed
+
+    private void btn_cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cetakMouseClicked
+        // TODO add your handling code here:
+        btn_cetak.addActionListener(e -> {
+            try {
+                String kode = outputBarcode.getText();
+                if (kode == null || kode.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Barcode belum dibuat!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                BitMatrix matrix = new MultiFormatWriter().encode(
+                    kode, BarcodeFormat.CODE_128, 300, 100
+                );
+
+                int width = matrix.getWidth();
+                int height = matrix.getHeight();
+                BufferedImage image = new BufferedImage(width, height + 30, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g = image.createGraphics();
+
+                g.setColor(Color.WHITE);
+                g.fillRect(0, 0, width, height + 30);
+
+                g.setColor(Color.BLACK);
+                for (int y = 0; y < height; y++) {
+                    for (int x = 0; x < width; x++) {
+                        if (matrix.get(x, y)) {
+                            g.fillRect(x, y, 1, 1);
+                        }
+                    }
+                }
+
+                g.setFont(new Font("Arial", Font.PLAIN, 20));
+                FontMetrics fontMetrics = g.getFontMetrics();
+                int textWidth = fontMetrics.stringWidth(kode);
+                int xText = (width - textWidth) / 2;
+                int yText = height + 20;
+                g.drawString(kode, xText, yText);
+                g.dispose();
+
+                String folder = "barcodes/";
+                File folderDir = new File(folder);
+                if (!folderDir.exists()) {
+                    folderDir.mkdirs();
+                }
+
+                File outputFile = new File(folder + kode + ".png");
+                ImageIO.write(image, "PNG", outputFile);
+
+                PrinterJob job = PrinterJob.getPrinterJob();
+                job.setJobName("Cetak Barcode");
+
+                job.setPrintable((graphics, pageFormat, pageIndex) -> {
+                    if (pageIndex > 0) return Printable.NO_SUCH_PAGE;
+
+                    Graphics2D g2d = (Graphics2D) graphics;
+                    g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+                    g2d.drawImage(image, 100, 100, null);
+                    return Printable.PAGE_EXISTS;
+                });
+
+                boolean doPrint = job.printDialog(); // Tampilkan dialog printer
+                if (doPrint) {
+                    job.print();
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                    "Gagal mencetak barcode", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }//GEN-LAST:event_btn_cetakMouseClicked
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void generateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateButtonMouseClicked
+        // TODO add your handling code here:
+        try {
+
+            StringBuilder kode = new StringBuilder();
+            for (int i = 0; i < 13; i++) {
+                kode.append((int)(Math.random() * 10));
+            }
+
+            outputBarcode.setText(kode.toString());
+
+            BitMatrix matrix = new MultiFormatWriter().encode(
+                kode.toString(), BarcodeFormat.CODE_128, 300, 100
+            );
+
+            int width = matrix.getWidth();
+            int height = matrix.getHeight();
+            BufferedImage image = new BufferedImage(width, height + 30, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = image.createGraphics();
+
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, width, height + 30);
+
+            g.setColor(Color.BLACK);
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    if (matrix.get(x, y)) {
+                        g.fillRect(x, y, 1, 1);
+                    }
+                }
+            }
+
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            FontMetrics fontMetrics = g.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(kode.toString());
+            int xText = (width - textWidth) / 2;
+            int yText = height + 20;
+            g.drawString(kode.toString(), xText, yText);
+            g.dispose();
+
+            showPanelBarcode.removeAll();
+            JLabel lbl = new JLabel(new ImageIcon(image.getScaledInstance(
+                showPanelBarcode.getWidth(),
+                showPanelBarcode.getHeight(),
+                Image.SCALE_SMOOTH
+            )));
+            lbl.setHorizontalAlignment(JLabel.CENTER);
+            lbl.setVerticalAlignment(JLabel.CENTER);
+            showPanelBarcode.setLayout(new BorderLayout());
+            showPanelBarcode.add(lbl, BorderLayout.CENTER);
+            showPanelBarcode.revalidate();
+            showPanelBarcode.repaint();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                "Gagal membuat barcode", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_generateButtonMouseClicked
+
+    private void outputBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputBarcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outputBarcodeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1200,22 +1157,20 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JButton btnBatal1;
     private javax.swing.JButton btnBatal2;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btnSimpan1;
     private javax.swing.JButton btnSimpan2;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JDialog btnTambahh;
     private javax.swing.JButton btnUbah;
     private javax.swing.JButton btn_cetak;
     private javax.swing.JButton btn_rusak;
     private javax.swing.JButton btn_simpanBarcode;
     private javax.swing.JTable dataStok;
     private javax.swing.JButton generateButton;
-    private javax.swing.JButton jButton3;
     private de.wannawork.jcalendar.JCalendarComboBox jCalenderMasok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1223,17 +1178,19 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jtAlasan;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField outputBarcode;
-    private javax.swing.JPanel pnTambah;
-    private javax.swing.JPanel pnTambahBarcode;
-    private javax.swing.JPanel pnUbah;
-    private javax.swing.JPanel pnlRusak;
-    private javax.swing.JPanel pnl_barangrusak;
+    private javax.swing.JDialog pnTambahBarcodesee;
+    private javax.swing.JDialog pnUbahh;
+    private javax.swing.JDialog pnlRusakk;
+    private javax.swing.JDialog pnl_barangrusakk;
     private javax.swing.JPanel showPanelBarcode;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtNamaproduk;
