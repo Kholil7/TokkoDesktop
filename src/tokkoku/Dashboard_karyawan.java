@@ -1,29 +1,15 @@
 package tokkoku;
-import database.dbtokko;
-import support.KartuPanel;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import com.sun.jdi.connect.spi.Connection;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import database.dbtokko;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
-import java.util.List;
-import java.util.ArrayList;
-import javax.swing.text.PlainDocument;
-import support.NumericFilter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -44,49 +30,50 @@ public class Dashboard_karyawan extends javax.swing.JFrame {
           btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_logout.setBackground(new java.awt.Color(255, 255, 255, 0));
+
 //          pnlRfid.setVisible(false);
-          menambahRfid.setLocationRelativeTo(null);
-          tampilkanPengguna();
+//          menambahRfid.setLocationRelativeTo(null);
+//          tampilkanPengguna();
           
           
-btnCard.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String kodeRFID = "RF" + (int)(Math.random() * 1000000); // Kode RFID acak
-        iptRfid.setText(kodeRFID); // Tampilkan ke textfield
+//btnCard.addActionListener(new ActionListener() {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        String kodeRFID = "RF" + (int)(Math.random() * 1000000); // Kode RFID acak
+//        iptRfid.setText(kodeRFID); // Tampilkan ke textfield
+//
+//        pnlCard.removeAll(); // Bersihkan panel
+//
+//        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png"); // Sesuaikan path
+//        kartu.setPreferredSize(new Dimension(pnlCard.getWidth(), pnlCard.getHeight()));
+//        kartu.setKodeRFID(kodeRFID);
+//
+//        pnlCard.setLayout(new BorderLayout());
+//        pnlCard.add(kartu, BorderLayout.CENTER);
+//        pnlCard.revalidate();
+//        pnlCard.repaint();
+//    }
+//});
 
-        pnlCard.removeAll(); // Bersihkan panel
-
-        KartuPanel kartu = new KartuPanel("src/gambar/kartu_template.png"); // Sesuaikan path
-        kartu.setPreferredSize(new Dimension(pnlCard.getWidth(), pnlCard.getHeight()));
-        kartu.setKodeRFID(kodeRFID);
-
-        pnlCard.setLayout(new BorderLayout());
-        pnlCard.add(kartu, BorderLayout.CENTER);
-        pnlCard.revalidate();
-        pnlCard.repaint();
-    }
-});
 
 
-
-btnPrint.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        BufferedImage image = new BufferedImage(pnlCard.getWidth(), pnlCard.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = image.createGraphics();
-        pnlCard.paint(g2);
-        g2.dispose();
-
-        try {
-            ImageIO.write(image, "png", new File("kartu_rfid.png"));
-            JOptionPane.showMessageDialog(null, "Kartu berhasil disimpan sebagai kartu_rfid.png");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-});
+//btnPrint.addActionListener(new ActionListener() {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        BufferedImage image = new BufferedImage(pnlCard.getWidth(), pnlCard.getHeight(), BufferedImage.TYPE_INT_RGB);
+//        Graphics2D g2 = image.createGraphics();
+//        pnlCard.paint(g2);
+//        g2.dispose();
+//
+//        try {
+//            ImageIO.write(image, "png", new File("kartu_rfid.png"));
+//            JOptionPane.showMessageDialog(null, "Kartu berhasil disimpan sebagai kartu_rfid.png");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
+//});
 
 
     }
@@ -100,71 +87,18 @@ btnPrint.addActionListener(new ActionListener() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menambahRfid = new javax.swing.JDialog();
-        jLabel5 = new javax.swing.JLabel();
-        iptRfid = new javax.swing.JTextField();
-        pnlCard = new javax.swing.JPanel();
-        btnSimpan = new javax.swing.JButton();
-        btnCard = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
-        dataRPengguna = new javax.swing.JScrollPane();
-        tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btnRfid = new javax.swing.JButton();
         btn_penjualan = new javax.swing.JButton();
         btn_pembelian = new javax.swing.JButton();
         btn_pemasok = new javax.swing.JButton();
         btn_pengembalian = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
+        show_totalBarangDikembalikan = new javax.swing.JButton();
+        show_totalStok = new javax.swing.JButton();
+        show_totalBarangRusak = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
-
-        menambahRfid.setTitle("Menambahkan RFID");
-        menambahRfid.setBackground(new java.awt.Color(255, 255, 255));
-        menambahRfid.setSize(new java.awt.Dimension(800, 600));
-        menambahRfid.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel5.setText("Membuat RFID");
-        menambahRfid.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        menambahRfid.getContentPane().add(iptRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 210, 40));
-
-        pnlCard.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCard.setForeground(new java.awt.Color(255, 255, 255));
-        menambahRfid.getContentPane().add(pnlCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 410, 140));
-
-        btnSimpan.setText("Simpan");
-        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpanMouseClicked(evt);
-            }
-        });
-        menambahRfid.getContentPane().add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 110, -1));
-
-        btnCard.setText("Buat Kartu");
-        menambahRfid.getContentPane().add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
-
-        btnPrint.setText("Print");
-        menambahRfid.getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
-
-        tbrPengguna.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nama", "RFID"
-            }
-        ));
-        dataRPengguna.setViewportView(tbrPengguna);
-
-        menambahRfid.getContentPane().add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -176,13 +110,6 @@ btnPrint.addActionListener(new ActionListener() {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnRfid.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRfidMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 220, 110));
 
         btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -251,7 +178,65 @@ btnPrint.addActionListener(new ActionListener() {
         });
         jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
 
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_dashboard.png"))); // NOI18N
+        show_totalBarangDikembalikan.setBackground(new java.awt.Color(153, 51, 255));
+        show_totalBarangDikembalikan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        show_totalBarangDikembalikan.setForeground(new java.awt.Color(255, 255, 255));
+        show_totalBarangDikembalikan.setText("Lihat Barang Dikembalikan");
+        show_totalBarangDikembalikan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalBarangDikembalikan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalBarangDikembalikanMouseClicked(evt);
+            }
+        });
+        show_totalBarangDikembalikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalBarangDikembalikanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalBarangDikembalikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 200, 120));
+
+        show_totalStok.setBackground(new java.awt.Color(0, 0, 255));
+        show_totalStok.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        show_totalStok.setForeground(new java.awt.Color(255, 255, 255));
+        show_totalStok.setText("Lihat Stok");
+        show_totalStok.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalStok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalStokMouseClicked(evt);
+            }
+        });
+        show_totalStok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalStokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalStok, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 200, 120));
+
+        show_totalBarangRusak.setBackground(new java.awt.Color(255, 51, 51));
+        show_totalBarangRusak.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        show_totalBarangRusak.setForeground(new java.awt.Color(255, 255, 255));
+        show_totalBarangRusak.setText("Lihat Barang Rusak");
+        show_totalBarangRusak.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalBarangRusak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalBarangRusakMouseClicked(evt);
+            }
+        });
+        show_totalBarangRusak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalBarangRusakActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalBarangRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 200, 120));
+
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
+
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Desktop-Karyawan.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
@@ -273,7 +258,7 @@ btnPrint.addActionListener(new ActionListener() {
                     penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     penjualan.setVisible(true);
                     dispose();
-                    System.out.println("Sekarang Page Penjualan");
+                    System.out.println("Sekarang Dalam Page Penjualan");
                 } catch (SQLException ex) {
                     Logger.getLogger(Dashboard_karyawan.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -289,7 +274,7 @@ btnPrint.addActionListener(new ActionListener() {
             pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
             pemasok.setVisible(true);
             dispose();
-            System.out.println("Sekarang Dalam Page Pemasok " + "Master");
+            System.out.println("Sekarang Dalam Page Pemasok");
     }//GEN-LAST:event_btn_pemasokMouseClicked
 
     private void btn_laporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanActionPerformed
@@ -306,12 +291,16 @@ btnPrint.addActionListener(new ActionListener() {
             pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
             pembelian.setVisible(true);
             dispose();
-            System.out.println("Sekarang Dalam Page Pembelian " + "Master");
+            System.out.println("Sekarang Dalam Page Pembelian");
     }//GEN-LAST:event_btn_pembelianMouseClicked
 
     private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
         // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Pengembalian Barang " + "Master");
+        PengembalianBarang_karyawan pengembalian = new PengembalianBarang_karyawan();
+        pengembalian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pengembalian.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pengembalian Barang");
     }//GEN-LAST:event_btn_pengembalianMouseClicked
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
@@ -320,7 +309,7 @@ btnPrint.addActionListener(new ActionListener() {
         stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         stok.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Stok " + "Master");
+        System.out.println("Sekarang Dalam Page Stok");
     }//GEN-LAST:event_btn_stokMouseClicked
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
@@ -328,64 +317,111 @@ btnPrint.addActionListener(new ActionListener() {
         laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
         laporan.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Laporan " + "Master");
+        System.out.println("Sekarang Dalam Page Riwayat");
     }//GEN-LAST:event_btn_laporanMouseClicked
-
-    private void btnRfidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRfidMouseClicked
-        // TODO add your handling code here:
-menambahRfid.setVisible(true);
-    }//GEN-LAST:event_btnRfidMouseClicked
 
     private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_pemasokActionPerformed
 
-    private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
+    private void show_totalBarangDikembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalBarangDikembalikanActionPerformed
         // TODO add your handling code here:
-btnSimpan.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        int baris = tbrPengguna.getSelectedRow();
+    }//GEN-LAST:event_show_totalBarangDikembalikanActionPerformed
 
-        if (baris == -1) {
-            JOptionPane.showMessageDialog(null, "Pilih dulu baris pengguna pada tabel.");
-            return;
+    private void show_totalStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalStokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_totalStokActionPerformed
+
+    private void show_totalBarangRusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalBarangRusakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_totalBarangRusakActionPerformed
+
+    private void show_totalStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalStokMouseClicked
+ String sql = "SELECT SUM(stok) AS total_stok FROM stok_produk";
+
+    try (
+        java.sql.Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()
+    ) {
+        if (rs.next()) {
+            int totalStok = rs.getInt("total_stok");
+            // Set tulisan pada tombol menjadi total stok
+            show_totalStok.setText("Total Stok: " + totalStok);
+        } else {
+            show_totalStok.setText("Stok: 0");
         }
-
-        String rfid = iptRfid.getText();
-        if (rfid.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Kode RFID belum tersedia.");
-            return;
-        }
-
-        // Ambil ID pengguna dari list berdasarkan index baris yang dipilih
-        String idPengguna = idPenggunaList.get(baris);
-
-        try {
-            Connection conn = dbtokko.configDB();
-            String sql = "UPDATE pengguna SET rfid = ? WHERE id_pengguna = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, rfid);
-            ps.setString(2, idPengguna);
-
-            int hasil = ps.executeUpdate();
-
-            if (hasil > 0) {
-                JOptionPane.showMessageDialog(null, "RFID berhasil disimpan ke pengguna ID: " + idPengguna);
-                tampilkanPengguna();
-            } else {
-                JOptionPane.showMessageDialog(null, "Gagal menyimpan RFID.");
-            }
-
-            ps.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + ex.getMessage());
-        }
+    } catch (SQLException ex) {
+        show_totalStok.setText("Error");
+        System.err.println("SQL Error: " + ex.getMessage());
     }
-});
-    }//GEN-LAST:event_btnSimpanMouseClicked
+
+    }//GEN-LAST:event_show_totalStokMouseClicked
+
+    private void show_totalBarangRusakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalBarangRusakMouseClicked
+        // TODO add your handling code here:
+ String sql = "SELECT SUM(jumlah) AS total_rusak FROM barang_rusak";
+
+    try (
+        java.sql.Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()
+    ) {
+        if (rs.next()) {
+            int totalRusak = rs.getInt("total_rusak");
+            // Set tulisan pada tombol menjadi total stok
+            show_totalBarangRusak.setText("Total Rusak: " + totalRusak);
+        } else {
+            show_totalBarangRusak.setText("Rusak: 0");
+        }
+    } catch (SQLException ex) {
+        show_totalBarangRusak.setText("Error");
+        System.err.println("SQL Error: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_show_totalBarangRusakMouseClicked
+
+    private void show_totalBarangDikembalikanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalBarangDikembalikanMouseClicked
+        // TODO add your handling code here:
+ String sql = "SELECT SUM(jumlah) AS total_kembalikan FROM return_pembelian";
+
+    try (
+        java.sql.Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()
+    ) {
+        if (rs.next()) {
+            int totalKembalikan = rs.getInt("total_kembalikan");
+            // Set tulisan pada tombol menjadi total stok
+            show_totalBarangDikembalikan.setText("Total Dikembalikan: " + totalKembalikan);
+        } else {
+            show_totalBarangDikembalikan.setText("Dikembalikan: 0");
+        }
+    } catch (SQLException ex) {
+        show_totalBarangDikembalikan.setText("Error");
+        System.err.println("SQL Error: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_show_totalBarangDikembalikanMouseClicked
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+    int confirm = JOptionPane.showConfirmDialog(
+    null,
+    "Yakin ingin logout?",
+    "Konfirmasi Logout",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
+    Login login = new Login();
+    login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    login.setVisible(true);
+    dispose();
+    System.out.println("Anda Logout");
+} else {
+    System.out.println("Logout dibatalkan");
+}
+
+    }//GEN-LAST:event_btn_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -431,93 +467,53 @@ btnSimpan.addActionListener(new ActionListener() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundUtama;
-    private javax.swing.JButton btnCard;
-    private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnRfid;
-    private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pembelian;
     private javax.swing.JButton btn_pengembalian;
     private javax.swing.JButton btn_penjualan;
     private javax.swing.JButton btn_stok;
-    private javax.swing.JScrollPane dataRPengguna;
-    private javax.swing.JTextField iptRfid;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JDialog menambahRfid;
-    private javax.swing.JPanel pnlCard;
-    private javax.swing.JTable tbrPengguna;
+    private javax.swing.JButton show_totalBarangDikembalikan;
+    private javax.swing.JButton show_totalBarangRusak;
+    private javax.swing.JButton show_totalStok;
     // End of variables declaration//GEN-END:variables
-private List<String> idPenggunaList = new ArrayList<>();
-
-private void tampilkanPengguna() {
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("Nama");
-    model.addColumn("RFID");
-    idPenggunaList.clear();
-
-    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
-
-    try {
-        Connection conn = dbtokko.configDB();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        if (!rs.next()) {
-            JOptionPane.showMessageDialog(this, "Tidak ada data pengguna.");
-        } else {
-            do {
-                String idPengguna = rs.getString("id_pengguna");
-                String username = rs.getString("username");
-                String rfid = rs.getString("rfid");
-
-                idPenggunaList.add(idPengguna);
-
-                model.addRow(new Object[] { username, rfid });
-            } while (rs.next());
-        }
-        tbrPengguna.setModel(model);
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
-    }
-}
-
-//private void tampilkanRfid() {
-//    // Membuat model tabel dengan kolom yang diinginkan
-//    DefaultTableModel model = new DefaultTableModel();
-//    model.addColumn("ID Pengguna");
-//    model.addColumn("Nama");
-//    model.addColumn("Role");
-//    model.addColumn("RFID");
+//private List<String> idPenggunaList = new ArrayList<>();
 //
-//    // Query untuk mengambil data pengguna dengan role 'Admin%'
-//    String sql = "SELECT id_pengguna, username, role, rfid FROM pengguna WHERE role LIKE 'Admin%'";
+//private void tampilkanPengguna() {
+//    DefaultTableModel model = new DefaultTableModel();
+//    model.addColumn("Nama");
+//    model.addColumn("RFID");
+//    idPenggunaList.clear();
+//
+//    String sql = "SELECT id_pengguna, username, rfid FROM pengguna";
 //
 //    try {
-//        Connection conn = dbtokko.configDB(); // Menggunakan koneksi yang sudah tersedia
+//        Connection conn = dbtokko.configDB();
 //        PreparedStatement ps = conn.prepareStatement(sql);
 //        ResultSet rs = ps.executeQuery();
 //
-//        // Cek apakah ada hasil
-//        if (!rs.isBeforeFirst()) {
-//            JOptionPane.showMessageDialog(this, "Tidak ada pengguna dengan role 'Admin'.");
+//        if (!rs.next()) {
+//            JOptionPane.showMessageDialog(this, "Tidak ada data pengguna.");
 //        } else {
-//            while (rs.next()) {
-//                model.addRow(new Object[] {
-//                    rs.getString("id_pengguna"),
-//                    rs.getString("username"),
-//                    rs.getString("role"),
-//                    rs.getString("rfid")
-//                });
-//            }
-//        }
+//            do {
+//                String idPengguna = rs.getString("id_pengguna");
+//                String username = rs.getString("username");
+//                String rfid = rs.getString("rfid");
 //
+//                idPenggunaList.add(idPengguna);
+//
+//                model.addRow(new Object[] { username, rfid });
+//            } while (rs.next());
+//        }
 //        tbrPengguna.setModel(model);
 //    } catch (SQLException e) {
 //        JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
 //    }
 //}
+
+
 
 
 }
