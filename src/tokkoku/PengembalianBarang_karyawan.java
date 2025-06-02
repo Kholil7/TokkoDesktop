@@ -4,10 +4,17 @@
  */
 package tokkoku;
 import database.dbtokko;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.security.Timestamp;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,14 +55,81 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
     public PengembalianBarang_karyawan() {
         initComponents();
         tampilkanDataSuplier();
-        btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pemasok.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_dashboard.setBackground(new java.awt.Color(255, 255, 255, 0));
         btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_logout.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pengembalianBarang.setBackground(new java.awt.Color(255, 255, 255, 0));
+        Jpengembalian.setLocationRelativeTo(null);
+        loadDataProduk();
+        barangDikembalikan();
         
-        tambahPemasok.setLocationRelativeTo(null);
+        
+        
+btn_kembalikan.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = dataPengembalian.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Pilih item dari tabel stok terlebih dahulu.");
+            return;
+        }
+
+        try {
+            String idProduk = dataPengembalian.getValueAt(selectedRow, 0).toString();
+
+           Jkembelikan.setVisible(true);
+           Jkembelikan.setEnabled(true);
+
+           jtId.setText(idProduk);
+           jtId.setEditable(false);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Gagal memproses: " + ex.getMessage());
+        }
     }
+});
+
+btn_pengembalianBarang.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = pengembalian.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Silakan pilih salah satu item dari tabel produk.");
+            return;
+        }
+
+        try {
+            String idProduk = pengembalian.getValueAt(selectedRow, 0).toString();
+            tampilkanStokProduk(idProduk);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Gagal membaca ID produk: " + ex.getMessage());
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,71 +140,118 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tambahPemasok = new javax.swing.JDialog();
-        Pemasok = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        ipt_nama = new javax.swing.JTextField();
-        ipt_kontak = new javax.swing.JTextField();
-        ipt_alamat = new javax.swing.JTextField();
-        btn_simpan = new javax.swing.JButton();
+        Jpengembalian = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dataPengembalian = new javax.swing.JTable();
+        btn_kembalikan = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        Jkembelikan = new javax.swing.JDialog();
+        jCalenderMasok = new de.wannawork.jcalendar.JCalendarComboBox();
+        SpnJumlah = new javax.swing.JSpinner();
+        jtAlasan = new javax.swing.JComboBox<>();
+        btnMasuk = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jtId = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btn_dashboard = new javax.swing.JButton();
         btn_penjualan = new javax.swing.JButton();
-        btn_pembelian = new javax.swing.JButton();
+        btn_pemasok = new javax.swing.JButton();
         btn_stok = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
         btn_pengembalianBarang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        barang_dikembalikan = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        pengembalian = new javax.swing.JTable();
+        btn_pembelian = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
 
-        tambahPemasok.setTitle("Menambah Data Pemasok");
-        tambahPemasok.setSize(new java.awt.Dimension(450, 400));
-        tambahPemasok.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Jpengembalian.setTitle("Tabel Pilih Barang");
+        Jpengembalian.setSize(new java.awt.Dimension(780, 500));
+        Jpengembalian.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Pemasok.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        Pemasok.setText("Pemasok");
-        tambahPemasok.getContentPane().add(Pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, -1));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("Alamat");
-        tambahPemasok.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Nama");
-        tambahPemasok.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("No. Hp");
-        tambahPemasok.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
-        ipt_nama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ipt_namaActionPerformed(evt);
+        dataPengembalian.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        dataPengembalian.setForeground(new java.awt.Color(0, 0, 0));
+        dataPengembalian.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Produk", "ID Stok", "Stok", "Harga Beli", "Harga Jual", "Kadaluarsa"
             }
-        });
-        tambahPemasok.getContentPane().add(ipt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 210, 30));
+        ));
+        jScrollPane3.setViewportView(dataPengembalian);
 
-        ipt_kontak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ipt_kontakActionPerformed(evt);
-            }
-        });
-        tambahPemasok.getContentPane().add(ipt_kontak, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 210, 30));
-        tambahPemasok.getContentPane().add(ipt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 210, 50));
+        Jpengembalian.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 734, 420));
 
-        btn_simpan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_simpan.setText("Simpan");
-        btn_simpan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_kembalikan.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        btn_kembalikan.setForeground(new java.awt.Color(0, 0, 0));
+        btn_kembalikan.setText("Kembalikan");
+        Jpengembalian.getContentPane().add(btn_kembalikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel3.setForeground(new java.awt.Color(0, 0, 204));
+        Jpengembalian.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1000, 610));
+
+        Jkembelikan.setTitle("Pengembalian");
+        Jkembelikan.setSize(new java.awt.Dimension(500, 500));
+        Jkembelikan.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Jkembelikan.getContentPane().add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        Jkembelikan.getContentPane().add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
+
+        jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Ganti Barang Lain", "Kadaluarsa" }));
+        Jkembelikan.getContentPane().add(jtAlasan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+
+        btnMasuk.setText("Masukkan");
+        btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_simpanMouseClicked(evt);
+                btnMasukMouseClicked(evt);
             }
         });
-        tambahPemasok.getContentPane().add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasukActionPerformed(evt);
+            }
+        });
+        Jkembelikan.getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Jumlah");
+        Jkembelikan.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("ID Produk");
+        Jkembelikan.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        jtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdActionPerformed(evt);
+            }
+        });
+        Jkembelikan.getContentPane().add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 50, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Alasan");
+        Jkembelikan.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Tanggal");
+        Jkembelikan.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 245, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 255));
+        Jkembelikan.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 560));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -151,12 +272,12 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
         });
         jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 50));
 
-        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_pembelianMouseClicked(evt);
+                btn_pemasokMouseClicked(evt);
             }
         });
-        jPanel1.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
+        jPanel1.add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 50));
 
         btn_stok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,14 +298,45 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
         });
         jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
 
+        btn_pengembalianBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pengembalianBarangMouseClicked(evt);
+            }
+        });
         btn_pengembalianBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_pengembalianBarangActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pengembalianBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 180, 60));
+        jPanel1.add(btn_pengembalianBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 260, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        barang_dikembalikan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Kode Pembelian", "Kode Produk", "Jumlah", "Alasan", "Tanggal Pengembalian"
+            }
+        ));
+        jScrollPane1.setViewportView(barang_dikembalikan);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 1060, 240));
+
+        pengembalian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -203,38 +355,26 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Produk", "Nama Produk", "Barcode", "Stok"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(pengembalian);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 1060, 260));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 1060, 240));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pembelianMouseClicked(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        });
+        jPanel1.add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 50));
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 1060, 260));
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
 
         backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_PengembalianBarang-Karyawan.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -248,21 +388,31 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         Dashboard_karyawan dashboard = new Dashboard_karyawan();
         dashboard.setVisible(true);
+        dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
+        System.out.println("Sekarang Dalam Page Dashboard");
     }//GEN-LAST:event_btn_dashboardMouseClicked
 
     private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
-        // TODO add your handling code here:
-        Penjualan_karyawan penjualan = Penjualan_master();
-        penjualan.setVisible(true);
-        dispose();
-        System.out.println("Sekarang Dalam Page Penjualan " + "Master");
+                    try {
+                        // TODO add your handling code here:
+                        Penjualan_karyawan penjualan = new Penjualan_karyawan();
+                        penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        penjualan.setVisible(true);
+                        dispose();
+                        System.out.println("Sekarang Dalam Page Penjualan");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PengembalianBarang_karyawan.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }//GEN-LAST:event_btn_penjualanMouseClicked
 
-    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
-        // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Pembelian " + "Master");
-    }//GEN-LAST:event_btn_pembelianMouseClicked
+    private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
+        Pemasok_Karyawan pemasok = new Pemasok_Karyawan();
+        pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pemasok.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pemasok");
+    }//GEN-LAST:event_btn_pemasokMouseClicked
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
         // TODO add your handling code here:
@@ -270,70 +420,167 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
         stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         stok.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Stok " + "Master");
+        System.out.println("Sekarang Dalam Page Stok");
     }//GEN-LAST:event_btn_stokMouseClicked
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
         // TODO add your handling code here:
-        PengembalianBarang_karyawan laporan= new PengembalianBarang_karyawan();
+        Riwayat_karyawan laporan = new Riwayat_karyawan();
         laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
         laporan.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Laporan " + "Master");
+        System.out.println("Sekarang Dalam Page Riwayat");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
     private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_stokActionPerformed
 
-    private void ipt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipt_namaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ipt_namaActionPerformed
-
-    private void ipt_kontakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipt_kontakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ipt_kontakActionPerformed
-
-    private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
-        // TODO add your handling code here:
-    String nama = ipt_nama.getText();
-    String kontak = ipt_kontak.getText();
-    String alamat = ipt_alamat.getText();
-
-    if (nama.isEmpty() || kontak.isEmpty() || alamat.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Semua field harus diisi!");
-        return;
-    }
-
-    try {
-        String sql = "INSERT INTO pemasok (nama, kontak, alamat) VALUES (?, ?, ?)";
-        Connection conn = dbtokko.configDB();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, nama);
-        ps.setString(2, kontak);
-        ps.setString(3, alamat);
-
-        int rowsInserted = ps.executeUpdate();
-        if (rowsInserted > 0) {
-            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
-            ipt_nama.setText("");
-            ipt_kontak.setText("");
-            ipt_alamat.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "Data gagal disimpan.");
-        }
-
-        ps.close();
-        conn.close();
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
-    }
-    }//GEN-LAST:event_btn_simpanMouseClicked
-
     private void btn_pengembalianBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pengembalianBarangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_pengembalianBarangActionPerformed
+
+    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
+        // TODO add your handling code here:
+        Pembelian_karyawan pembelian = new Pembelian_karyawan();
+        pembelian.setVisible(true);
+        pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pembelian");
+    }//GEN-LAST:event_btn_pembelianMouseClicked
+
+    private void btn_pengembalianBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianBarangMouseClicked
+        // TODO add your handling code here:
+Jpengembalian.setVisible(true);
+    }//GEN-LAST:event_btn_pengembalianBarangMouseClicked
+
+    private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
+        // TODO add your handling code here:
+btnMasuk.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Connection conn = null;
+
+        try {
+            String idStok = jtId.getText().trim();
+            String alasan = jtAlasan.getSelectedItem() != null ? jtAlasan.getSelectedItem().toString() : "";
+            int jumlahReturn = (int) SpnJumlah.getValue();
+
+            if (idStok.isEmpty() || alasan.isEmpty() || jumlahReturn <= 0) {
+                JOptionPane.showMessageDialog(null, "Lengkapi semua data terlebih dahulu.");
+                return;
+            }
+
+            conn = dbtokko.configDB();
+            conn.setAutoCommit(false);
+
+            String idProduk = "";
+            int stokTersedia = 0;
+            int idPembelian = 0;
+
+            String sqlGetProduk = "SELECT id_produk, stok, id_pembelian FROM stok_produk WHERE id_stok = ?";
+            try (PreparedStatement ps = conn.prepareStatement(sqlGetProduk)) {
+                ps.setString(1, idStok);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        idProduk = rs.getString("id_produk");
+                        stokTersedia = rs.getInt("stok");
+                        idPembelian = rs.getInt("id_pembelian");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ID Stok tidak ditemukan di stok_produk.");
+                        conn.rollback();
+                        return;
+                    }
+                }
+            }
+
+            if (stokTersedia < jumlahReturn) {
+                JOptionPane.showMessageDialog(null, "Stok tidak mencukupi. Tersedia: " + stokTersedia);
+                conn.rollback();
+                return;
+            }
+
+            String sqlInsertReturn = "INSERT INTO return_pembelian (id_pembelian, id_produk, jumlah, alasan) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement psInsert = conn.prepareStatement(sqlInsertReturn)) {
+                psInsert.setInt(1, idPembelian);
+                psInsert.setString(2, idProduk);
+                psInsert.setInt(3, jumlahReturn);
+                psInsert.setString(4, alasan);
+
+                if (psInsert.executeUpdate() == 0) {
+                    JOptionPane.showMessageDialog(null, "Gagal menyimpan ke return_pembelian.");
+                    conn.rollback();
+                    return;
+                }
+            }
+
+            String sqlUpdateStok = "UPDATE stok_produk SET stok = stok - ? WHERE id_stok = ?";
+            try (PreparedStatement psUpdate = conn.prepareStatement(sqlUpdateStok)) {
+                psUpdate.setInt(1, jumlahReturn);
+                psUpdate.setString(2, idStok);
+
+                if (psUpdate.executeUpdate() == 0) {
+                    JOptionPane.showMessageDialog(null, "Gagal mengurangi stok.");
+                    conn.rollback();
+                    return;
+                }
+            }
+
+            conn.commit();
+            JOptionPane.showMessageDialog(null, "Barang Berhasil Dicatat");
+            Jkembelikan.setVisible(false);
+            barangDikembalikan();
+            loadDataProduk();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            try {
+                if (conn != null) conn.rollback();
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + ex.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+});
+
+    }//GEN-LAST:event_btnMasukMouseClicked
+
+    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdActionPerformed
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -374,30 +621,141 @@ public class PengembalianBarang_karyawan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Pemasok;
+    private javax.swing.JDialog Jkembelikan;
+    private javax.swing.JDialog Jpengembalian;
+    private javax.swing.JSpinner SpnJumlah;
     private javax.swing.JLabel backgroundUtama;
+    private javax.swing.JTable barang_dikembalikan;
+    private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btn_dashboard;
+    private javax.swing.JButton btn_kembalikan;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pembelian;
     private javax.swing.JButton btn_pengembalianBarang;
     private javax.swing.JButton btn_penjualan;
-    private javax.swing.JButton btn_simpan;
     private javax.swing.JButton btn_stok;
-    private javax.swing.JTextField ipt_alamat;
-    private javax.swing.JTextField ipt_kontak;
-    private javax.swing.JTextField ipt_nama;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTable dataPengembalian;
+    private de.wannawork.jcalendar.JCalendarComboBox jCalenderMasok;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JDialog tambahPemasok;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JComboBox<String> jtAlasan;
+    private javax.swing.JTextField jtId;
+    private javax.swing.JTable pengembalian;
     // End of variables declaration//GEN-END:variables
 
+    
     private Penjualan_karyawan Penjualan_master() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
+    
+private void loadDataProduk() {
+    String sql = "SELECT p.id_produk, p.nama_produk, p.barcode, IFNULL(sp.stok, 0) AS jumlah_stok " +
+                 "FROM produk p " +
+                 "LEFT JOIN stok_produk sp ON p.id_produk = sp.id_produk";
+
+    try (
+        Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+    ) {
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[]{"ID Produk", "Nama Produk", "Barcode", "Stok"}, 0
+        );
+        pengembalian.setModel(model);
+
+        while (rs.next()) {
+            String idProduk = rs.getString("id_produk");
+            String namaProduk = rs.getString("nama_produk");
+            String barcode = rs.getString("barcode");
+            int stok = rs.getInt("jumlah_stok");
+
+            model.addRow(new Object[]{idProduk, namaProduk, barcode, stok});
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Gagal menampilkan data produk: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
+
+
+public void tampilkanStokProduk(String idProduk) {
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("ID Stok");
+    model.addColumn("ID Produk");
+    model.addColumn("Stok");
+    model.addColumn("Harga Beli");
+    model.addColumn("Harga Jual");
+    model.addColumn("Tanggal Kedaluwarsa");
+
+    String sql = "SELECT id_stok, id_produk, stok, harga_beli, harga_jual, tanggal_kedaluwarsa " +
+                 "FROM stok_produk WHERE id_produk = ?";
+
+    try (Connection conn = dbtokko.configDB();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, idProduk);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("id_stok"),
+                rs.getString("id_produk"),
+                rs.getInt("stok"),
+                rs.getDouble("harga_beli"),
+                rs.getDouble("harga_jual"),
+                rs.getDate("tanggal_kedaluwarsa")
+            });
+        }
+
+        dataPengembalian.setModel(model); // pastikan 'dataStok' adalah JTable Anda
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Gagal menampilkan stok produk: " + e.getMessage());
+    }
+}
+
+
+private void barangDikembalikan() {
+    String sql = "SELECT * FROM return_pembelian";
+
+    try (
+        Connection conn = dbtokko.configDB();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+    ) {
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[]{"Kode Pembelian", "Kode Produk", "Jumlah", "Alasan", "Tanggal Dikembalikan"}, 0
+        );
+        barang_dikembalikan.setModel(model); // pengembalian = JTable Anda
+
+        while (rs.next()) {
+            int idPembelian = rs.getInt("id_pembelian");
+            String idProduk = rs.getString("id_produk");
+            int jumlah = rs.getInt("jumlah");
+            String alasan = rs.getString("alasan");
+            java.sql.Timestamp tanggalReturn = rs.getTimestamp("tanggal_return");
+
+            model.addRow(new Object[]{idPembelian, idProduk, jumlah, alasan, tanggalReturn});
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Gagal menampilkan data return: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 }

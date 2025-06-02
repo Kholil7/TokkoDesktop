@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.print.Printable;
@@ -22,8 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -53,7 +57,15 @@ public class Menambah_dataBarang extends javax.swing.JFrame {
         pnlRusakk.setLocationRelativeTo(null);
         pnl_barangrusakk.setLocationRelativeTo(null);
         
-
+        btn_dashboard.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_penjualan.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pembelian.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pemasok.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_riwayat.setBackground(new java.awt.Color(255, 255, 255, 0));
+        btn_logout.setBackground(new java.awt.Color(255, 255, 255, 0));
+        
+        
 btnBarangRusak.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -97,6 +109,16 @@ btn_rusak.addActionListener(new ActionListener() {
     }
 });
 
+dataStok.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int row = dataStok.getSelectedRow();
+        if (row != -1) {
+            String idStok = dataStok.getValueAt(row, 1).toString(); // kolom ke-1 adalah ID STOK
+            jtId.setText(idStok);
+        }
+    }
+});
 
 
     }
@@ -142,6 +164,7 @@ btn_rusak.addActionListener(new ActionListener() {
         jtId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         pnl_barangrusakk = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         dataStok = new javax.swing.JTable();
@@ -151,9 +174,15 @@ btn_rusak.addActionListener(new ActionListener() {
         btnUbah = new javax.swing.JButton();
         btnBarcode = new javax.swing.JButton();
         btnBarangRusak = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
+        btn_dashboard = new javax.swing.JButton();
+        btn_penjualan = new javax.swing.JButton();
+        btn_pembelian = new javax.swing.JButton();
+        btn_pemasok = new javax.swing.JButton();
+        btn_pengembalian = new javax.swing.JButton();
+        btn_riwayat = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         pnTambahBarcodesee.setTitle("Generate Barcode");
@@ -174,6 +203,7 @@ btn_rusak.addActionListener(new ActionListener() {
         pnTambahBarcodesee.getContentPane().add(showPanelBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 350, 100));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Barcode");
         pnTambahBarcodesee.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 69, -1));
 
@@ -231,7 +261,7 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         pnTambahBarcodesee.getContentPane().add(btn_simpanBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 100, 30));
 
-        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -259,6 +289,7 @@ btn_rusak.addActionListener(new ActionListener() {
         btnTambahh.getContentPane().add(txtNamaproduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nama Produk :");
         btnTambahh.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 111, 30));
 
@@ -283,7 +314,7 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         btnTambahh.getContentPane().add(btnSimpan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 112, 42));
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -310,6 +341,7 @@ btn_rusak.addActionListener(new ActionListener() {
         pnUbahh.getContentPane().add(txtNamaproduk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 206, 32));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nama Produk :");
         pnUbahh.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 87, 111, 30));
 
@@ -329,7 +361,7 @@ btn_rusak.addActionListener(new ActionListener() {
         });
         pnUbahh.getContentPane().add(btnSimpan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 112, 42));
 
-        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -347,7 +379,7 @@ btn_rusak.addActionListener(new ActionListener() {
         pnlRusakk.setTitle("Barang Rusak");
         pnlRusakk.setSize(new java.awt.Dimension(500, 500));
         pnlRusakk.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlRusakk.getContentPane().add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        pnlRusakk.getContentPane().add(jCalenderMasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
         pnlRusakk.getContentPane().add(SpnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 82, 33));
 
         jtAlasan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusak", "Kadaluarsa" }));
@@ -359,14 +391,22 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnMasukMouseClicked(evt);
             }
         });
+        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasukActionPerformed(evt);
+            }
+        });
         pnlRusakk.getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, -1, 30));
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Jumlah");
         pnlRusakk.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tanggal Rusak");
         pnlRusakk.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("ID Produk");
         pnlRusakk.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
@@ -375,14 +415,31 @@ btn_rusak.addActionListener(new ActionListener() {
                 jtIdActionPerformed(evt);
             }
         });
-        pnlRusakk.getContentPane().add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        pnlRusakk.getContentPane().add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 50, -1));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Alasan");
         pnlRusakk.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Barang Rusak");
         pnlRusakk.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 150, 60));
+
+        jPanel5.setBackground(new java.awt.Color(0, 0, 204));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+        );
+
+        pnlRusakk.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 440, 470));
 
         pnl_barangrusakk.setTitle("Tabel Barang Rusak");
         pnl_barangrusakk.setSize(new java.awt.Dimension(800, 650));
@@ -448,7 +505,7 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnUbahActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 100, 60));
+        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 110, 50));
 
         btnBarcode.setContentAreaFilled(false);
         btnBarcode.setBorderPainted(false);
@@ -457,7 +514,7 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnBarcodeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 50, 140, 50));
+        getContentPane().add(btnBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 140, 50));
 
         btnBarangRusak.setContentAreaFilled(false);
         btnBarangRusak.setBorderPainted(false);
@@ -471,21 +528,7 @@ btn_rusak.addActionListener(new ActionListener() {
                 btnBarangRusakActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBarangRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 210, 50));
-
-        btnHapus.setContentAreaFilled(false);
-        btnHapus.setBorderPainted(false);
-        btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHapusMouseClicked(evt);
-            }
-        });
-        btnHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 50, 110, 50));
+        getContentPane().add(btnBarangRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, 220, 50));
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -502,7 +545,67 @@ btn_rusak.addActionListener(new ActionListener() {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 1120, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Tambah Data Barang-Karyawan.png"))); // NOI18N
+        btn_dashboard.setBorder(null);
+        btn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_dashboardMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 240, 40));
+
+        btn_penjualan.setBorder(null);
+        btn_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_penjualanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 50));
+
+        btn_pembelian.setBorder(null);
+        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pembelianMouseClicked(evt);
+            }
+        });
+        btn_pembelian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_pembelianKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 240, 40));
+
+        btn_pemasok.setBorder(null);
+        btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pemasokMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_pemasok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 240, 40));
+
+        btn_pengembalian.setBorder(null);
+        btn_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pengembalianMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_pengembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 50));
+
+        btn_riwayat.setBorder(null);
+        btn_riwayat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_riwayatMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_riwayat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, 50));
+
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Tambah Data Barang-Karyawan.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -546,111 +649,6 @@ if (row != -1) {
 
    
     }//GEN-LAST:event_btnBarcodeActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-int row = tblData.getSelectedRow();
-if (row != -1) {
-    String idProduk = tblData.getValueAt(row, 0).toString();
-
-    int confirm = JOptionPane.showConfirmDialog(null, "Yakin ingin menghapus produk ini?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION);
-    if (confirm == JOptionPane.YES_OPTION) {
-        try {
-            Connection conn = dbtokko.configDB();
-            conn.setAutoCommit(false); // Mulai transaksi
-
-            
-            String sql = "DELETE FROM produk WHERE id_produk = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, idProduk);
-
-            int rowsAffected = stmt.executeUpdate();
-            conn.commit(); // Komit transaksi
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");
-                loadDataProduk();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data gagal dihapus.");
-            }
-
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error saat menghapus: " + e.getMessage());
-        }
-    }
-} else {
-    JOptionPane.showMessageDialog(null, "Pilih dahulu data yang ingin dihapus.");
-}
-
-    }//GEN-LAST:event_btnHapusActionPerformed
-
-    private void btnHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseClicked
-   int baris = tblData.getSelectedRow();
-
-    if (baris >= 0) {
-        String idProduk = tblData.getValueAt(baris, 0).toString(); // Ambil ID produk dari kolom pertama
-
-        int konfirmasi = JOptionPane.showConfirmDialog(
-            null,
-            "Yakin ingin menghapus produk dengan ID: " + idProduk + " beserta semua data yang terkait?",
-            "Konfirmasi Hapus Produk",
-            JOptionPane.YES_NO_OPTION
-        );
-
-        if (konfirmasi == JOptionPane.YES_OPTION) {
-            try {
-                Connection conn = dbtokko.configDB();
-
-               
-                String sqlHapusDetailPembelian = "DELETE FROM detail_pembelian WHERE id_produk = ?";
-                PreparedStatement pst1 = conn.prepareStatement(sqlHapusDetailPembelian);
-                pst1.setString(1, idProduk);
-                pst1.executeUpdate();
-                pst1.close();
-
-               
-                String sqlHapusDetailPenjualan = "DELETE FROM detail_penjualan WHERE id_produk = ?";
-                PreparedStatement pst2 = conn.prepareStatement(sqlHapusDetailPenjualan);
-                pst2.setString(1, idProduk);
-                pst2.executeUpdate();
-                pst2.close();
-
-                
-                String sqlHapusPenjualan = "DELETE FROM penjualan WHERE id_produk = ?";
-                try {
-                    PreparedStatement pst3 = conn.prepareStatement(sqlHapusPenjualan);
-                    pst3.setString(1, idProduk);
-                    pst3.executeUpdate();
-                    pst3.close();
-                } catch (SQLException e) {
-                   
-                }
-
-                
-                String sqlHapusProduk = "DELETE FROM produk WHERE id_produk = ?";
-                PreparedStatement pst4 = conn.prepareStatement(sqlHapusProduk);
-                pst4.setString(1, idProduk);
-                int affected = pst4.executeUpdate();
-                pst4.close();
-
-                if (affected > 0) {
-                    JOptionPane.showMessageDialog(null, "Produk dan semua relasinya berhasil dihapus.");
-                
-                } else {
-                    JOptionPane.showMessageDialog(null, "Produk tidak ditemukan.");
-                }
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Gagal menghapus data: " + ex.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Penghapusan dibatalkan.");
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Pilih produk yang ingin dihapus terlebih dahulu.");
-    }
-    }//GEN-LAST:event_btnHapusMouseClicked
 
     private void txtNamaproduk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaproduk1ActionPerformed
         // TODO add your handling code here:
@@ -701,7 +699,7 @@ try (
     }//GEN-LAST:event_btnSimpan2ActionPerformed
 
     private void btnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpan1ActionPerformed
- String sqlGetLastId = "SELECT id_produk FROM produk ORDER BY id_produk DESC LIMIT 1";
+String sqlGetLastId = "SELECT id_produk FROM produk ORDER BY id_produk DESC LIMIT 1";
 String sqlInsert = "INSERT INTO produk (id_produk, nama_produk) VALUES (?, ?)";
 String sqlSelectAll = "SELECT id_produk, nama_produk, barcode FROM produk";
 
@@ -795,91 +793,82 @@ btnMasuk.addActionListener(new ActionListener() {
         Connection conn = null;
 
         try {
-            String idProduk = jtId.getText().trim();
-            String alasan = jtAlasan.getSelectedItem().toString();
+            String idStok = jtId.getText().trim();
+            String alasan = jtAlasan.getSelectedItem() != null ? jtAlasan.getSelectedItem().toString() : "";
             java.util.Date tanggalRusakUtil = jCalenderMasok.getDate();
             int jumlahRusak = (int) SpnJumlah.getValue();
 
-            if (idProduk.isEmpty() || tanggalRusakUtil == null || jumlahRusak <= 0) {
+            if (idStok.isEmpty() || alasan.isEmpty() || tanggalRusakUtil == null || jumlahRusak <= 0) {
                 JOptionPane.showMessageDialog(null, "Lengkapi semua data terlebih dahulu.");
                 return;
             }
 
             java.sql.Date tanggalRusakSQL = new java.sql.Date(tanggalRusakUtil.getTime());
+
             conn = dbtokko.configDB();
             conn.setAutoCommit(false);
 
-           
-            String cekProduk = "SELECT id_produk FROM produk WHERE id_produk = ?";
-            PreparedStatement psCek = conn.prepareStatement(cekProduk);
-            psCek.setString(1, idProduk);
-            ResultSet rsProduk = psCek.executeQuery();
-            if (!rsProduk.next()) {
-                JOptionPane.showMessageDialog(null, "ID Produk tidak ditemukan di tabel produk.");
+            String idProduk = "";
+            String sqlGetProduk = "SELECT id_produk, stok FROM stok_produk WHERE id_stok = ?";
+            int stokTersedia = 0;
+
+            try (PreparedStatement ps = conn.prepareStatement(sqlGetProduk)) {
+                ps.setString(1, idStok);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        idProduk = rs.getString("id_produk");
+                        stokTersedia = rs.getInt("stok");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ID Stok tidak ditemukan di stok_produk.");
+                        conn.rollback();
+                        return;
+                    }
+                }
+            }
+
+            if (stokTersedia < jumlahRusak) {
+                JOptionPane.showMessageDialog(null, "Stok tidak mencukupi. Tersedia: " + stokTersedia);
                 conn.rollback();
                 return;
             }
 
-           
-            String sqlCekStok = "SELECT stok FROM stok_produk WHERE id_produk = ?";
-            PreparedStatement psStok = conn.prepareStatement(sqlCekStok);
-            psStok.setString(1, idProduk);
-            ResultSet rsStok = psStok.executeQuery();
-
-            if (!rsStok.next()) {
-                JOptionPane.showMessageDialog(null, "Produk tidak ditemukan di stok.");
-                conn.rollback();
-                return;
-            }
-
-            int stok = rsStok.getInt("stok");
-            if (stok < jumlahRusak) {
-                JOptionPane.showMessageDialog(null, "Stok tidak mencukupi. Stok tersedia: " + stok);
-                conn.rollback();
-                return;
-            }
-
-           
             String sqlInsert = "INSERT INTO barang_rusak (id_produk, alasan, tanggal_rusak, jumlah) VALUES (?, ?, ?, ?)";
-            PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
-            psInsert.setString(1, idProduk);
-            psInsert.setString(2, alasan);
-            psInsert.setDate(3, tanggalRusakSQL);
-            psInsert.setInt(4, jumlahRusak);
+            try (PreparedStatement psInsert = conn.prepareStatement(sqlInsert)) {
+                psInsert.setString(1, idProduk);
+                psInsert.setString(2, alasan);
+                psInsert.setDate(3, tanggalRusakSQL);
+                psInsert.setInt(4, jumlahRusak);
 
-            int insertResult = psInsert.executeUpdate();
-            System.out.println("INSERT RESULT: " + insertResult);
-
-            if (insertResult == 0) {
-                JOptionPane.showMessageDialog(null, "Gagal menyimpan ke tabel barang_rusak.");
-                conn.rollback();
-                return;
+                if (psInsert.executeUpdate() == 0) {
+                    JOptionPane.showMessageDialog(null, "Gagal menyimpan ke barang_rusak.");
+                    conn.rollback();
+                    return;
+                }
             }
 
-         
-            String sqlUpdate = "UPDATE stok_produk SET stok = stok - ? WHERE id_produk = ?";
-            PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate);
-            psUpdate.setInt(1, jumlahRusak);
-            psUpdate.setString(2, idProduk);
-            int updateResult = psUpdate.executeUpdate();
+            String sqlUpdate = "UPDATE stok_produk SET stok = stok - ? WHERE id_stok = ?";
+            try (PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate)) {
+                psUpdate.setInt(1, jumlahRusak);
+                psUpdate.setString(2, idStok);
 
-            if (updateResult == 0) {
-                JOptionPane.showMessageDialog(null, "Gagal mengurangi stok.");
-                conn.rollback();
-                return;
+                if (psUpdate.executeUpdate() == 0) {
+                    JOptionPane.showMessageDialog(null, "Gagal mengurangi stok.");
+                    conn.rollback();
+                    return;
+                }
             }
 
-           
             conn.commit();
-            JOptionPane.showMessageDialog(null, "Barang rusak berhasil dicatat & stok dikurangi.");
+            JOptionPane.showMessageDialog(null, "Barang rusak berhasil dicatat.");
             pnlRusakk.setVisible(false);
-
+            loadDataProduk();
+            tampilkanStokProduk(idProduk);
         } catch (Exception ex) {
             ex.printStackTrace();
             try {
                 if (conn != null) conn.rollback();
-            } catch (Exception rbEx) {
-                rbEx.printStackTrace();
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
             }
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + ex.getMessage());
         } finally {
@@ -888,12 +877,14 @@ btnMasuk.addActionListener(new ActionListener() {
                     conn.setAutoCommit(true);
                     conn.close();
                 }
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
     }
 });
+
+
 
     }//GEN-LAST:event_btnMasukMouseClicked
 
@@ -1099,6 +1090,92 @@ btnMasuk.addActionListener(new ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_outputBarcodeActionPerformed
 
+    private void btn_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dashboardMouseClicked
+        // TODO add your handling code here:
+        Dashboard_karyawan dashboard = new Dashboard_karyawan();
+        dashboard.setVisible(true);
+        dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        dispose();
+        System.out.println("Sekarang Dalam Page Dashboard");
+    }//GEN-LAST:event_btn_dashboardMouseClicked
+
+    private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
+        try {
+            // TODO add your handling code here:
+            Penjualan_karyawan penjualan = new Penjualan_karyawan();
+            penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            penjualan.setVisible(true);
+            dispose();
+            System.out.println("Sekarang Page Penjualan");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menambah_dataBarang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_penjualanMouseClicked
+
+    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
+        // TODO add your handling code here:
+            Pembelian_karyawan pembelian = new Pembelian_karyawan();
+            pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            pembelian.setVisible(true);
+            dispose();
+            System.out.println("Sekarang Dalam Page Pembelian");
+    }//GEN-LAST:event_btn_pembelianMouseClicked
+
+    private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
+        // TODO add your handling code here:
+            Pemasok_Karyawan pemasok = new Pemasok_Karyawan();
+            pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            pemasok.setVisible(true);
+            dispose();
+            System.out.println("Sekarang Dalam Page Pemasok");
+    }//GEN-LAST:event_btn_pemasokMouseClicked
+
+    private void btn_riwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_riwayatMouseClicked
+        // TODO add your handling code here:
+        Riwayat_karyawan laporan = new Riwayat_karyawan();
+        laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        laporan.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Riwayat");
+    }//GEN-LAST:event_btn_riwayatMouseClicked
+
+    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void btn_pembelianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_pembelianKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pembelianKeyPressed
+
+    private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
+        // TODO add your handling code here:
+        PengembalianBarang_karyawan pengembalian = new PengembalianBarang_karyawan();
+        pengembalian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pengembalian.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pengembalian Barang");
+    }//GEN-LAST:event_btn_pengembalianMouseClicked
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1156,7 +1233,6 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnBatal1;
     private javax.swing.JButton btnBatal2;
-    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btnSimpan1;
     private javax.swing.JButton btnSimpan2;
@@ -1164,6 +1240,13 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JDialog btnTambahh;
     private javax.swing.JButton btnUbah;
     private javax.swing.JButton btn_cetak;
+    private javax.swing.JButton btn_dashboard;
+    private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_pemasok;
+    private javax.swing.JButton btn_pembelian;
+    private javax.swing.JButton btn_pengembalian;
+    private javax.swing.JButton btn_penjualan;
+    private javax.swing.JButton btn_riwayat;
     private javax.swing.JButton btn_rusak;
     private javax.swing.JButton btn_simpanBarcode;
     private javax.swing.JTable dataStok;
@@ -1182,6 +1265,7 @@ btnMasuk.addActionListener(new ActionListener() {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jtAlasan;
@@ -1230,26 +1314,26 @@ private void loadDataProduk() {
 
 public void tampilkanStokProduk(String idProduk) {
     DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("ID Produk");
     model.addColumn("ID Stok");
+    model.addColumn("ID Produk");
     model.addColumn("Stok");
     model.addColumn("Harga Beli");
     model.addColumn("Harga Jual");
     model.addColumn("Tanggal Kedaluwarsa");
 
-    String sql = "SELECT id_produk, id_stok, stok, harga_beli, harga_jual, tanggal_kedaluwarsa " +
+    String sql = "SELECT id_stok, id_produk, stok, harga_beli, harga_jual, tanggal_kedaluwarsa " +
                  "FROM stok_produk WHERE id_produk = ?";
 
-    try {
-        Connection conn = dbtokko.configDB();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, idProduk); // gunakan setString
+    try (Connection conn = dbtokko.configDB();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, idProduk);
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             model.addRow(new Object[]{
-                rs.getString("id_produk"),
                 rs.getString("id_stok"),
+                rs.getString("id_produk"),
                 rs.getInt("stok"),
                 rs.getDouble("harga_beli"),
                 rs.getDouble("harga_jual"),
@@ -1257,12 +1341,13 @@ public void tampilkanStokProduk(String idProduk) {
             });
         }
 
-        dataStok.setModel(model); // pastikan tblStokProduk dideklarasikan di GUI Anda
+        dataStok.setModel(model); // pastikan 'dataStok' adalah JTable Anda
 
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Gagal menampilkan stok produk: " + e.getMessage());
     }
 }
+
 
 
 

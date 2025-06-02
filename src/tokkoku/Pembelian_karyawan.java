@@ -1,6 +1,7 @@
 package tokkoku;
 
 import database.dbtokko;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -19,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 
 public class Pembelian_karyawan extends JFrame {
@@ -30,7 +33,7 @@ private int x = 210;
         aturListener();
         loadComboBoxPemasok();
         isiComboBoxidproduk();
-        
+        sesuaikanLebarKolom(tabelpembelian);
          // ⏱️ Set tanggal pembelian ke hari ini
          // ⛔ Kunci input agar tidak bisa diketik
     isinamaproduk.setEditable(false);
@@ -51,6 +54,7 @@ private int x = 210;
           btn_pengembalian.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_logout.setBackground(new java.awt.Color(255, 255, 255, 0));
           isinamapemasok.setBackground(new java.awt.Color(255, 255, 255, 0));
           isihargabeli.setBackground(new java.awt.Color(255, 255, 255, 0)); 
           isihargajual.setBackground(new java.awt.Color(255, 255, 255, 0)); 
@@ -60,7 +64,6 @@ private int x = 210;
           buttontambah.setBackground(new java.awt.Color(255, 255, 255, 0)); 
           buttonmasukan.setBackground(new java.awt.Color(255, 255, 255, 0)); 
           buttonhapus.setBackground(new java.awt.Color(255, 255, 255, 0)); 
-         
          // Batasi spinner agar tidak bisa kurang dari 1
         SpinnerNumberModel model = new SpinnerNumberModel(1, 1, null, 1);
         spinjumlah.setModel(model);
@@ -177,6 +180,7 @@ private void loadComboBoxPemasok() {
         isikodeproduk = new javax.swing.JComboBox<>();
         tanggalPembelianChooser = new de.wannawork.jcalendar.JCalendarComboBox();
         totaljumlah = new javax.swing.JTextField();
+        btn_logout = new javax.swing.JButton();
         tanggalpembelian = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -205,7 +209,7 @@ private void loadComboBoxPemasok() {
                 buttontambahActionPerformed(evt);
             }
         });
-        jPanel1.add(buttontambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 360, 220, 70));
+        jPanel1.add(buttontambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 370, 170, 80));
 
         buttonhapus.setBorder(null);
         buttonhapus.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +259,7 @@ private void loadComboBoxPemasok() {
                 btn_penjualanActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 50));
+        jPanel1.add(btn_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 240, 50));
 
         btn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -267,7 +271,7 @@ private void loadComboBoxPemasok() {
                 btn_dashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 240, 50));
+        jPanel1.add(btn_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 50));
 
         btn_pemasok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -354,6 +358,13 @@ private void loadComboBoxPemasok() {
             }
         });
         jPanel1.add(totaljumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 660, 150, 30));
+
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
 
         tanggalpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Pembelian-Karyawan.png"))); // NOI18N
         jPanel1.add(tanggalpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1460, 750));
@@ -601,7 +612,7 @@ ResultSet rsSuplier = pstCariSuplier.executeQuery();
     conn.commit();
     conn.close();
 
-    JOptionPane.showMessageDialog(this, "Data pembelian berhasil disimpan!");
+    JOptionPane.showMessageDialog(this, "Transaksi Pembelian Berhasil");
     model.setRowCount(0);
     totaljumlah.setText("");
 
@@ -625,7 +636,11 @@ ResultSet rsSuplier = pstCariSuplier.executeQuery();
 
     private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
         // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Pengembalian Barang " + "Master");
+        PengembalianBarang_karyawan pengembalian = new PengembalianBarang_karyawan();
+        pengembalian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pengembalian.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pengembalian Barang");
     }//GEN-LAST:event_btn_pengembalianMouseClicked
 
     private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
@@ -641,11 +656,16 @@ ResultSet rsSuplier = pstCariSuplier.executeQuery();
     }//GEN-LAST:event_btn_penjualanActionPerformed
 
     private void btn_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penjualanMouseClicked
-        Dashboard_karyawan dashboard = new Dashboard_karyawan();
-        dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        dashboard.setVisible(true);
+    try {
+        // TODO add your handling code here:
+        Penjualan_karyawan penjualan = new Penjualan_karyawan();
+        penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        penjualan.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Dashboard " + "Master");
+        System.out.println("Sekarang Dalam Page Penjualan");
+    } catch (SQLException ex) {
+        Logger.getLogger(Pembelian_karyawan.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_btn_penjualanMouseClicked
 
     private void btn_pemasokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pemasokMouseClicked
@@ -654,20 +674,15 @@ ResultSet rsSuplier = pstCariSuplier.executeQuery();
         pemasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         pemasok.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Pemasok " + "Master");
+        System.out.println("Sekarang Dalam Page Pemasok");
     }//GEN-LAST:event_btn_pemasokMouseClicked
 
     private void btn_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dashboardMouseClicked
-    try {
-        // TODO add your handling code here:
-        Penjualan_karyawan penjualan = new Penjualan_karyawan();
-        penjualan.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        penjualan.setVisible(true);
+        Dashboard_karyawan dashboard = new Dashboard_karyawan();
+        dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        dashboard.setVisible(true);
         dispose();
-        System.out.println("Sekarang Dalam Page Penjualan " + "Master");
-    } catch (SQLException ex) {
-        Logger.getLogger(Pembelian_karyawan.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        System.out.println("Sekarang Dalam Page Dashboard");
     }//GEN-LAST:event_btn_dashboardMouseClicked
 
     private void btn_dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dashboardActionPerformed
@@ -676,12 +691,20 @@ ResultSet rsSuplier = pstCariSuplier.executeQuery();
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
         // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Stok " + "Master");
+        Menambah_dataBarang stok = new Menambah_dataBarang();
+        stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        stok.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Stok");
     }//GEN-LAST:event_btn_stokMouseClicked
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
         // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Laporan " + "Master");
+        Riwayat_karyawan laporan = new Riwayat_karyawan();
+        laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        laporan.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Riwayat");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
     private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
@@ -723,6 +746,26 @@ if (!Character.isDigit(c)) {
     private void totaljumlahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totaljumlahKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_totaljumlahKeyTyped
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
 
 //    
     /**
@@ -770,6 +813,7 @@ if (!Character.isDigit(c)) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pengembalian;
     private javax.swing.JButton btn_penjualan;
@@ -791,4 +835,28 @@ if (!Character.isDigit(c)) {
     private javax.swing.JLabel tanggalpembelian;
     private javax.swing.JTextField totaljumlah;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
+
+private void sesuaikanLebarKolom(JTable table) {
+    final TableColumnModel columnModel = table.getColumnModel();
+    for (int column = 0; column < table.getColumnCount(); column++) {
+        int lebar = 15;
+        for (int row = 0; row < table.getRowCount(); row++) {
+            TableCellRenderer renderer = table.getCellRenderer(row, column);
+            Component comp = table.prepareRenderer(renderer, row, column);
+            lebar = Math.max(comp.getPreferredSize().width + 10, lebar);
+        }
+        if (lebar > 300)
+            lebar = 300;
+        columnModel.getColumn(column).setPreferredWidth(lebar);
+    }
+}
+
+    private void tampilkanDataPenjualan() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

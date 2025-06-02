@@ -38,8 +38,11 @@ public class Manajemen_karyawan_Owner extends javax.swing.JFrame {
           btn_manajemenKaryawanan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
+          bgPanel.setBackground(new java.awt.Color(51,102,255));
+          bgPanel1.setBackground(new java.awt.Color(51,102,255));
+          bgPanel2.setBackground(new java.awt.Color(51,102,255));
           btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
-
+          btn_dataPengguna.setBackground(new java.awt.Color(255, 255, 255, 0));
           menambahRfid.setLocationRelativeTo(null);
           dataKaryawan.setLocationRelativeTo(null);
           menambahkanAkun.setLocationRelativeTo(null);
@@ -105,6 +108,7 @@ btnPrint.addActionListener(new ActionListener() {
         btnPrint = new javax.swing.JButton();
         dataRPengguna = new javax.swing.JScrollPane();
         tbrPengguna = new javax.swing.JTable();
+        bgPanel = new javax.swing.JPanel();
         menambahkanAkun = new javax.swing.JDialog();
         ipt_username = new javax.swing.JTextField();
         ipt_password = new javax.swing.JPasswordField();
@@ -112,16 +116,19 @@ btnPrint.addActionListener(new ActionListener() {
         btn_submit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        bgPanel1 = new javax.swing.JPanel();
         dataKaryawan = new javax.swing.JDialog();
         dataRPengguna1 = new javax.swing.JScrollPane();
         tbrPengguna1 = new javax.swing.JTable();
         btn_hapusAkun = new javax.swing.JButton();
         btn_menambahAkun1 = new javax.swing.JButton();
+        bgPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnRfid = new javax.swing.JButton();
         btn_manajemenKaryawanan = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
         btn_dataPengguna = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
 
         menambahRfid.setTitle("Menambahkan RFID");
@@ -170,6 +177,7 @@ btnPrint.addActionListener(new ActionListener() {
         dataRPengguna.setViewportView(tbrPengguna);
 
         menambahRfid.getContentPane().add(dataRPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 410, 150));
+        menambahRfid.getContentPane().add(bgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 
         menambahkanAkun.setSize(new java.awt.Dimension(700, 500));
         menambahkanAkun.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -218,6 +226,7 @@ btnPrint.addActionListener(new ActionListener() {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nama pengguna");
         menambahkanAkun.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 140, 20));
+        menambahkanAkun.getContentPane().add(bgPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 
         dataKaryawan.setSize(new java.awt.Dimension(800, 400));
         dataKaryawan.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,15 +250,23 @@ btnPrint.addActionListener(new ActionListener() {
 
         dataKaryawan.getContentPane().add(dataRPengguna1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 640, 170));
 
+        btn_hapusAkun.setBackground(new java.awt.Color(255, 0, 51));
+        btn_hapusAkun.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btn_hapusAkun.setForeground(new java.awt.Color(255, 255, 255));
         btn_hapusAkun.setText("Hapus Akun");
+        btn_hapusAkun.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_hapusAkun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hapusAkunActionPerformed(evt);
             }
         });
-        dataKaryawan.getContentPane().add(btn_hapusAkun, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+        dataKaryawan.getContentPane().add(btn_hapusAkun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, 30));
 
+        btn_menambahAkun1.setBackground(new java.awt.Color(0, 204, 0));
+        btn_menambahAkun1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_menambahAkun1.setForeground(new java.awt.Color(255, 255, 255));
         btn_menambahAkun1.setText("Tambah Akun");
+        btn_menambahAkun1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_menambahAkun1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_menambahAkun1MouseClicked(evt);
@@ -260,7 +277,8 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_menambahAkun1ActionPerformed(evt);
             }
         });
-        dataKaryawan.getContentPane().add(btn_menambahAkun1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        dataKaryawan.getContentPane().add(btn_menambahAkun1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 50, 100, 50));
+        dataKaryawan.getContentPane().add(bgPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -319,9 +337,16 @@ btnPrint.addActionListener(new ActionListener() {
                 btn_dataPenggunaActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_dataPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 230, 110));
+        jPanel1.add(btn_dataPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 230, 110));
 
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/pg-owner/Pg_Manajemen Karyawan-Owner.png"))); // NOI18N
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 240, 50));
+
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Manajemen Karyawan-Owner.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
@@ -520,6 +545,26 @@ try (Connection conn = dbtokko.configDB()) {
         // TODO add your handling code here:
     }//GEN-LAST:event_ipt_passwordActionPerformed
 
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -589,6 +634,9 @@ try (Connection conn = dbtokko.configDB()) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboDaftar;
     private javax.swing.JLabel backgroundUtama;
+    private javax.swing.JPanel bgPanel;
+    private javax.swing.JPanel bgPanel1;
+    private javax.swing.JPanel bgPanel2;
     private javax.swing.JButton btnCard;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRfid;
@@ -596,6 +644,7 @@ try (Connection conn = dbtokko.configDB()) {
     private javax.swing.JButton btn_dataPengguna;
     private javax.swing.JButton btn_hapusAkun;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_manajemenKaryawanan;
     private javax.swing.JButton btn_menambahAkun1;
     private javax.swing.JButton btn_submit;
@@ -646,6 +695,7 @@ private void tampilkanPengguna() {
             } while (rs.next());
         }
         tbrPengguna.setModel(model);
+        tbrPengguna1.setModel(model);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
     }

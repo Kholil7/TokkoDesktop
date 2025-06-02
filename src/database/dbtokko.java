@@ -7,15 +7,13 @@ import java.sql.SQLException;
 public class dbtokko {
     private static Connection mysqlconfig;
 
-    // Metode untuk mendapatkan koneksi ke database
     public static Connection configDB() throws SQLException {
-        if (mysqlconfig == null || mysqlconfig.isClosed()) { // Cek apakah koneksi null atau sudah tertutup
+        if (mysqlconfig == null || mysqlconfig.isClosed()) {
             try {
-                String url = "jdbc:mysql://localhost:3306/db_kasirtoko"; // Ganti sesuai database
-                String user = "root"; // Ganti jika ada username lain
-                String password = ""; // Ganti jika ada password database
+                String url = "jdbc:mysql://localhost:3306/db_kasirtoko";
+                String user = "root";
+                String password = "";
 
-                // Load driver MySQL
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 mysqlconfig = DriverManager.getConnection(url, user, password);
 
@@ -28,10 +26,9 @@ public class dbtokko {
         return mysqlconfig;
     }
 
-    // Tes koneksi ke database
     public static void main(String[] args) {
         try {
-            configDB(); // Coba koneksi saat program dijalankan
+            configDB();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -40,8 +37,7 @@ public class dbtokko {
 public static Connection getConnection() throws SQLException {
     String url = "jdbc:mysql://localhost:3306/db_kasirtoko";
     String user = "root";
-    String password = ""; // atau sesuai password MySQL kamu
+    String password = "";
     return DriverManager.getConnection(url, user, password);
 }
-
 }

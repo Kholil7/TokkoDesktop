@@ -21,6 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.*;
+import org.jfree.chart.*;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.ChartPanel;
 /**
  *
  * @author Yiung Za
@@ -39,7 +46,7 @@ public class Dashboard_owner extends javax.swing.JFrame {
           btn_manajemenKaryawanan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
-          btnRfid.setBackground(new java.awt.Color(255, 255, 255, 0));
+          tampilkanChart();
 //          pnlRfid.setVisible(false);
           menambahRfid.setLocationRelativeTo(null);
           tampilkanPengguna();
@@ -105,9 +112,13 @@ btnPrint.addActionListener(new ActionListener() {
         dataRPengguna = new javax.swing.JScrollPane();
         tbrPengguna = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btnRfid = new javax.swing.JButton();
         btn_manajemenKaryawanan = new javax.swing.JButton();
         btn_laporan = new javax.swing.JButton();
+        panelChart = new javax.swing.JPanel();
+        show_totalStok = new javax.swing.JButton();
+        show_totalBarangRusak = new javax.swing.JButton();
+        show_totalBarangDikembalikan = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
         backgroundUtama = new javax.swing.JLabel();
 
         menambahRfid.setTitle("Menambahkan RFID");
@@ -168,13 +179,6 @@ btnPrint.addActionListener(new ActionListener() {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnRfid.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRfidMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnRfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 220, 110));
-
         btn_manajemenKaryawanan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_manajemenKaryawananMouseClicked(evt);
@@ -198,8 +202,67 @@ btnPrint.addActionListener(new ActionListener() {
             }
         });
         jPanel1.add(btn_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 240, 50));
+        jPanel1.add(panelChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 640, 320));
 
-        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/pg-owner/Pg_Desktop-Owner.png"))); // NOI18N
+        show_totalStok.setBackground(new java.awt.Color(102, 102, 255));
+        show_totalStok.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        show_totalStok.setForeground(new java.awt.Color(0, 0, 0));
+        show_totalStok.setText("Lihat Stok");
+        show_totalStok.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalStok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalStokMouseClicked(evt);
+            }
+        });
+        show_totalStok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalStokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalStok, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 200, 120));
+
+        show_totalBarangRusak.setBackground(new java.awt.Color(102, 102, 255));
+        show_totalBarangRusak.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        show_totalBarangRusak.setForeground(new java.awt.Color(0, 0, 0));
+        show_totalBarangRusak.setText("Lihat Barang Rusak");
+        show_totalBarangRusak.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalBarangRusak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalBarangRusakMouseClicked(evt);
+            }
+        });
+        show_totalBarangRusak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalBarangRusakActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalBarangRusak, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 200, 120));
+
+        show_totalBarangDikembalikan.setBackground(new java.awt.Color(102, 102, 255));
+        show_totalBarangDikembalikan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        show_totalBarangDikembalikan.setForeground(new java.awt.Color(0, 0, 0));
+        show_totalBarangDikembalikan.setText("Lihat Barang Dikembalikan");
+        show_totalBarangDikembalikan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        show_totalBarangDikembalikan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_totalBarangDikembalikanMouseClicked(evt);
+            }
+        });
+        show_totalBarangDikembalikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_totalBarangDikembalikanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(show_totalBarangDikembalikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 200, 120));
+
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 240, 50));
+
+        backgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Desktop-Owner.png"))); // NOI18N
         jPanel1.add(backgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 750));
@@ -235,11 +298,6 @@ btnPrint.addActionListener(new ActionListener() {
     dispose();
     System.out.println("Sekarang Berada Di Page Laporan");
     }//GEN-LAST:event_btn_laporanMouseClicked
-
-    private void btnRfidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRfidMouseClicked
-        // TODO add your handling code here:
-menambahRfid.setVisible(true);
-    }//GEN-LAST:event_btnRfidMouseClicked
 
     private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
         // TODO add your handling code here:
@@ -287,6 +345,103 @@ btnSimpan.addActionListener(new ActionListener() {
     }
 });
     }//GEN-LAST:event_btnSimpanMouseClicked
+
+    private void show_totalStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalStokMouseClicked
+        String sql = "SELECT SUM(stok) AS total_stok FROM stok_produk";
+
+        try (
+            java.sql.Connection conn = dbtokko.configDB();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()
+        ) {
+            if (rs.next()) {
+                int totalStok = rs.getInt("total_stok");
+                // Set tulisan pada tombol menjadi total stok
+                show_totalStok.setText("Total Stok: " + totalStok);
+            } else {
+                show_totalStok.setText("Stok: 0");
+            }
+        } catch (SQLException ex) {
+            show_totalStok.setText("Error");
+            System.err.println("SQL Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_show_totalStokMouseClicked
+
+    private void show_totalStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalStokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_totalStokActionPerformed
+
+    private void show_totalBarangRusakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalBarangRusakMouseClicked
+        // TODO add your handling code here:
+        String sql = "SELECT SUM(jumlah) AS total_rusak FROM barang_rusak";
+
+        try (
+            java.sql.Connection conn = dbtokko.configDB();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()
+        ) {
+            if (rs.next()) {
+                int totalRusak = rs.getInt("total_rusak");
+                // Set tulisan pada tombol menjadi total stok
+                show_totalBarangRusak.setText("Total Rusak: " + totalRusak);
+            } else {
+                show_totalBarangRusak.setText("Rusak: 0");
+            }
+        } catch (SQLException ex) {
+            show_totalBarangRusak.setText("Error");
+            System.err.println("SQL Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_show_totalBarangRusakMouseClicked
+
+    private void show_totalBarangRusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalBarangRusakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_totalBarangRusakActionPerformed
+
+    private void show_totalBarangDikembalikanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_totalBarangDikembalikanMouseClicked
+        // TODO add your handling code here:
+        String sql = "SELECT SUM(jumlah) AS total_kembalikan FROM return_pembelian";
+
+        try (
+            java.sql.Connection conn = dbtokko.configDB();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()
+        ) {
+            if (rs.next()) {
+                int totalKembalikan = rs.getInt("total_kembalikan");
+                // Set tulisan pada tombol menjadi total stok
+                show_totalBarangDikembalikan.setText("Total Dikembalikan: " + totalKembalikan);
+            } else {
+                show_totalBarangDikembalikan.setText("Dikembalikan: 0");
+            }
+        } catch (SQLException ex) {
+            show_totalBarangDikembalikan.setText("Error");
+            System.err.println("SQL Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_show_totalBarangDikembalikanMouseClicked
+
+    private void show_totalBarangDikembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_totalBarangDikembalikanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_totalBarangDikembalikanActionPerformed
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -342,16 +497,20 @@ btnSimpan.addActionListener(new ActionListener() {
     private javax.swing.JLabel backgroundUtama;
     private javax.swing.JButton btnCard;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnRfid;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_manajemenKaryawanan;
     private javax.swing.JScrollPane dataRPengguna;
     private javax.swing.JTextField iptRfid;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDialog menambahRfid;
+    private javax.swing.JPanel panelChart;
     private javax.swing.JPanel pnlCard;
+    private javax.swing.JButton show_totalBarangDikembalikan;
+    private javax.swing.JButton show_totalBarangRusak;
+    private javax.swing.JButton show_totalStok;
     private javax.swing.JTable tbrPengguna;
     // End of variables declaration//GEN-END:variables
 private List<String> idPenggunaList = new ArrayList<>();
@@ -424,7 +583,58 @@ private void tampilkanPengguna() {
 //    }
 //}
 
+private void tampilkanChart() {
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+    try {
+        java.sql.Connection conn = dbtokko.configDB();
+
+        // Penjualan
+        String sqlPenjualan = "SELECT tanggal_transaksi, SUM(total) AS total FROM penjualan GROUP BY tanggal_transaksi ORDER BY tanggal_transaksi";
+        PreparedStatement psPenjualan = conn.prepareStatement(sqlPenjualan);
+        ResultSet rsPenjualan = psPenjualan.executeQuery();
+        while (rsPenjualan.next()) {
+            String tanggal = rsPenjualan.getString("tanggal_transaksi");
+            int total = rsPenjualan.getInt("total");
+            dataset.addValue(total, "Penjualan", tanggal);
+        }
+        rsPenjualan.close();
+        psPenjualan.close();
+
+        // Pembelian
+        String sqlPembelian = "SELECT tanggal_pembelian, SUM(total) AS total FROM pembelian GROUP BY tanggal_pembelian ORDER BY tanggal_pembelian";
+        PreparedStatement psPembelian = conn.prepareStatement(sqlPembelian);
+        ResultSet rsPembelian = psPembelian.executeQuery();
+        while (rsPembelian.next()) {
+            String tanggal = rsPembelian.getString("tanggal_pembelian");
+            int total = rsPembelian.getInt("total");
+            dataset.addValue(total, "Pembelian", tanggal);
+        }
+        rsPembelian.close();
+        psPembelian.close();
+
+        conn.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Gagal mengambil data: " + e.getMessage());
+    }
+
+    JFreeChart chart = ChartFactory.createBarChart(
+            "Grafik Penjualan dan Pembelian",
+            "Tanggal",
+            "Total (Rp)",
+            dataset
+    );
+
+    ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(panelChart.getSize());
+    chartPanel.setMouseWheelEnabled(true);
+
+    panelChart.removeAll();
+    panelChart.setLayout(new java.awt.BorderLayout());
+    panelChart.add(chartPanel, java.awt.BorderLayout.CENTER);
+    panelChart.validate();
+}
 }
 
 

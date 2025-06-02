@@ -36,9 +36,7 @@ public class Login extends javax.swing.JFrame {
     private void checkRfid() {
         String rfid = ipt_rfid.getText().trim();
 
-        // Misal RFID valid adalah 8 karakter, sesuaikan dengan kebutuhanmu
         if (rfid.length() == 10) {
-            // panggil proses login langsung
             loginProsesViaRFID(rfid);
         }
     }
@@ -50,12 +48,10 @@ public class Login extends javax.swing.JFrame {
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        // bisa abaikan atau lakukan reset jika perlu
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        // biasnya tidak dipakai di JTextField biasa
     }
 });
 
@@ -75,6 +71,8 @@ public class Login extends javax.swing.JFrame {
         BackgroundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1440, 750));
+        setSize(new java.awt.Dimension(800, 750));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -133,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(ComboLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 160, 40));
 
         BackgroundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_login.png"))); // NOI18N
-        getContentPane().add(BackgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(BackgroundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,7 +154,7 @@ public class Login extends javax.swing.JFrame {
     private void btn_submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_submitMouseClicked
 String username = ipt_username.getText().trim();
 String password = new String(ipt_password.getPassword()).trim();
-String selectedRole = ComboLogin.getSelectedItem().toString().trim(); // Role yang dipilih user
+String selectedRole = ComboLogin.getSelectedItem().toString().trim();
 String rfid = ipt_rfid.getText().trim();
 
 try (Connection conn = dbtokko.configDB()) {
@@ -296,6 +294,8 @@ try (Connection conn = dbtokko.configDB()) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                Login login = new Login();
+                login.setExtendedState(JFrame.MAXIMIZED_BOTH);
             }
         });
     }

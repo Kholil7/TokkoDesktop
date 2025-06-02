@@ -100,7 +100,11 @@ public class TransaksiGenerator {
         }
         return koneksi;
     }
-}
+
+        static Connection getConnection() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
 //    untuk autocomplate
 public class AutoCompleteBarang {
     private Connection conn;
@@ -491,6 +495,7 @@ SwingUtilities.invokeLater(() -> {
           btn_stok.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_laporan.setBackground(new java.awt.Color(255, 255, 255, 0));
           btn_dashboard.setBackground(new java.awt.Color(255, 255, 255, 0));
+          btn_logout.setBackground(new java.awt.Color(255, 255, 255, 0));
           comboBox.setBackground(new java.awt.Color(255, 255, 255, 0));
         txtKodeTransaksi.setBackground(new java.awt.Color(255, 255, 255, 0));
         kd_barang.setBackground(new java.awt.Color(255, 255, 255, 0));
@@ -540,6 +545,7 @@ SwingUtilities.invokeLater(() -> {
         showTotalField = new javax.swing.JTextField();
         barcode = new javax.swing.JTextField();
         spnJumlah = new javax.swing.JSpinner();
+        btn_logout = new javax.swing.JButton();
         backgoundUtama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -739,7 +745,7 @@ SwingUtilities.invokeLater(() -> {
         ));
         jScrollPane1.setViewportView(tabel_transaksi);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 1170, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 1190, 270));
 
         showTotalField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         showTotalField.setBorder(null);
@@ -750,10 +756,17 @@ SwingUtilities.invokeLater(() -> {
                 barcodeKeyTyped(evt);
             }
         });
-        getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 150, -1));
+        getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(5000, 120, 150, -1));
         getContentPane().add(spnJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, 70, 30));
 
-        backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Karyawan-Penjualan (1).png"))); // NOI18N
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 240, 50));
+
+        backgoundUtama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/Pg_Karyawan-Penjualan.png"))); // NOI18N
         getContentPane().add(backgoundUtama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -1040,13 +1053,12 @@ try {
     }
 
     conn.commit();
-    JOptionPane.showMessageDialog(this, "Transaksi berhasil disimpan!");
+    JOptionPane.showMessageDialog(this, "Transaksi Penjualan Berhasil");
 
         CetakStruk cs = new CetakStruk();
         cs.cetakStrukTransaksiTerakhir();
         barcode.requestFocusInWindow();
 
-    // Reset form
     model.setRowCount(0);
     transaksiGenerator.refreshKodeTransaksi();
     txtRp.setText("");
@@ -1088,7 +1100,7 @@ try {
         dashboard.setVisible(true);
         dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
-        System.out.println("Sekarang Dalam Page Dashboard " + "Master");
+        System.out.println("Sekarang Dalam Page Dashboard");
     }//GEN-LAST:event_btn_dashboardMouseClicked
 
     private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
@@ -1097,7 +1109,7 @@ try {
         pembelian.setVisible(true);
         pembelian.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
-        System.out.println("Sekarang Dalam Page Pembelian " + "Master");
+        System.out.println("Sekarang Dalam Page Pembelian");
     }//GEN-LAST:event_btn_pembelianMouseClicked
 
     private void btn_pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pemasokActionPerformed
@@ -1110,7 +1122,7 @@ try {
         pamasok.setVisible(true);
         pamasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
-        System.out.println("Sekarang Dalam Page Pemasok " + "Master");
+        System.out.println("Sekarang Dalam Page Pemasok");
     }//GEN-LAST:event_btn_pemasokMouseClicked
 
     private void btn_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stokActionPerformed
@@ -1123,11 +1135,11 @@ try {
 
     private void btn_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pengembalianMouseClicked
         // TODO add your handling code here:
-//        Pemasok_master pamasok = new Pemasok_master();
-//        pamasok.setVisible(true);
-//        pamasok.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        dispose();
-          System.out.println("Sekarang Dalam Page Pengembalian Barang " + "Master");
+        PengembalianBarang_karyawan pengembalian = new PengembalianBarang_karyawan();
+        pengembalian.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pengembalian.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Pengembalian Barang");
     }//GEN-LAST:event_btn_pengembalianMouseClicked
 
     private void btn_stokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stokMouseClicked
@@ -1136,7 +1148,7 @@ try {
         stok.setVisible(true);
         stok.setExtendedState(JFrame.MAXIMIZED_BOTH);
         dispose();
-        System.out.println("Sekarang Dalam Page Stok " + "Master");
+        System.out.println("Sekarang Dalam Page Stok");
     }//GEN-LAST:event_btn_stokMouseClicked
 
     private void btn_dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dashboardActionPerformed
@@ -1145,7 +1157,11 @@ try {
 
     private void btn_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_laporanMouseClicked
         // TODO add your handling code here:
-        System.out.println("Sekarang Dalam Page Laporan " + "Master");
+        Riwayat_karyawan laporan = new Riwayat_karyawan();
+        laporan.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        laporan.setVisible(true);
+        dispose();
+        System.out.println("Sekarang Dalam Page Riwayat");
     }//GEN-LAST:event_btn_laporanMouseClicked
 
     private void barcodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barcodeKeyTyped
@@ -1155,6 +1171,26 @@ try {
     private void textBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBayarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBayarActionPerformed
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            dispose();
+            System.out.println("Anda Logout");
+        } else {
+            System.out.println("Logout dibatalkan");
+        }
+    }//GEN-LAST:event_btn_logoutMouseClicked
     private void resetTabel() {
         // Menghapus semua baris di tabel setelah pembayaran berhasil
         model.setRowCount(0);
@@ -1237,6 +1273,7 @@ try {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_laporan;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_pemasok;
     private javax.swing.JButton btn_pembelian;
     private javax.swing.JButton btn_pengembalian;
